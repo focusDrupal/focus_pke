@@ -226,14 +226,11 @@
       <div class="container">
         <div class="followUsLinks">
           <div class="row">
-            <?php if ($eip_tw): ?>
-              <div class="col-md-4 col-sm-4"><?php print $eip_tw; ?></div>
+            <?php if ($focus_twi): ?>
+              <div class="col-md-6 col-sm-6"><?php print $focus_twi; ?></div>
             <?php endif; ?>
-            <?php if ($eip_yt): ?>
-              <div class="col-md-4 col-sm-4"><?php print $eip_yt; ?></div>
-            <?php endif; ?>
-            <?php if ($eip_gi): ?>
-              <div class="col-md-4 col-sm-4"><?php print $eip_gi; ?></div>
+            <?php if ($focus_you): ?>
+              <div class="col-md-6 col-sm-6"><?php print $focus_you; ?></div>
             <?php endif; ?>
           </div>
         </div>
