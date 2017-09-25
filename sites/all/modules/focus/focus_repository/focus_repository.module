@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the FOCUS Repository featureeeee.
+ * Code for the FOCUS Repository feature.
  */
 
 include_once 'focus_repository.features.inc';
