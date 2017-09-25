@@ -1,0 +1,1454 @@
+<?php
+
+/**
+ * @file
+ * Code for the FOCUS REPOSITORY VALIDATION PROCESS feature.
+ */
+
+require_once 'focus_repository_validation_process.features.inc';
+
+define('FOCUS_REPOSITORY_VALIDATION_PROCESS_ROLENAME', 'repository evaluator');
+
+/**
+ * Implements hook_node_insert().
+ */
+function focus_repository_validation_process_node_insert($node) {
+  if ($node->type == 'practice') {
+    $evaluators = _focus_repository_validation_process_get_evaluators($node, 0);
+    _focus_repository_validation_process_new_repository_invitation($node, $evaluators, 0);
+  }
+}
+
+/**
+ * Function to create a new content of type focus_repository_evaluation.
+ *
+ * @param mixed $node
+ *    Get the node id.
+ * @param array $evaluators
+ *    Get the $evaluautors id.
+ */
+function _focus_repository_validation_process_new_repository_invitation($node, $evaluators, $declInvitation) {
+
+  global $user;
+  $ntitle = $node->title;
+
+  for ($i = 0; $i < count($evaluators); $i++) {
+
+    $evaluator = $evaluators[$i][0];
+    $mail_evaluator = $evaluators[$i][1];
+    $name_evaluator = $evaluators[$i][2];
+    $new_node = new stdClass();
+
+    if ($declInvitation == 0) {
+      $nid = $node->nid;
+      $substitutions_texts = array(
+        '@counteri' => ($i + 1),
+        '@ntitle' => $ntitle,
+      );
+      $new_node->title = t('Evaluation @counteri of practice @ntitle', $substitutions_texts);
+    }
+    elseif ($declInvitation == 1) {
+      $nid = $node->field_referenced_practice['und'][0]['target_id'];
+
+      $countEvaluation = db_select('field_data_field_referenced_practice', 'p');
+      $countEvaluation->fields('p', array('field_referenced_practice_target_id'));
+      $countEvaluation->condition('p.field_referenced_practice_target_id', $nid, '=');
+      $result_countEvaluation = $countEvaluation->execute();
+
+      $evaluationNumber = array();
+
+      if ($result_countEvaluation) {
+        $y = 0;
+        while ($row = $result_countEvaluation->fetchAssoc()) {
+          $evaluationNumber[$y] = $row['field_referenced_practice_target_id'];
+          $y++;
+        }
+      }
+
+      $countEvaluationNumber = count($evaluationNumber);
+
+      // Get title of the Practice.
+      $queryNodeTitle = db_select('node', 'n');
+      $queryNodeTitle->fields('n', array('title', 'nid'));
+      $queryNodeTitle->condition('n.nid', $nid, '=');
+      $result_nodeTitle = $queryNodeTitle->execute();
+
+      $nodeTitleArray = array();
+
+      if ($result_nodeTitle) {
+        $t = 0;
+        while ($row = $result_nodeTitle->fetchAssoc()) {
+          $nodeTitleArray[$t] = $row['title'];
+          $t++;
+        }
+      }
+
+      $nodeTitle = $nodeTitleArray[0];
+      $substitutions_texts = array(
+        '@counter' => ($countEvaluationNumber + 1),
+        '@nodetitle' => $nodeTitle,
+      );
+      $new_node->title = t('Evaluation @counter of practice @nodetitle', $substitutions_texts);
+
+    }
+
+    $new_node->type = "focus_repository_evaluation";
+    node_object_prepare($new_node);
+    $new_node->status = 0;
+    $new_node->promote = 0;
+    $new_node->comment = 0;
+    $new_node->field_referenced_practice['und'][0]['target_id'] = $nid;
+    $new_node->field_evaluator['und'][0]['target_id'] = $evaluator;
+    $new_node->field_date_invitation[LANGUAGE_NONE][0]['value'] = time();
+    $new_node = node_submit($new_node);
+    node_save($new_node);
+
+    $practiceName = $new_node->title;
+
+    // Send email to evaluators.
+    global $base_url;    
+    $to = $mail_evaluator;
+    $subject = t('FOCUS - New invitation');
+    $practiceName_text = array(
+      '@practiceName' => $practiceName,
+      '@urlInvitation' => $base_url . "/evaluate-practices/invitations_en",
+    );
+    $subject = t('FOCUS - You have new invitation to evaluate the practice @practiceName', $practiceName_text);
+    $body = t('You have a new invitation to evaluate the practice: @practiceName .You can accept or decline the invitation in the next link: @urlInvitation', $practiceName_text);
+    $params = array(
+      'subject' => $subject,
+      'body' => $body,
+    );
+
+    drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+
+  }
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function focus_repository_validation_process_node_update($node) {
+  if ($node->type == 'focus_repository_evaluation') {
+
+    drupal_set_message(t('Entra en el hook node update como REPOSITORIO EVALUATION'), 'status');
+
+    $acceptance_value = $node->field_acceptance['und'][0]['value'];
+
+    $nodeTypeEval = $node->type;
+    $nodeTitleEval = $node->title;
+
+    // When one evaluator decline the invitation
+    if ($acceptance_value == 2) {
+      $evaluators = _focus_repository_validation_process_get_evaluators($node, 1);
+      _focus_repository_validation_process_new_repository_invitation($node, $evaluators, 1);
+    }
+
+    if (!empty($node->field_completeness['und'])) {
+      _focus_repository_validation_process_do_evaluations($node);
+    }
+
+    // Check if the evaluation is the last.
+    $practiceId = $node->field_referenced_practice['und'][0]['target_id'];
+    _focus_repository_validation_process_check_is_the_last($practiceId, $node);
+  }
+  elseif ($node->type == 'practice' && $node->status != NODE_PUBLISHED) {
+
+    drupal_set_message(t('Entra en el hook node update como PRACTICE'), 'status');
+
+    $nodeType = $node->type;
+    $nodeTitle = $node->title;
+
+    $practiceId = $node->nid;
+    $practiceName = $node->title;
+
+    // Get the evaluations nid.
+    $queryEvaluationsNid = db_select('field_data_field_referenced_practice', 'r');
+    $queryEvaluationsNid->fields('r', array('entity_id'));
+    $queryEvaluationsNid->condition('r.field_referenced_practice_target_id ', ($practiceId), '=');
+
+    $resultsQueryEvaluationsNid = $queryEvaluationsNid->execute();
+
+    $evaluationsNid = array();
+
+    if ($resultsQueryEvaluationsNid) {
+      $y = 0;
+      while ($row = $resultsQueryEvaluationsNid->fetchAssoc()) {
+        $evaluationsNid[$y] = $row['entity_id'];
+        $y++;
+      }
+    }
+
+    // 0 --> UnderReview
+    // 1 --> Accepted
+    //-1 --> Rejected
+    // 2 --> NeedRevising
+    // Update field evaluation (NeedRevising to UnderReview).
+    $selectUnderReview = db_select('field_data_field_evaluation', 'ev');
+    $selectUnderReview->fields('ev', array('entity_id', 'field_evaluation_value'));
+    $selectUnderReview->condition('ev.field_evaluation_value', 2, '=');
+    $selectUnderReview->condition('ev.entity_id', ($evaluationsNid), 'IN');
+    $resultSelectUnderReview = $selectUnderReview->execute();
+
+    $evaluationsNidUpdate = array();
+
+    if ($resultSelectUnderReview) {
+      $y = 0;
+      while ($row = $resultSelectUnderReview->fetchAssoc()) {
+        $evaluationsNidUpdate[$y] = $row['entity_id'];
+        $y++;
+      }
+    }
+
+    for ($u = 0; $u < count($evaluationsNidUpdate); $u++) {
+      $evaluationReviewed = node_load($evaluationsNidUpdate[$u]);
+      $evaluationReviewed->field_evaluation['und'][0]['value'] = 0;
+      field_attach_presave('node', $evaluationReviewed);
+      field_attach_update('node', $evaluationReviewed);
+      entity_get_controller('node')->resetCache(array($evaluationReviewed->nid));
+    }
+
+    // Get the evaluators.
+    $queryEvaluatorsUid = db_select('field_revision_field_evaluator', 'e');
+    $queryEvaluatorsUid->fields('e', array('field_evaluator_target_id'));
+    $queryEvaluatorsUid->innerjoin('field_revision_field_evaluation', 'f', 'e.entity_id = f.entity_id');
+    $queryEvaluatorsUid->condition('e.entity_id ', ($evaluationsNid), 'IN');
+    $queryEvaluatorsUid->condition('f.field_evaluation_value', 0, '=');
+    $resultsEvaluatorsUid = $queryEvaluatorsUid->execute();
+
+    $evaluatorsUid = array();
+
+    if ($resultsEvaluatorsUid) {
+      $y = 0;
+      while ($row = $resultsEvaluatorsUid->fetchAssoc()) {
+        $evaluatorsUid[$y] = $row['field_evaluator_target_id'];
+        $y++;
+      }
+    }
+
+    // Evaluators Mails.
+    $mails_evaluators = db_select('users', 'u');
+    $mails_evaluators->fields('u', array('uid', 'mail', 'name'));
+    $mails_evaluators->condition('u.uid', array($evaluatorsUid), 'IN');
+    $result_mails_evaluators = $mails_evaluators->execute();
+
+    $evaluators_mails = array();
+
+    if ($result_mails_evaluators) {
+      $i = 0;
+      while ($row = $result_mails_evaluators->fetchAssoc()) {
+        $evaluators_mails[$i] = array(
+          $row['mail'],
+          $row['name'],
+        );
+        $i++;
+      }
+    }
+
+    for ($m = 0; $m < count($evaluators_mails); $m++) {
+
+      global $base_url;
+      $to = $evaluators_mails[$m][0];
+      $substitutions_texts = array(
+        '@practiceName' => $practiceName,
+        '@urlEvaluateReview' => $base_url . "evaluate-practices/accepted_en",
+      );
+      $subject = t('FOCUS - The practice: @practiceName is updated with the news changes.', $substitutions_texts);
+      $body = t('You have made the changes you requested in practice @practiceName. You can evaluate the practice from the following link: @urlEvaluateReview. Please remind that you need to be logged to access.', $substitutions_texts);
+      $params = array(
+        'subject' => $subject,
+        'body' => $body,
+      );
+
+      drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+
+    }
+
+  }
+}
+
+/**
+ * Function to send an email to the evaluator when the practice is assigned.
+ *
+ * @param string $key
+ *    Get the $key.
+ * @param mixed $message
+ *    Get the $message.
+ * @param array $params
+ *    Get the $params.
+ */
+function focus_repository_validation_process_mail($key, &$message, $params) {
+  if ($key == 'focus_repository_validation_process_mail') {
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+    $message['subject'] = $params['subject'];
+    $message['body'][] = $params['body'];
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function focus_repository_validation_process_form_focus_repository_evaluation_node_form_alter(&$form, &$form_state, $form_id) {
+  /*
+   * Rewrite the fields labels in the form.
+   * The aim is to have the "questions" in the form (like a questionnaire)
+   * but to leave the field names as shorts substantives.
+   */
+
+  // Formal review criteria.
+  $form['field_completeness'][LANGUAGE_NONE]['#title'] = t('Is the information provided complete?');
+  $form['field_clarity'][LANGUAGE_NONE]['#title'] = t('is the description clear and easy to understand?');
+  $form['field_evidence'][LANGUAGE_NONE]['#title'] = t('Is there clear evidence regarding the innovative aspects of the practice?');
+  $form['field_documentation_url'][LANGUAGE_NONE]['#title'] = t('Is some documentation eg -URL for further information, available?');
+  $form['field_contact'][LANGUAGE_NONE]['#title'] = t('Is contact information available?');
+  $form['field_elements_display_clear'][LANGUAGE_NONE]['#title'] = t('Is the overall layout, text and illustrative elements displayed clearly?');
+
+  // Content related evaluation.
+  $form['field_assessed_time_impact'][LANGUAGE_NONE]['#title'] = t('Is the time of impact realistic?');
+  $form['field_assessed_evidence'][LANGUAGE_NONE]['#title'] = t('What is the quality of evidence?');
+  $form['field_assessed_level_maturity'][LANGUAGE_NONE]['#title'] = t('Is the level of maturity assessed correctly?');
+  $form['field_assessed_transferability'][LANGUAGE_NONE]['#title'] = t('Is the transferability of the practice described realistically?');
+
+  // Hide field.
+  $form['field_answer_date']['#access'] = 0;
+  $form['field_date_invitation']['#access'] = 0;
+  $form['field_evaluator']['#access'] = 0;
+  $form['field_referenced_practice']['#access'] = 0;
+  $form['field_acceptance']['#access'] = 0;
+  $form['title']['#access'] = 0;
+  $form['field_qualification']['#access'] = 0;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function focus_repository_validation_process_cron() {
+
+  $dateToday = format_date(time(), 'custom', t('Y/m/d H:m:s', array(), array('context' => 'php date format')));
+
+  $limitDate = new DateTime($dateToday);
+  $limitDate->modify('-30 day');
+  $dateRejectection = $limitDate->format('Y/m/d H:m:s');
+
+  $dateRejectectionSTR = strtotime($dateRejectection);
+
+  $datePassed = db_select('field_data_field_date_invitation', 'i');
+  $datePassed->fields('i', array('field_date_invitation_value', 'entity_id'));
+  $datePassed->condition('i.field_date_invitation_value', $dateRejectectionSTR, '<');
+  $datePassed->join('field_data_field_acceptance', 'a', 'a.entity_id = i.entity_id');
+  $datePassed->condition('a.field_acceptance_value', 2, '=');
+  $resultDatePassed = $datePassed->execute();
+
+  $datePassedId = array();
+
+  if ($resultDatePassed) {
+    $i = 0;
+    while ($row = $resultDatePassed->fetchAssoc()) {
+      $datePassedId[$i] = $row['entity_id'];
+      $i++;
+    }
+  }
+
+  for ($e = 0; $e < count($datePassedId); $e++) {
+
+    $updateEvaluationAcceptance = db_update('field_data_field_acceptance');
+    $updateEvaluationAcceptance->fields(array('field_acceptance_value ' => 2));
+    $updateEvaluationAcceptance->condition('entity_id', $datePassedId[$e], '=');
+    $resultUpdateEvaluationAcceptance = $updateEvaluationAcceptance->execute();
+
+    $nodeEvaluationId = $datePassedId[$e];
+
+    $nodeEvaluation = node_load($nodeEvaluationId);
+
+    $evaluators = _focus_repository_validation_process_get_evaluators($nodeEvaluation, 1);
+    _focus_repository_validation_process_new_repository_invitation($nodeEvaluation, $evaluators, 1);
+
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function focus_repository_validation_process_permission() {
+  return array(
+    'access to view evaluators manager' => array(
+      'title' => t('Access evaluators manager'),
+      'description' => t('Allow users to access view evaluators manager'),
+    ),
+    'access to view evaluation evaluators' => array(
+      'title' => t('Access evaluation evaluators'),
+      'description' => t('Allow users to access view evaluation evaluators'),
+    ),
+    'access to view evaluation evaluated' => array(
+      'title' => t('Access evaluation evaluated'),
+      'description' => t('Allow users to access view evaluation evaluated'),
+    ),
+  );
+}
+
+/**
+ * Hook_node_validate().
+ */
+function focus_repository_validation_process_node_validate($node, $form, &$form_state) {
+  if ($node->type == 'focus_repository_evaluation') {
+    if ($node->field_evaluation['und'][0]['value'] == 0) {
+      form_set_error('field_evaluation', t('You must choose between accepted, rejected or need revision.'));
+    }
+  }
+}
+
+/**
+ * Function to get the evaluators.
+ *
+ * @param mixed $node
+ *    Get the node id.
+ * @param array $declInvitation
+ *    Get the $declInvitation.
+ */
+function _focus_repository_validation_process_get_evaluators($node, $declInvitation) {
+
+  if ($declInvitation == 0) {
+
+    $evaluatorsDivision = 3;
+
+    // Get term ids.
+    $tid = array();
+    $countids = count($node->field_main_subject_area['und']);
+
+    $subjectArea = $node->field_main_subject_area['und'];
+
+    for ($i = 0; $i < $countids; $i++) {
+      $tid[$i] = $node->field_main_subject_area['und'][$i]['target_id'];
+    }
+
+  }
+  elseif ($declInvitation == 1) {
+
+    $evaluatorsDivision = 1;
+
+    // Get the practice nid.
+    $nidEvaluation = $node->nid;
+    $nidEvaluationT = $node->title;
+    $nidPractice = $node->field_referenced_practice['und'][0]['target_id'];
+
+    // Get the evaluations nid.
+    $queryEvaluationsNoChoosen = db_select('field_data_field_referenced_practice', 'r');
+    $queryEvaluationsNoChoosen->fields('r', array('entity_id'));
+    $queryEvaluationsNoChoosen->condition('r.field_referenced_practice_target_id ', ($nidPractice), '=');
+
+    $resultsEvaluationsNoChoosen = $queryEvaluationsNoChoosen->execute();
+
+    $evaluationsNoChoosen = array();
+
+    if ($resultsEvaluationsNoChoosen) {
+      $y = 0;
+      while ($row = $resultsEvaluationsNoChoosen->fetchAssoc()) {
+        $evaluationsNoChoosen[$y] = $row['entity_id'];
+        $y++;
+      }
+    }
+
+    // Get the evaluators choosen.
+    $evaluatorsNoChoosen = array();
+    $queryEvaluatorsNoChoosen = db_select('field_data_field_evaluator', 'e');
+    $queryEvaluatorsNoChoosen->fields('e', array('field_evaluator_target_id'));
+    $queryEvaluatorsNoChoosen->condition('e.entity_id', array($evaluationsNoChoosen), 'IN');
+    $resultsEvaluatorsNoChoosen = $queryEvaluatorsNoChoosen->execute();
+
+    if ($resultsEvaluatorsNoChoosen) {
+      $y = 0;
+      while ($row = $resultsEvaluatorsNoChoosen->fetchAssoc()) {
+        $evaluatorsNoChoosen[$y] = $row['field_evaluator_target_id'];
+        $y++;
+      }
+    }
+
+    // Get term ids.
+    $node = node_load($nidPractice);
+
+    $tid = array();
+    $countids = count($node->field_main_subject_area['und']);
+
+    for ($i = 0; $i < $countids; $i++) {
+      $tid[$i] = $node->field_main_subject_area['und'][$i]['target_id'];
+    }
+
+  }
+
+  // Get term names.
+  $term = array();
+
+  for ($i = 0; $i < $countids; $i++) {
+
+    $tid_valor = $tid[$i];
+    $node = node_load($tid_valor);
+    $term[$i] = $node->title;
+
+  }
+
+  /* Get evaluators matching keywords of the
+   * practices and expertises of the evaluators.
+   */
+  $allEvaluators = Array();
+  $allEvaluatorspush = Array();
+
+  for ($r = 0; $r < $countids; $r++) {
+    $termvariable = $term[$r];
+    $valour = trim($termvariable);
+
+    $total_evaluators = db_select('users', 'u');
+    $total_evaluators->fields('u', Array('uid'));
+    $total_evaluators->condition('u.status', '0', '<>');
+    $total_evaluators->join('users_roles', 'r', 'u.uid = r.uid');
+    $total_evaluators->join('role', 'ro', 'ro.rid = r.rid');
+    $total_evaluators->condition('ro.name', 'repository evaluator', '=');
+    $total_evaluators->join('field_data_field_evaluator_competences', 'e', 'e.entity_id = u.uid');
+    $total_evaluators->join('taxonomy_term_data', 't', 't.tid = e.field_evaluator_competences_tid');
+
+    switch ($valour) {
+
+      case 'Health care/Medicines':
+        $db_or = db_or();
+        $arrayMedicines = array(
+          'Healthcare',
+          'Medicines',
+          'Pharmacy',
+          'Nursing',
+          'Therapies',
+          'Care governance',
+          'Investment / Finances',
+        );
+        foreach ($arrayMedicines as $arrayMed) {
+          $db_or->condition('t.name', '%' . $arrayMed . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+      case 'Lifestyle/Prevention':
+        $db_or = db_or();
+        $arrayPrevention = array(
+          'Prevention',
+          'Nutrition',
+          'Functioning of older people',
+          'Social care',
+          'Leisure / tourism',
+          'Physical activity',
+        );
+        foreach ($arrayPrevention as $arrayPre) {
+          $db_or->condition('t.name', '%' . $arrayPre . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+      case 'Living environments/Independent Living':
+        $db_or = db_or();
+        $arrayLiving = array(
+          'Age-friendly environments',
+          'Physical activity',
+          'Housing',
+          'Real estate',
+          'ICT',
+          'User-centred desing',
+          'Investment / Finances',
+        );
+        foreach ($arrayLiving as $arrayLiv) {
+          $db_or->condition('t.name', '%' . $arrayLiv . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+      case 'ICT/Robotics':
+        $db_or = db_or();
+        $arrayRobotics = array(
+          'Robotics',
+          'User-centred design',
+          'Functioning of older people',
+          'Investment / Finances',
+        );
+        foreach ($arrayRobotics as $arrayRob) {
+          $db_or->condition('t.name', '%' . $arrayRob . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+      case 'Workplace/Organisation/Change Management':
+        $db_or = db_or();
+        $arrayManagement = array(
+          'Education and training',
+          'Service redesign',
+          'Change management',
+          'Healthcare and social care organisation',
+          'Workplace',
+        );
+        foreach ($arrayManagement as $arrayMan) {
+          $db_or->condition('t.name', '%' . $arrayMan . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+      case 'Training/Empowerment':
+        $db_or = db_or();
+        $arrayEmpowerment = array(
+          'Education and training',
+          'Functioning of older people',
+          'Health coaching',
+          'Phychology',
+          'Prevention',
+          'Stakeholder awareness and engagement',
+        );
+        foreach ($arrayEmpowerment as $arrayEmp) {
+          $db_or->condition('t.name', '%' . $arrayEmp . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+      case 'Responsible Research and Innovation (RRI)':
+        $db_or = db_or();
+        $arrayResearch = array(
+          'Ethics',
+          'Data security and confidentiality',
+          'Information sharing',
+          'Governance',
+        );
+        foreach ($arrayResearch as $arrayRes) {
+          $db_or->condition('t.name', '%' . $arrayRes . '%', 'LIKE');
+        }
+        $total_evaluators->condition($db_or);
+        break;
+
+    }
+
+    if ($declInvitation == 1) {
+      $total_evaluators->condition('u.uid', Array($evaluatorsNoChoosen), 'NOT IN');
+    }
+
+    $result_evaluators = $total_evaluators->execute();
+
+    if ($result_evaluators) {
+      $i = 0;
+      while ($row = $result_evaluators->fetchAssoc()) {
+        $allEvaluators[$i] = $row['uid'];
+        $i++;
+      }
+    }
+
+    $allEvaluatorspush = array_merge($allEvaluatorspush, $allEvaluators);
+    //$allEvaluatorspush = array(
+    //  1 => 22,
+    //  2 => 25,      
+    //  3 => 32,        
+    //);
+
+  }
+
+  drupal_set_message(t('The practice has been uploaded correctly. Several evaluators have been assigned and will remain in draft until evaluated. Thank you.'), 'status');
+
+  // Delete duplicates.
+  $allEvaluatorsWithoutDupl = array();
+  $allEvaluatorsWithoutDupl = array_unique($allEvaluatorspush);
+
+  if (count($allEvaluatorsWithoutDupl) < $evaluatorsDivision) {
+
+    if ($declInvitation == 0) {
+
+      // Send email to manager.
+      $allManagers = array();
+
+      $get_managers = db_select('users', 'u');
+      $get_managers->fields('u', array('uid'));
+      $get_managers->condition('u.status', '0', '<>');
+      $get_managers->join('users_roles', 'r', 'u.uid = r.uid');
+      $get_managers->join('role', 'ro', 'ro.rid = r.rid');
+      $get_managers->condition('ro.name', 'manager evaluation', '=');
+      $get_managers->join('field_data_field_evaluator_competences', 'e', 'e.entity_id = u.uid');
+      $get_managers->join('taxonomy_term_data', 't', 't.tid = e.field_evaluator_competences_tid');
+      $result_get_managers = $get_managers->execute();
+
+      if ($result_get_managers) {
+        $m = 0;
+        while ($row = $result_get_managers->fetchAssoc()) {
+          $allManagers[$m] = $row['uid'];
+          $m++;
+        }
+      }
+
+      for ($n = 0; $n < count($allManagers); $n++) {
+        $practiceName = $node->title;
+        $to = $allManagers[$n];
+        $substitutions_texts = array(
+          '@practiceName' => $practiceName,
+          '@termvariable' => $termvariable,
+        );
+        $subject = t("FOCUS - The practice: @practiceName don't have enough evaluator avaliable.");
+        $body = t("It\'s necessary to give permissions to more evaluators with the role of @termvariable in order to evaluate the practice.", $substitutions_texts);
+
+        $params = array(
+          'subject' => $subject,
+          'body' => $body,
+        );
+
+        drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+      }
+
+    }
+    elseif ($declInvitation == 1) {
+      $updateEvalAccept = db_update('field_data_field_acceptance');
+      $updateEvalAccept->fields(array('field_acceptance_value ' => 3));
+      $updateEvalAccept->condition('entity_id', $nidEvaluation, '=');
+
+      $resultUpdateEvalAccept = $updateEvalAccept->execute();
+    }
+
+  }
+  else {
+
+    /* Get count id evaluators with all documents (repository invitation)
+     * where accept answer and evaluation = Acepted o rejected.
+     */
+    $getDocuments = db_select('field_data_field_evaluator', 'e');
+    $getDocuments->fields('e', array('field_evaluator_target_id'));
+    $getDocuments->innerjoin('node', 'n', 'e.entity_id = n.nid');
+    $getDocuments->innerjoin('field_data_field_evaluation', 'f', 'n.nid = f.entity_id AND f.field_evaluation_value = 0');
+    $getDocuments->innerjoin('field_data_field_acceptance', 'i', 'n.nid = i.entity_id AND i.field_acceptance_value = 3');
+    $getDocuments->condition('e.field_evaluator_target_id', ($allEvaluatorsWithoutDupl), 'IN');
+    $getDocuments->condition('n.type', 'focus_repository_evaluation', '=');
+    $getDocuments->groupBy('e.field_evaluator_target_id');
+    $getDocuments->addExpression('COUNT(n.nid)', 'ncount');
+    $result_getDocuments = $getDocuments->execute();
+
+    $allDocuments = array();
+
+    if ($result_getDocuments) {
+      $i = 0;
+      while ($row = $result_getDocuments->fetchAssoc()) {
+        $allDocuments[$i] = array(
+          $row['field_evaluator_target_id'],
+          $row['ncount'],
+        );
+        $i++;
+      }
+    }
+
+    // This is the medium of documents that are evaluating the evaluators.
+    $sumArray = array_sum(array_column($allDocuments, 1));
+    $countArray = count(array_column($allDocuments, 1));
+
+    if ($countArray != 0) {
+      $medDocEval = $sumArray / $countArray;
+    }
+
+    // Walk the array to get the evaluators below average.
+    $allDocumentsMedia = array();
+
+    for ($i = 0; $i < count($allDocuments); $i++) {
+      if ($allDocuments[$i][1] <= $medDocEval) {
+        $allDocumentsMedia[] = array(
+          $allDocuments[$i][0],
+          $allDocuments[$i][1],
+        );
+      }
+    }
+
+    $evaluatorsMedia = array();
+
+    for ($i = 0; $i < count($allDocumentsMedia); $i++) {
+      $evaluatorsMedia[] = $allDocumentsMedia[$i][0];
+    }
+
+    if (count($evaluatorsMedia) < $evaluatorsDivision) {
+
+      $rand_keys = array_rand($allEvaluatorsWithoutDupl, $evaluatorsDivision);
+
+      $evaluatorsRand = array();
+
+      if ($declInvitation == 0) {
+        for ($r = 0; $r < count($rand_keys); $r++) {
+          $evaluatorsRand[] = $allEvaluatorsWithoutDupl[$rand_keys[$r]];
+        }
+      }
+      else {
+        $evaluatorsRand[] = $allEvaluatorsWithoutDupl[$rand_keys];
+      }
+
+    }
+    else {
+
+      /* Get count id evaluators with all documents
+       * (repository invitation) where accept answer.
+       */
+      $getDocumentsFinal = db_select('field_data_field_evaluator', 'e');
+      $getDocumentsFinal->fields('e', array('field_evaluator_target_id'));
+      $getDocumentsFinal->innerjoin('node', 'n', 'e.entity_id = n.nid');
+      $getDocumentsFinal->innerjoin('field_data_field_evaluation', 'f', 'n.nid = f.entity_id AND f.field_evaluation_value = 1 OR f.field_evaluation_value = 2');
+      $getDocumentsFinal->condition('e.field_evaluator_target_id', ($evaluatorsMedia), 'IN');
+      $getDocumentsFinal->condition('n.type', 'focus_repository_evaluation', '=');
+      $getDocumentsFinal->groupBy('e.field_evaluator_target_id');
+      $getDocumentsFinal->addExpression('COUNT(n.nid)', 'ncount');
+      $result_getDocumentsFinal = $getDocumentsFinal->execute();
+
+      $allDocumentsFinal = array();
+
+      if ($result_getDocumentsFinal) {
+        $i = 0;
+        while ($row = $result_getDocumentsFinal->fetchAssoc()) {
+          $allDocumentsFinal[$i] = array(
+            $row['field_evaluator_target_id'],
+            $row['ncount'],
+          );
+          $i++;
+        }
+      }
+
+      // This is the medium of documents that are evaluating the evaluators.
+      $medDocEvalFinal = array_sum(array_column($allDocumentsFinal, 1)) / count(array_column($allDocumentsFinal, 1));
+
+      // Walk the array to get the evaluators below average.
+      $allDocumentsMediaFinal = array();
+
+      for ($i = 0; $i < count($allDocumentsFinal); $i++) {
+        if ($allDocumentsFinal[$i][1] <= $medDocEvalFinal) {
+          $allDocumentsMediaFinal[] = array(
+            $allDocumentsFinal[$i][0],
+            $allDocumentsFinal[$i][1],
+          );
+        }
+      }
+
+      $evaluatorsMediaFinal = array();
+
+      for ($i = 0; $i < count($allDocumentsMediaFinal); $i++) {
+        $evaluatorsMediaFinal[] = $allDocumentsMediaFinal[$i][0];
+      }
+
+      if (count($evaluatorsMediaFinal) < $evaluatorsDivision) {
+
+        $rand_keys = array_rand($evaluatorsMedia, $evaluatorsDivision);
+
+        $evaluatorsRand = array();
+
+        if ($declInvitation == 0) {
+          for ($r = 0; $r < count($rand_keys); $r++) {
+            $evaluatorsRand[$r] = $evaluatorsMedia[$rand_keys[$r]];
+          }
+        }
+        else {
+          $evaluatorsRand[] = $evaluatorsMedia[$rand_keys];
+        }
+      }
+      else {
+
+        $rand_keys = array_rand($evaluatorsMediaFinal, $evaluatorsDivision);
+
+        $evaluatorsRand = array();
+
+        if ($declInvitation == 0) {
+          for ($r = 0; $r < count($rand_keys); $r++) {
+            $evaluatorsRand[$r] = $evaluatorsMediaFinal[$rand_keys[$r]];
+          }
+        }
+        else {
+          $evaluatorsRand[] = $evaluatorsMediaFinal[$rand_keys];
+        }
+      }
+    }
+  }
+
+  if (!empty($evaluatorsRand)) {
+    $mail_evaluators = db_select('users', 'u');
+    $mail_evaluators->fields('u', array('uid', 'mail', 'name'));
+    $mail_evaluators->condition('u.uid', ($evaluatorsRand), 'IN');
+    $result_mail_evaluators = $mail_evaluators->execute();
+
+    $evaluator_mail = array();
+
+    if ($result_mail_evaluators) {
+      $i = 0;
+      while ($row = $result_mail_evaluators->fetchAssoc()) {
+        $evaluator_mail[$i] = array(
+          $row['uid'],
+          $row['mail'],
+          $row['name'],
+        );
+        $i++;
+      }
+    }
+    return $evaluator_mail;
+  }
+}
+
+/**
+ * Function to automatically assign the average of the qualification.
+ *
+ * @param mixed $node
+ *    Get the node id.
+ */
+function _focus_repository_validation_process_do_evaluations($node) {
+  /* Whit the results of the evaluation determine whether PROMISING PRACTICE,
+   *NOTABLE PRACTICE OR GOOD PRACTICE.
+   */
+  $nid = $node->nid;
+  $completeness = $node->field_completeness['und'][0]['value'];
+  $clarity = $node->field_clarity['und'][0]['value'];
+  $evidence = $node->field_evidence['und'][0]['value'];
+  $documentationUrl = $node->field_documentation_url['und'][0]['value'];
+  $contact = $node->field_contact['und'][0]['value'];
+  $elementsDisplayClear = $node->field_elements_display_clear['und'][0]['value'];
+  $assessedTimeImpact = $node->field_assessed_time_impact['und'][0]['value'];
+  $assessedEvidence = $node->field_assessed_evidence['und'][0]['value'];
+  $assessedLevelMaturity = $node->field_assessed_level_maturity['und'][0]['value'];
+  $assessedTransferability = $node->field_assessed_transferability['und'][0]['value'];
+
+  // Field_completeness.
+  switch ($completeness) {
+
+    case "1":
+      $completenessValue = 0;
+      break;
+
+    case "2":
+      $completenessValue = 1;
+      break;
+
+    case "3":
+      $completenessValue = 1;
+      break;
+
+    case "4":
+      $completenessValue = 3;
+      break;
+  }
+
+  // Field_clarity.
+  switch ($clarity) {
+    case "1":
+      $clarityValue = 0;
+      break;
+
+    case "2":
+      $clarityValue = 1;
+      break;
+
+    case "3":
+      $clarityValue = 2;
+      break;
+
+    case "4":
+      $clarityValue = 3;
+      break;
+  }
+
+  // Field_evidence.
+  switch ($evidence) {
+    case "1":
+      $evidenceValue = 0;
+      break;
+
+    case "2":
+      $evidenceValue = 1;
+      break;
+
+    case "3":
+      $evidenceValue = 2;
+      break;
+
+    case "4":
+      $evidenceValue = 3;
+      break;
+  }
+
+  // Field_documentation_url.
+  switch ($documentationUrl) {
+    case "1":
+      $documentationUrlValue = 1;
+      break;
+
+    case "2":
+      $documentationUrlValue = 1;
+      break;
+
+    case "3":
+      $documentationUrlValue = 2;
+      break;
+
+    case "4":
+      $documentationUrlValue = 3;
+      break;
+  }
+
+  // Field_contact.
+  switch ($contact) {
+    case "1":
+      $contactValue = 0;
+      break;
+
+    case "2":
+      $contactValue = 0;
+      break;
+
+    case "3":
+      $contactValue = 0;
+      break;
+
+    case "4":
+      $contactValue = 3;
+      break;
+  }
+
+  // Field_elements_display_clear.
+  switch ($elementsDisplayClear) {
+    case "1":
+      $elementsDisplayClearValue = 0;
+      break;
+
+    case "2":
+      $elementsDisplayClearValue = 0;
+      break;
+
+    case "3":
+      $elementsDisplayClearValue = 1;
+      break;
+
+    case "4":
+      $elementsDisplayClearValue = 3;
+      break;
+  }
+
+  // Field_assessed_time_impact.
+  switch ($assessedTimeImpact) {
+    case "1":
+      $assessedTimeImpactValue = 0;
+      break;
+
+    case "2":
+      $assessedTimeImpactValue = 0;
+      break;
+
+    case "3":
+      $assessedTimeImpactValue = 1;
+      break;
+
+    case "4":
+      $assessedTimeImpactValue = 3;
+      break;
+  }
+
+  // Field_assessed_evidence.
+  switch ($assessedEvidence) {
+    case "1":
+      $assessedEvidenceValue = 1;
+      break;
+
+    case "2":
+      $assessedEvidenceValue = 1;
+      break;
+
+    case "3":
+      $assessedEvidenceValue = 2;
+      break;
+
+    case "4":
+      $assessedEvidenceValue = 3;
+      break;
+  }
+
+  // Field_assessed_level_maturity.
+  switch ($assessedLevelMaturity) {
+    case "1":
+      $assessedLevelMaturityValue = 0;
+      break;
+
+    case "2":
+      $assessedLevelMaturityValue = 1;
+      break;
+
+    case "3":
+      $assessedLevelMaturityValue = 2;
+      break;
+
+    case "4":
+      $assessedLevelMaturityValue = 3;
+      break;
+  }
+
+  // Field_assessed_transferability.
+  switch ($assessedTransferability) {
+    case "1":
+      $assessedTransferabilityValue = 1;
+      break;
+
+    case "2":
+      $assessedTransferabilityValue = 2;
+      break;
+
+    case "3":
+      $assessedTransferabilityValue = 3;
+      break;
+
+    case "4":
+      $assessedTransferabilityValue = 3;
+      break;
+  }
+
+  $sumValuesEvaluation = ($completenessValue + $clarityValue + $evidenceValue + $documentationUrlValue + $contactValue + $elementsDisplayClearValue + $assessedTimeImpactValue + $assessedEvidenceValue + $assessedLevelMaturityValue + $assessedTransferabilityValue);
+
+  if ($sumValuesEvaluation > 0 && $sumValuesEvaluation < 15) {
+    $evaluationPractice = 1;
+  }
+  elseif ($sumValuesEvaluation > 0 && $sumValuesEvaluation < 15) {
+    $evaluationPractice = 2;
+  }
+  else {
+    $evaluationPractice = 3;
+  }
+
+  $updateQualification = db_update('field_data_field_qualification');
+  $updateQualification->fields(array('field_qualification_value' => $evaluationPractice));
+  $updateQualification->condition('entity_id', $nid, '=');
+  $resultUpdateQualification = $updateQualification->execute();
+
+}
+
+/**
+ * Function to send an email to the evaluator when the practice is assigned.
+ *
+ * @param int $practiceId
+ *    Get the practice id.
+ */
+function _focus_repository_validation_process_check_is_the_last($practiceId, $objectEvaluation) {
+  // Get the evaluations with the same practice.
+  $queryTotalEvaluations = db_select('field_data_field_referenced_practice', 'r');
+  $queryTotalEvaluations->fields('r', array('entity_id'));
+  $queryTotalEvaluations->condition('r.field_referenced_practice_target_id ', ($practiceId), '=');
+  $resultsTotalEvaluations = $queryTotalEvaluations->execute();
+
+  $totalEvaluations = array();
+
+  if ($resultsTotalEvaluations) {
+    $y = 0;
+    while ($row = $resultsTotalEvaluations->fetchAssoc()) {
+      $totalEvaluations[$y] = $row['entity_id'];
+      $y++;
+    }
+  }
+
+  // Get the qualifitacions values.
+  $queryQualifications = db_select('field_data_field_qualification', 'q');
+  $queryQualifications->fields('q', array('field_qualification_value', 'entity_id'));
+  $queryQualifications->condition('q.entity_id', ($totalEvaluations), 'IN');
+  $queryQualifications->condition('q.field_qualification_value', array(1, 2, 3), 'IN');
+  $resultsQualifications = $queryQualifications->execute();
+
+  $totalQualifications = array();
+
+  if ($resultsQualifications) {
+    $y = 0;
+    while ($row = $resultsQualifications->fetchAssoc()) {
+      $totalQualifications[$y] = $row['field_qualification_value'];
+      $y++;
+    }
+  }
+
+  // Get the evaluations values.
+  $queryDecisions = db_select('field_data_field_evaluation', 'e');
+  $queryDecisions->fields('e', array('field_evaluation_value', 'entity_id'));
+  $queryDecisions->condition('e.entity_id', ($totalEvaluations), 'IN');
+  $queryDecisions->condition('e.field_evaluation_value', array(1, -1, 2), 'IN');
+
+  $resultsDecisions = $queryDecisions->execute();
+
+  $totalDecisions = array();
+
+  if ($resultsDecisions) {
+    $y = 0;
+    while ($row = $resultsDecisions->fetchAssoc()) {
+      $totalDecisions[$y] = $row['field_evaluation_value'];
+      $y++;
+    }
+  }
+
+  // Check if all the evaluators have finished their evaluations.
+  $countQualifications = (count($totalQualifications) >= 3);
+  $countDecisions = (count($totalDecisions) >= 3);
+
+  if ($countQualifications && $countDecisions) {
+
+    drupal_set_message(t('Aquí ya tenemos todas las evaluaciones'), 'status');
+
+    $practiceRelated = node_load($practiceId);
+
+    _focus_repository_validation_process_update_practice_qualification($practiceId, $totalQualifications, $practiceRelated);
+    $totalDecisionsAverage = _focus_repository_validation_process_change_practice_workbench_moderation($practiceId, $totalDecisions, $practiceRelated);
+
+    $evaluatedName = $practiceRelated->field_rep_name_contact_person['und'][0]['value'];
+    $evaluatedMail = $practiceRelated->field_rep_mail_contact_person['und'][0]['email'];
+    $practiceName = $practiceRelated->title;
+    $practiceId = $practiceRelated->nid;
+    $evaluationNid = $objectEvaluation->nid;
+
+    $evaluationNode = node_load($evaluationNid);
+
+    // Get the evaluation variables.
+    $totalTextReview = array();
+
+    for ($e = 0; $e < count($totalEvaluations); $e++) {
+      $evaluationId = $totalEvaluations[$e];
+
+      $queryTextReview = db_select('field_data_field_text_evaluation', 's');
+      $queryTextReview->fields('s', array('entity_id', 'field_text_evaluation_value'));
+      $queryTextReview->condition('s.entity_id', ($evaluationId), '=');
+      $queryTextReview->innerjoin('field_data_field_evaluation', 'e', 'e.entity_id = s.entity_id');
+      $queryTextReview->condition('e.field_evaluation_value ', 2, '=');
+      $resultsQueryTextReview = $queryTextReview->execute();
+
+      $textReview = array();
+
+      if ($resultsQueryTextReview) {
+        $y = 0;
+        while ($row = $resultsQueryTextReview->fetchAssoc()) {
+          $textReview[$y] = $row['field_evaluation_score_value'];
+          $y++;
+        }
+      }
+
+      $totalTextReview = array_merge($totalTextReview, $textReview);
+    }
+
+    // Get the evaluations nid.
+    $queryEvaluationsNid = db_select('field_data_field_referenced_practice', 'r');
+    $queryEvaluationsNid->fields('r', array('entity_id'));
+    $queryEvaluationsNid->condition('r.field_referenced_practice_target_id ', ($practiceId), '=');
+
+    $resultsEvaluationsNid = $queryEvaluationsNid->execute();
+
+    $evaluationsNid = array();
+
+    if ($resultsEvaluationsNid) {
+      $y = 0;
+      while ($row = $resultsEvaluationsNid->fetchAssoc()) {
+        $evaluationsNid[$y] = $row['entity_id'];
+        $y++;
+      }
+    }
+
+    // Get the evaluators.
+    $queryEvaluatorsUid = db_select('field_data_field_evaluator', 'e');
+    $queryEvaluatorsUid->fields('e', array('field_evaluator_target_id'));
+    $queryEvaluatorsUid->condition('e.entity_id', ($evaluationsNid), 'IN');
+    $resultsEvaluatorsUid = $queryEvaluatorsUid->execute();
+
+    $evaluatorsUid = array();
+
+    if ($resultsEvaluatorsUid) {
+      $y = 0;
+      while ($row = $resultsEvaluatorsUid->fetchAssoc()) {
+        $evaluatorsUid[$y] = $row['field_evaluator_target_id'];
+        $y++;
+      }
+    }
+
+    // Evaluators Mails.
+    $mails_evaluators = db_select('users', 'u');
+    $mails_evaluators->fields('u', array('uid', 'mail', 'name'));
+    $mails_evaluators->condition('u.uid', array($evaluatorsUid), 'IN');
+    $result_mails_evaluators = $mails_evaluators->execute();
+
+    $evaluators_mails = array();
+
+    if ($result_mails_evaluators) {
+      $i = 0;
+      while ($row = $result_mails_evaluators->fetchAssoc()) {
+        $evaluators_mails[$i] = array($row['mail'], $row['name'],
+        );
+        $i++;
+      }
+    }
+
+    if ($totalDecisionsAverage == 'a') {
+      // Send email to evaluated.
+      $substitutions_texts = array(
+        '@practiceName' => $practiceName,
+      );
+
+      $to = $evaluatedMail;
+      $subject = t('FOCUS - Practice published.');
+      $body = t('The practice: @practiceName  has been approved and published.', $substitutions_texts);
+      $params = array(
+        'subject' => $subject,
+        'body' => $body,
+      );
+
+      drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+
+      for ($m = 0; $m < count($evaluators_mails); $m++) {
+        // Send email to evaluators.
+        $substitutions_texts = array(
+          '@practiceName' => $practiceName,
+        );
+        $to = $evaluators_mails[$m][0];
+        $subject = t('FOCUS - Practice published.');
+        $body = t('The practice evaluated: @practiceName has been approved and published.', $substitutions_texts);
+        $params = array(
+          'subject' => $subject,
+          'body' => $body,
+        );
+
+        drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+      }
+    }
+    elseif ($totalDecisionsAverage == 'r') {
+      // Send email to evaluated.
+      $substitutions_texts = array(
+        '@practiceName' => $practiceName,
+      );
+
+      $to = $evaluatedMail;
+      $subject = t('FOCUS - Practice rejected.');
+      $body = t('The practice: @practiceName has been rejected.', $substitutions_texts);
+      $params = array('subject' => $subject, 'body' => $body);
+
+      drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+
+      for ($m = 0; $m < count($evaluators_mails); $m++) {
+        // Send email to evaluators.
+        $substitutions_texts = array(
+          '@practiceName' => $practiceName,
+        );
+
+        $to = $evaluators_mails[$m][0];
+        $subject = t('FOCUS - Practice rejected.');
+        $body = t('The practice evaluated: @practiceName has been rejected.', $substitutions_texts);
+        $params = array('subject' => $subject, 'body' => $body);
+
+        drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+      }
+    }
+    elseif ($totalDecisionsAverage == 'n') {
+      // Send email to evaluated.
+      $substitutions_texts = array(
+        '@practiceName' => $practiceName,
+      );
+
+      global $base_url;
+      $to = $evaluatedMail;
+      $subject = t('FOCUS - Practice need review.');
+      $body = t('The practice: @practiceName has been need review. The evaluators need you to make the following changes:', $substitutions_texts);
+      $urlEditPractice = $base_url . "/node/" . $practiceId . "/edit_en";
+      $stringTextReview = implode(". ", $totalTextReview);
+
+      $params = array('subject' => $subject, 'body' => $body . $stringTextReview . '. And the url to edit the practice is ' . $urlEditPractice . ' Please remind that you need to be logged to access.');
+
+      drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+
+      for ($m = 0; $m < count($evaluators_mails); $m++) {
+        // Send email to evaluators.
+        $substitutions_texts = array(
+          '@practiceName' => $practiceName,
+        );
+        $to = $evaluators_mails[$m][0];
+        $subject = t('FOCUS - Practice need review.');
+        $body = t('The practice evaluated: @practiceName has been needs to be reviewed.', $substitutions_texts);
+
+        $params = array('subject' => $subject, 'body' => $body);
+
+        drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
+      }
+    }
+  }
+}
+
+/**
+ * Function to update the practice with the final qualification.
+ *
+ * @param int $practiceId
+ *    Get the practice id.
+ * @param int $totalQualifications
+ *    Get the totalQualifications.
+ */
+function _focus_repository_validation_process_update_practice_qualification($practiceId, $totalQualifications, $practiceRelated) {
+
+  $qualificationAverage = ($totalQualifications[0] + $totalQualifications[1] + $totalQualifications[2]) / 3;
+
+  if ($qualificationAverage < 1.5) {
+    $finalQualification = 'Promising practice';
+  }
+  elseif (($qualificationAverage >= 1.5) && ($qualificationAverage < 2.5)) {
+    $finalQualification = 'Notable practice';
+  }
+  else {
+    $finalQualification = 'Good practice';
+  }
+
+  $practiceRelated->field_kind_of_practice['und'][0]['value'] = $finalQualification;
+
+  field_attach_presave('node', $practiceRelated);
+  field_attach_update('node', $practiceRelated);
+  entity_get_controller('node')->resetCache(array($practiceRelated->nid));
+
+}
+
+/**
+ * Function to change the state of the practice in the workbench moderation.
+ *
+ * @param int $practiceId
+ *    Get the practice id.
+ * @param int $totalDecisions
+ *    Get the total decisions.
+ */
+function _focus_repository_validation_process_change_practice_workbench_moderation($practiceId, $totalDecisions, $practiceRelated) {
+  $a = 0;
+  $r = 0;
+  $n = 0;
+
+  $nodeid = $practiceRelated->nid;
+
+  for ($i = 0; $i < count($totalDecisions); $i++) {
+    switch ($totalDecisions[$i]) {
+      case 1:
+        $a++;
+
+        break;
+
+      case -1:
+        $r++;
+
+        break;
+
+      case 2:
+        $n++;
+
+        break;
+    }
+  }
+
+  if ($a >= 2) {
+    $totalDecisionsAverage = 'a';
+  }
+  elseif ($r >= 2) {
+    $totalDecisionsAverage = 'r';
+  }
+  elseif ($n >= 2) {
+    $totalDecisionsAverage = 'n';
+  }
+  else {
+    $totalDecisionsAverage = 'n';
+  }
+
+  switch ($totalDecisionsAverage) {
+    case 'a':
+      workbench_moderation_moderate($practiceRelated, 'published');
+      break;
+
+    case 'r':
+      workbench_moderation_moderate($practiceRelated, 'archived');
+
+      break;
+
+    case 'n':
+      workbench_moderation_moderate($practiceRelated, 'needs_review');
+
+      break;
+  }
+
+  return $totalDecisionsAverage;
+
+}

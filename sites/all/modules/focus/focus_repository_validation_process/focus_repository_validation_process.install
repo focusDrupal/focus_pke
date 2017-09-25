@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * focus_repository_validation_process.install.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function focus_repository_validation_process_enable() {
+  // Activation message.
+  drupal_set_message(t('FOCUS Repository validation process is now active.'));
+}
+
+/**
+ * Implements hook_disable().
+ */
+function focus_repository_validation_process_disable() {
+  // Dissable message.
+  drupal_set_message(t('FOCUS Repository validation process is now disabled.'));
+}

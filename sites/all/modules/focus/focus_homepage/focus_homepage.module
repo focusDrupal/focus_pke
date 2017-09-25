@@ -1,0 +1,10 @@
+<?php
+/**
+ * @file
+ * Code for the FOCUS Homepage feature.
+ */
+
+include_once 'focus_homepage.features.inc';
+
+/*Esto es una prueba de nuevo código*/
+/*Última prueba de comentario*/

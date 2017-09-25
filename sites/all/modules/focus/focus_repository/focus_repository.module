@@ -1,0 +1,46 @@
+<?php
+/**
+ * @file
+ * Code for the FOCUS Repository feature.
+ */
+
+include_once 'focus_repository.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function focus_form_practice_node_form_alter(&$form, &$form_state, $form_id) {
+
+  /*
+   * Rewrite the fields labels in the form.
+   * The aim is to have the "questions" in the form (like a questionnaire)
+   * but to leave the field names as shorts substantives.
+   */
+
+  // First page.
+  $form['field_rep_agree'][LANGUAGE_NONE]['#title'] = t('I understand and agree that the provided information is correct and will be published in the FOCUS Portal.');
+  $form['field_copyright_rep_owner'][LANGUAGE_NONE]['#title'] = t('Do you own the copyright and other intellectual property rights of this practice?');
+
+  // Background.
+  $form['title']['#title'] = t('What is the name of your practice?');
+  $form['field_rep_url'][LANGUAGE_NONE][0]['#title'] = t('URL of your practice');
+  $form['field_rep_file_info'][LANGUAGE_NONE]['#title'] = t('Please upload any information you want to include. This can be a brochure, background information, research information or any other information.');
+  $form['field_rep_stakeholders'][LANGUAGE_NONE]['#title'] = t('Please indicate the type of stakeholders concerned with your practice (more than an answer is possible).');
+
+  // Your practice.
+  $form['field_rep_target_age'][LANGUAGE_NONE]['#title'] = t('Does your practice target a specific age group?');
+  $form['field_rep_summary'][LANGUAGE_NONE][0]['#title'] = t('Please, provide a brief summary of your practice.');
+  $form['field_rep_keywords'][LANGUAGE_NONE]['#title'] = t('Can you specify some keywords that describe the content of your practice?');
+
+  // Organisation.
+  $form['field_rep_org_name'][LANGUAGE_NONE][0]['value']['#title'] = t('What is the name of your organisation?');
+  $form['field_rep_org_address'][LANGUAGE_NONE][0]['value']['#title'] = t('What is the address of your organization?');
+  $form['field_rep_org_type'][LANGUAGE_NONE]['#title'] = t('What kind of organisation are you? (more than an answer is possible).');
+  $form['field_rep_name_contact_person'][LANGUAGE_NONE][0]['value']['#title'] = t('Please enter the name of the contact person for this practice.');
+  $form['field_rep_mail_contact_person'][LANGUAGE_NONE][0]['email']['#title'] = t('Please enter the email of the contact person for this practice.');
+
+}
+
+
+
+

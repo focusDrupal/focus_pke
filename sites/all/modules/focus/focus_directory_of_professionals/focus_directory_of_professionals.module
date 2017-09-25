@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FOCUS Directory of professionals feature.
+ */
+
+include_once 'focus_directory_of_professionals.features.inc';

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FOCUS Library feature.
+ */
+
+include_once 'focus_library.features.inc';

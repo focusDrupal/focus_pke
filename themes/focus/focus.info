@@ -1,0 +1,51 @@
+name = FOCUS
+description = FOCUS Sub theme from the default theme, Ec_resp
+package = FOCUS
+version = "7.x-1.0"
+core = "7.x"
+base theme = ec_resp
+php = 5.2.4
+multisite_version = 2.1
+
+; CSS
+stylesheets[all][] = "css/focus.css"
+stylesheets[all][] = "css/fonts/focus_fonts.css"
+
+; SCRIPTS
+; scripts[] = scripts/focus.js
+
+
+; REGIONS
+regions[header_top] = "Header Top"
+regions[header_right] = "Header Right"
+
+regions[featured] = "Featured"
+regions[tools] = "Tools"
+regions[help] = "Help"
+
+regions[sidebar_left] = "Sidebar Left"
+regions[sidebar_right] = "Sidebar Right"
+
+regions[content_top] = "Content Top"
+regions[content_top_left] = "Content Top Left"
+regions[content_top_right] = "Content Top Right"
+regions[content] = "Content"
+regions[content_right] = "Content Right"
+regions[content_bottom_left] = "Content Bottom Left"
+regions[content_bottom_right] = "Content Bottom Right"
+regions[content_bottom] = "Content Bottom"
+
+regions[footer_top] = "Footer Top"
+regions[footer] = "Footer"
+
+settings[shortcut_module_link] = 0
+
+
+; plugins[panels][layouts] = layouts
+
+; Information added by drupal . org packaging script on 2011-01-05
+project = "drupal"
+datestamp = "1294208756"
+
+; Information added by Acquia . com packaging script
+acquia = "1"

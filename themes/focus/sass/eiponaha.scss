@@ -1,0 +1,973 @@
+/*
+ * custom css for the sub theme
+ */
+
+/* VARIABLES */
+$color-white: 		#fff;
+$color-gray: 		#f4f4f4;
+$color-gray-light:      #f2f6f7;
+$color-black: 		#000;
+$color-main: 		#d5e2e4;
+$color-blue:		#d5e2e4;
+$color-blue-dark:	#00488a;
+$color-green-dark:	#00524d;
+
+$color-header: 		$color-green-dark;
+$color-text: 		$color-green-dark;
+$color-link: 		$color-green-dark;
+
+$h1-font-size:		38px;
+$h2-font-size:		30px;
+$h3-font-size:		22px;
+$h4-font-size:		19px;
+
+$text-font-size:	16px;
+$ingress-font-size:	21px;
+
+$font-std:			Helvetica,​ Arial,​ sans-serif;
+$font-verdana:		Verdana, Geneva, Tahoma, sans-serif;
+$font-pf:	"PFSquareSansPro";
+
+@import "../css/fonts/eiponaha_fonts.css";
+$arial: Arial, Helvetica, sans-serif;
+
+/* COLORS */
+
+.color-white {
+  background-color: $color-white;
+}
+
+.color-gray {
+  background-color: $color-gray;
+}
+
+.color-main {
+  background-color: $color-main;
+}
+
+/* GLOBALS */
+
+@font-face {
+  font-family: "PFSquareSansPro";
+  src:    url("webfonts/Parachute - PFSquareSansPro-Regular.otf") format("otf");
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-image: none;
+  background-color: $color-white;
+  color: #3a3c3b;
+  font-family: $font-std;
+  font-size: 100%;
+  line-height: 1.35;
+}
+
+a {
+  color: $color-link;
+}
+main a {
+  text-decoration: underline;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+h1, h2, h3, h4, h5, .ingress {
+  font-family: $font-pf;
+  color: $color-header;
+}
+
+h1 {
+
+}
+
+h2 {
+  &.pane-title {
+    background-color: $color-main;
+    border-radius: 6px;
+    padding: 14px 8px 14px 19px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    &.large-header {
+      border-radius: 6px!important;
+      font-size: 30px;
+      text-transform: none;
+    }
+  }
+}
+h3 {
+  &.listingLinkHeader {
+    line-height: 0.9;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+// Follow us
+.followUsLinks {
+  padding: 25px 1rem;
+  a {
+    background-image: url("../css/cssimg/icons-sprite.svg");
+    background-position: 0 9px;
+    background-repeat: no-repeat;
+    color: #000;
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 0 10px 22px;
+    text-decoration: none;
+    &.twitterFollowUs,
+    &.youtubeFollowUs {
+      padding-left: 40px;
+    }
+    &.twitterFollowUs {
+      background-position: 0 -2296px;
+    }
+    &.youtubeFollowUs {
+      background-position: 0 -2957px;
+    }
+  }
+  .row {
+    text-align: center;
+  }
+}
+
+// Override base theme
+#block-system-main .view-header h2 {
+  background-color: $color-main;
+  margin: 0;
+}
+.node .field-type-taxonomy-term-reference ul.links li {
+    white-space: normal;
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+h2.listingLinkHeader a,
+h3.listingLinkHeader a,
+h4.listingLinkHeader a,
+.cta-button a {
+    background: rgba(0, 0, 0, 0) url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 7px;
+    color: $color-green-dark;
+    font-family: $font-pf;
+    font-size: 18px;
+    padding: 7px 0 3px 22px;
+    text-transform: none;
+    text-decoration: none;
+}
+
+.ingress {
+  font-size: $ingress-font-size;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.cta-button {
+  background-color: #d5e2e4;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 20px;
+  margin-bottom: 0;
+  min-height: 44px;
+  padding: 12px 8px 12px 1rem;
+
+}
+
+.view-mode-full {
+  .label-above,
+  .fields-group label {
+    margin-top: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+    &.reset {
+
+    }
+  }
+}
+.icon-element {
+  margin-right: 10px;
+}
+.label-little {
+  background-color: #f4f4f4;
+  border-radius: 0.25em;
+  color: #5f6160;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 3px 5px;
+  line-height: 2.5;
+}
+.link.black a {
+  background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -287px;
+  padding: 1px 0 1px 22px;
+  color: #3a3c3b;
+  font-family: $font-pf;
+  font-size: 18px;
+  display: block;
+}
+.date .label-above,
+.date-single .date-display-single {
+  background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -897px;
+  padding-left: 20px;
+  padding-top: 3px;
+}
+div.date-single div.date-display-single {
+  background-position: 0 -895px;
+}
+.evidence {
+  margin: 30px 0;
+  .date-display-single {
+    font-size: 18px;
+  }
+}
+.evidence-little {
+  margin: 10px 0;
+}
+.wrapper-resp-img img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+.embedded-image-wrapper {
+    float: left;
+    margin-right: 10px;
+    max-width: 50%;
+    img {
+        height: auto;
+        width: 100%;
+    }
+}
+.largerText {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 22px;
+    padding-right: 5px;
+}
+.event-date {
+  font-family: "PFSquareSansPro";
+  text-align: center;
+  margin-top: 5px;
+  &.icon {
+    border-radius: 5px;
+  }
+}
+
+.month {
+  font-size: 13px;
+  color: #fff;
+  background-color: $color-green-dark;
+  padding: 3px 0 1px 0;
+  border-radius: 5px 5px 0 0;
+  &.day {
+    text-transform: uppercase;
+    font-size: 22px;
+    background-color: $color-gray;
+    padding: 2px 0;
+    color: $color-green-dark;
+    border-radius: 0 0 5px 5px;
+  }
+  .string-year {
+    font-size: 12px;
+  }
+}
+
+/* RESET FROM BOOTSTRAP */
+@media (min-width:1200px){
+  .container{width:970px}
+}
+.panel {
+  margin-bottom: 40px;
+}
+.panel-body {
+  padding: 0;
+}
+.block.block-system.panel.panel-default {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+.row {
+  .half-gutter {
+    margin-left: -7px;
+    margin-right: -7px;
+  }
+  .half-gutter > [class*="col-"] {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}
+.glyphicon.glyphicon-fix {
+  color: #3a3c3b;
+  font-family: $font-std;
+  font-size: 100%;
+  line-height: 1.35;
+  font-smooth: auto;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  margin-left: 26px;
+  padding-right: 0;
+  &:before {
+    font-family: "Glyphicons Halflings";
+    margin-left: -23px;
+    margin-top: -2px;
+    position: absolute;
+  }
+}
+/* END RESET */
+
+main#layout-body {
+  margin-top: 2rem;
+  //margin-bottom: 3rem;
+}
+
+.thumbnail {
+  border: none;
+}
+
+/* Table sort indicator fix */
+table th {
+  font-family: $font-pf;
+  font-weight: normal;
+  font-size: 18px;
+}
+table th.active img {
+  margin-left: 5px;
+}
+
+/* ---------------------------------- */
+
+/* HEADER*/
+
+header {
+  #main-title,
+  #sub-title {
+    font-family: $font-pf;
+  }
+}
+#layout-header {
+  #main-title {
+    font-size: 26px !important;
+  }
+  #sub-title {
+    font-size: 20px !important;
+  }
+  @media screen and (max-width: 991px) {
+    background: none;
+    #main-title {
+      line-height: 1em;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.container {
+  #language-selector {
+    display: none;
+  }
+
+  .panel {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    //margin-bottom: 0;
+  }
+
+  .panel-body {
+    padding: 0;
+  }
+}
+
+.region-header-top {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.panel .panel-body > p {
+  margin-bottom: 5px;
+}
+// Logo.
+
+#layout-header #banner-flag {
+  top: 12px;
+}
+/* ---------------------------------- */
+
+/* Breadcrums */
+#path {
+  font-family: $font-verdana;
+  font-size: 12px;
+  background-color: $color-blue-dark;
+}
+/* ---------------------------------- */
+
+/* MENU */
+
+// Main menù
+#main-menu {
+  .navbar-default {
+    background-color: #d5e2e4;
+    border: 0;
+    .menu > li {
+      max-width: 130px;
+      //height: 65px;
+      padding: 0;
+      text-align: center;
+      line-height: 65px;
+      &.active-trail {
+        background-color: $color-blue-dark;
+      }
+      > a {
+        background-color: transparent;
+        color: #3a3c3b;
+        font-size: 14px;
+        padding: 10px 11px 15px;
+        vertical-align: middle;
+        display: inline-block;
+        text-transform: none;
+        &.active {
+          background-color: $color-blue-dark;
+          border-radius: 0;
+          color: #fff;
+        }
+        &.active-trail {
+          background-color: $color-blue-dark;
+          border-radius: 0;
+          color: #fff;
+        }
+      }
+    }
+    .navbar-collapse.in,
+    .navbar-collapse.collapsing {
+      background-color: #d5e2e4;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .navbar-default {
+      height: 65px;
+    }
+    .navbar-collapse {
+      padding: 0;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-default .menu > li > a {
+      padding: 10px 10px 15px;
+    }
+    .navbar-collapse {
+      padding: 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .navbar-default .menu > li {
+      max-width: none;
+      height: 55px;
+    }
+  }
+}
+
+/* Mobile Menu */
+.mobile-user-bar.affix-top + .region-featured #main-menu .navbar {
+  z-index: 1030;
+}
+
+// Services menù (top and footer)
+#services,
+#services-bottom {
+  font-size: inherit;
+  left: auto;
+  margin: 10px 0 0;
+  padding: 0;
+  position: relative;
+  right: auto;
+  text-align: center;
+  top: auto;
+  z-index: 18;
+  padding-right: 0;
+}
+.js .region-tools #services {
+  text-align: right;
+}
+.js #services, .js #block-menu-menu-service-tools .menu {
+  padding-right: 0;
+}
+#services,
+#services-bottom {
+  padding-left: 0;
+  &.reset-list li {
+    border-left: 1px solid #000;
+    display: inline-block;
+    line-height: 1;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0 9px;
+    a, span {
+      color: #0064a4;
+      display: inline-block;
+      font-family: verdana;
+      font-size: 13px;
+      line-height: 1;
+    }
+    &:first-child {
+      border-left: none;
+    }
+  }
+}
+
+/* ---------------------------------- */
+
+/* FOOTER */
+
+#layout-footer {
+  background-color: transparent;
+  border: 0 none;
+  margin: 0;
+  min-height: 75px;
+  padding-top: 0;
+  text-align: left;
+  .first-row {
+    background-color: $color-main;
+  }
+  #services-bottom {
+    text-align: center;
+  }
+}
+.region-footer-top {
+  padding: 20px 0;
+}
+// Footer menu.
+#block-cce-basic-config-footer-ipg {
+  font-size: inherit;
+  left: auto;
+  margin: 10px 0 0;
+  padding: 0;
+  position: relative;
+  right: auto;
+  text-align: center;
+  top: auto;
+  z-index: 18;
+  .content,
+  .content a,
+  .content a:visited,
+  .content .menu a,
+  .content .menu a:visited {
+    color: #0064a4;
+    display: inline-block;
+    font-family: verdana;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .menu a,
+  .menu a:visited {
+    border-left: 1px solid #0064a4;
+  }
+}
+
+/* ---------------------------------- */
+
+/* CONTENT */
+
+.label-default {
+  background-color: #777;
+  background-color: $color-gray;
+}
+
+.fields-group {
+  h3 {
+    font-size: 22px;
+  }
+}
+
+/* Views fix */
+.view {
+  .view-content,
+  .view-footer {
+    margin-bottom: 20px;
+  }
+}
+ul.pager-show-more {
+  padding: 0!important;
+  .pager-show-more-next {
+    @extend .cta-button;
+    display: block!important;
+    margin: 0;
+    padding: 8px 12px 6px;
+    a {
+      background-color: transparent!important;
+      background: none;
+      padding: 0;
+      width: 100%;
+      //height: 44px;
+    }
+  }
+  &.pager-show-more-empty {
+    display: none;
+  }
+}
+
+// Teaser general
+.view-mode-teaser,
+.view-mode-term_teaser,
+.view-mode-teaser_no_image {
+  border-bottom: 1px solid #91c6ad;
+  padding: 1rem 0;
+  overflow: hidden;
+  margin: 0 15px;
+  &.fixed-height {
+    height: 185px;
+  }
+  .field-group-div {
+    padding-left: 0;
+  }
+  .field-keywords {
+    font-size: 90%;
+  }
+}
+// Beans
+.bean-eipaha-header {
+    .group-block-header-text {
+        //padding-right:0;
+        @media screen and (max-width: 992px) {
+            //padding-left:0;
+
+        }
+        /*
+        @media screen and (min-width: 992px) {
+            padding-right:0;
+        }
+        */
+    }
+}
+
+// Aside model
+aside {
+  h2 {
+    background-color: $color-main;
+    border-radius: 6px 6px 0 0;
+    font-size: 20px;
+    margin-bottom: 0;
+    min-height: 44px;
+    padding: 12px 8px 12px 1rem;
+    text-transform: uppercase;
+  }
+  .bg-color {
+    background-color: $color-gray-light;
+    padding: 1rem;
+    position: relative;
+    margin-bottom: 55px;
+
+    &:after {
+      height: 45px;
+      width: 100%;
+      position: absolute;
+      background-color: $color-main;
+      left: 0;
+      bottom:-45px;
+      content:"";
+      border-radius: 0 0 6px 6px;
+      padding: 12px 8px 10px 19px;
+    }
+  }
+  .field {
+    margin: 0 0 10px!important;
+  }
+  ul {
+    padding: 0 1em;
+    li {
+      padding: 0.35em 0;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    margin-top: 10px;
+  }
+}
+
+// Social Share.
+.block-eiponaha-frontend {
+  //padding: 40px 0 30px;
+  &.panel {
+    margin-bottom: 0;
+  }
+}
+.sharethislinks {
+  background-color: $color-main;
+  border-radius: 6px;
+  //margin: 50px 0 25px;
+  overflow: hidden;
+  padding: 2px 15px;
+  .shareText {
+    display: inline-block;
+    font-size: 22px;
+    line-height: 2rem;
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+  ul, li {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+  }
+  ul {
+    display: inline-block;
+    width: auto;
+  }
+  li {
+    display: inline-block;
+    height: 40px;
+    margin-left: 10px;
+    position: relative;
+  }
+  a {
+    background-image: url("../css/cssimg/icons-sprite.svg");
+    background-repeat: no-repeat;
+    height: 40px;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px 2px 10px 32px;
+    border: 1px solid transparent;
+    line-height: 40px;
+  }
+  .show-for-sr {
+    clip: rect(0px, 0px, 0px, 0px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+  }
+  .facebookShare a { background-position: 2px -2077px; }
+  .twitterShare a { background-position: 2px -2296px; }
+  .linkedinShare a { background-position: 2px -2515px; }
+  .googleplusShare a { background-position: 2px -2735px; }
+}
+
+/* STARTPAGE */
+
+/* LINKEDINPAGES */
+.linkedInPages {
+  position: relative;
+
+  .thumbnail {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 30px;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  h2 {
+    background-color: $color-black;
+    color: $color-white;
+    border-radius: 6px 6px 0 0;
+    margin: 0 0 0 10px;
+    padding: 5px 10px 2px 10px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -40px;
+  }
+
+  .caption {
+    background-color: $color-green-dark;
+    color: $color-white;
+    border-radius: 0 0 6px 6px;
+    padding: 0.5rem 1rem 0 1rem;
+    position: relative;
+    min-height: 60px;
+  }
+}
+
+/* ---------------------------------- */
+/* ---------------------------------- */
+
+
+/* NEWS & EVENTS */
+.pane-eiponaha-news,
+.pane-eiponaha-calendar {
+  margin-bottom: 1rem;
+
+  .pane-content {
+    padding: 1rem 1rem 0 1rem;
+    background-color: $color-white;
+  }
+
+  /* Links in newslisting */
+  .field-content {
+    a {
+      color: #5f6160;
+      padding: 3px 0 3px 22px;
+      background: url(cssimg/icons_sprite.svg) 0 0 no-repeat;
+      font-family: "PFSquareSansPro";
+      font-size: 18px;
+    }
+  }
+}
+
+.pane-eiponaha-news {
+
+  .pane-content {
+    padding: 1rem 1rem 0 1rem;
+    background-color: $color-white;
+  }
+
+  .views-field-body {
+    margin-bottom: 1rem;
+  }
+
+  .views-field-title {
+    font-family: verdana;
+  }
+
+  /* Dates in newslisting */
+  .label {
+    border-radius: 0.25em;
+    color: #5f6160;
+    font-weight: normal;
+    padding: 3px 5px 3px;
+    background-color: $color-gray;
+  }
+
+}
+
+.pane-eiponaha-calendar {
+  .views-field-nothing {
+    margin: 0 1rem 1rem;
+  }
+
+  .date {
+    font-family: $font-pf;
+    text-align: center;
+  }
+
+  .month {
+    text-transform: uppercase;
+    font-size:22px;
+    background-color: $color-gray;
+    border-radius: 0 0 5px 5px;
+    padding: 2px 0;
+
+    &:first-of-type {
+      font-size:13px;
+      color: $color-white;
+      background-color: $color-green-dark;
+      border-radius: 5px 5px 0 0;
+      padding: 3px 0 1px 0;
+    }
+
+  }
+
+}
+
+/* EVENTS */
+
+// Listing.
+.node-eiponaha-event.node-teaser {
+  @extend .half-gutter;
+}
+
+.page-events {
+    .view-calendar {
+        margin-top: 15px;
+    }
+}
+/* ---------------------------------- */
+/* ---------------------------------- */
+
+/* NEWS & EVENTS NEW!! */
+.page-news {
+    .view-eiponaha-news {
+        .wrapper-resp-img img {
+            @media screen and (min-width: 992px) {
+                width: auto;
+                height: 102px !important;
+            }
+        }
+    }
+}
+
+/* FUNDING */
+.view-display-id-page_programme {
+    .wrapper-resp-img img {
+        @media screen and (min-width: 992px) {
+            width: auto;
+            max-height: 102px !important;
+        }
+    }
+
+    .view-mode-term_teaser {
+        &.fixed-height {
+            @media screen and (min-width: 992px) {
+                height: 215px;
+            }
+            @media screen and (max-width: 991px) {
+                height: auto;
+            }
+        }
+    }
+}
+.group-call-content h1.funding-call-title {
+  margin-bottom: 1em;
+}
+
+/* LIBRARY */
+
+.node-resource {
+  .field-resource-type {
+    position: relative;
+    .icon-element {
+      position: absolute;
+      right:0;
+      top:0;
+    }
+  }
+  .icon-type .glyphicon {
+    font-size: 0px;
+    &:before {
+      font-size: 24px;
+    }
+  }
+}
+
+/* ACHIEVEMENTS */
+
+ul.achievement-list {
+  li {
+    padding: 0.5em 0;
+  }
+}
+
+.achievement-description{
+  padding: 1.5em 0 0;
+}
+
+.easy-breadcrumb_segment-title {
+    width: 340px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-table;
+    @media screen and (min-width: 992px) {
+        width: 500px;
+    }
+}
+
+
+.upper{
+  text-transform: capitalize;
+}
+
+.descriptionhelp{
+  color: $color-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Insert other files for different sections */
+
+@import "eiponaha_homepage";

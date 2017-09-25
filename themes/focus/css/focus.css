@@ -1,0 +1,1724 @@
+@charset "UTF-8";
+/*
+ * custom css for the sub theme
+ */
+/* VARIABLES */
+@import url(../css/fonts/focus_fonts.css);
+/* COLORS */
+.color-white {
+  background-color: #ffffff;
+}
+.color-gray {
+  background-color: #f4f4f4;
+}
+.color-main {
+  background-color: #d5e2e4;
+}
+
+/* GLOBALS */
+@font-face {
+  font-family: "PFSquareSansPro";
+  src: url("webfonts/Parachute - PFSquareSansPro-Regular.otf") format("otf");
+}
+html {
+  font-size: 16px;
+}
+body {
+  background-image: none;
+  background-color: #fff;
+  color: #3a3c3b;
+  font-family: Helvetica, ​ Arial, ​ sans-serif;
+  font-size: 100%;
+  line-height: 1.35;
+}
+a {
+  color: #00488A;
+}
+main a {
+  text-decoration: underline;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  margin-bottom: 3px;
+  margin-top: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+.ingress,
+#block-bean-homepage-twitter-widget .panel-heading {
+  font-family: "PFSquareSansPro";
+  color: #00488A;
+}
+h2.pane-title {
+  background-color: #d5e2e4;
+  border-radius: 6px;
+  padding: 14px 8px 14px 19px;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+h2.pane-title.large-header {
+  border-radius: 6px !important;
+  font-size: 30px;
+  text-transform: none;
+}
+h2.red{
+  background: url("/themes/focus/images/red.png") #FFF no-repeat 1px 5px;
+  padding: 0 10px 0 20px;
+  margin: 0 0 10px 0;
+}
+h2.blue{
+  background: url("/themes/focus/images/blue.png") #FFF no-repeat 1px 5px;
+  padding: 0 10px 0 20px;
+  margin: -0 0 10px 0;
+}
+h2.yellow{
+  background: url("/themes/focus/images/yellow.png") #FFF no-repeat 1px 5px;
+  padding: 0 10px 0 20px;
+  margin: 0 0 10px 0;
+}
+h3.listingLinkHeader {
+  line-height: 0.9;
+}
+h3.listingLinkHeader a {
+  text-decoration: none;
+}
+.panel-heading {
+	font-size: 26px !important;
+  top: 55px;
+  color:#00488A;
+  padding: 0 0 0 33px;
+  margin-bottom: 10px;
+  background: url("/themes/focus/images/icono_logo_focus.png");
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.panel-default>.panel-heading {
+  color: #00488A!important;
+  background-color: rgba(255, 255, 255, 0);
+  border-bottom:0px;
+  border-radius: 0px;
+}
+
+.user-picture a img{width: 70px; float: right;}
+
+.multipage-counter{background: #0065a2; width: 50px; height: 34px; text-align: center; padding: 10px; position: initial; border-radius: 5px; color: #ffffff;}
+.multipage-controls-list{margin-bottom:10px;}
+
+/* TABLE */
+table {border: 1px solid #CDCDCD; margin-top: 10px; margin-bottom: 40px!important; width:100%;}
+table tbody {border-top: 0px;}
+table th {
+  font-family: "PFSquareSansPro";
+  font-weight: normal;
+  padding: 10px;
+  font-size: 18px;
+  background: #00488A;
+  color: #fff;
+  border-bottom: 1px solid #CDCDCD;
+  border-left: 0px;
+  border-right: 0px;
+}
+table td{
+  color: #777;
+  font-size: 14px;
+  border-left: 1px solid #ddd;
+}
+table.tg tr th.title{width: 150px; text-align: center; color:#ffffff; background:#00488A;}
+table strong{color:#00488A;}
+
+.form-actions #edit-submit{color:#ffffff!important; background-color: #008c2b; border-color: #00822e;}
+.form-actions #edit-preview, .btn.btn-default{color:#ffffff!important; background-color: #0089d0; border-color: #006ca2; margin-right: 10px;}
+.form-actions #edit-preview-changes{color:#ffffff!important; background-color: #00689e; border-color: #004d75;}
+.form-actions #edit-delete{color:#ffffff!important; background-color: #ec0100; border-color: #c30100;}
+
+.multipage-button {margin-bottom:0px;}
+
+/* ---------------------------------- */
+/* MENU */
+.menu li{padding-top: 10px;}
+#main-menu .navbar-nav > li > a.active {background-color: #ffffff; color: #074A8B; border-top:3px solid #EE3329; border-radius:0px;}
+#main-menu .navbar-nav > li > a:hover{background-color: rgba(243,243,243,0.6); color: #074A8B; border-top: 3px solid #EE3329; border-radius: 0 0 2px 2px;}
+#main-menu .navbar-nav > li > a {text-transform: capitalize; border-top: 3px solid #ffffff; border-radius:0px; background-color: #ffffff;}
+.navbar-default .navbar-nav > li > a {color: #0065A2;}
+.navbar-default {background-color: transparent; border-color: transparent;}
+#main-menu .panel-heading{visibility: hidden;}
+#main-menu .panel-body .leaf{float:left;}
+#main-menu .panel-body .leaf a{background: none; border-bottom: 0px; text-decoration: none; text-transform: uppercase;}
+#main-menu .panel-body .leaf a:hover, #main-menu .panel-body .leaf a.active{border-top: 3px solid #ef3f36!important;}
+.panel .panel-body .list-group{margin:0px;}
+.navbar-collapse {padding-right: 0px; padding-left: 0px;}
+
+/* ---------------------------------- */
+/* SLIDER HOMEPAGE */
+.view-homepage-2{min-height: 400px;}
+#block-views-homepage-slider-block .panel-heading{visibility: hidden; position: absolute;}
+.node-focus-slider ul.slides{margin:0px; padding: 0 0 .25em 0;}
+.node-focus-slider h2{visibility: hidden; position: absolute;}
+
+.field-name-field-focus-text-top-slider .field-item p{font-size:25px;}
+.field-name-field-focus-text-top-slider .field-item p a{text-decoration:none; color:#000000;}
+.field-name-field-focus-text-top-slider .field-item span{font-size:48px;}
+
+/* ---------------------------------- */
+/* ABOUT HOMEPAGE */
+#block-bean-about-focus{margin-bottom:80px; margin-top: 60px; border-top: 3px solid #EE2D23; border-radius: 0px;}
+#block-bean-about-focus .panel-body .field-label{display: none;}
+#block-bean-about-focus .panel-heading{margin-top: -19px; width: 120px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;}
+#block-bean-about-focus .field-item{padding-top:10px;}
+
+/* ---------------------------------- */
+/* HIGHLIGHTS */
+.field-image-caption, .field-name-field-caption {margin-bottom: 10px;}
+#block-bean-highlights-home {border-top: 3px solid #D2DC0C; border-radius:0px; margin-bottom:80px;}
+#block-bean-highlights-home .panel-heading {margin-top: -19px; width: 255px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;}
+#block-bean-highlights-home .field-name-field-highlights-title-1 .even,
+#block-bean-highlights-home .field-name-field-highlights-title-2 .even,
+#block-bean-highlights-home .field-name-field-highlights-title-3 .even,
+#block-bean-highlights-home .field-name-field-highlights-title-4 .even,
+#block-bean-highlights-home .field-name-field-highlights-title-5 .even,
+#block-bean-highlights-home .field-name-field-highlights-title-6 .even{font-weight: 600;}
+#block-bean-highlights-home .field-name-field-highlights-description-1 .even,
+#block-bean-highlights-home .field-name-field-highlights-description-2 .even,
+#block-bean-highlights-home .field-name-field-highlights-description-3 .even{margin-bottom: 20px;}
+#block-bean-highlights-home .field-name-field-highlights-title-1 .field-item,
+#block-bean-highlights-home .field-name-field-highlights-title-2 .field-item,
+#block-bean-highlights-home .field-name-field-highlights-title-3 .field-item,
+#block-bean-highlights-home .field-name-field-highlights-title-4 .field-item,
+#block-bean-highlights-home .field-name-field-highlights-title-5 .field-item,
+#block-bean-highlights-home .field-name-field-highlights-title-6 .field-item{padding: 12px 0 10px 0;
+    color: #fff;
+    background: #00488A;
+    border-radius: 0 0 3px 3px;
+    padding: 15px;
+    margin-bottom: 10px;}
+#block-bean-highlights-home .group-item-1,
+#block-bean-highlights-home .group-item-2,
+#block-bean-highlights-home .group-item-3,
+#block-bean-highlights-home .group-item-4,
+#block-bean-highlights-home .group-item-5,
+#block-bean-highlights-home .group-item-6{padding-top:10px; width:303px; float:left; min-height: 290px;}
+#block-bean-highlights-home .group-item-1 a,
+#block-bean-highlights-home .group-item-2 a,
+#block-bean-highlights-home .group-item-3 a,
+#block-bean-highlights-home .group-item-4 a,
+#block-bean-highlights-home .group-item-5 a,
+#block-bean-highlights-home .group-item-6 a{color:#ffffff; text-decoration:none;}
+#block-bean-highlights-home .group-item-1 p,
+#block-bean-highlights-home .group-item-2 p,
+#block-bean-highlights-home .group-item-3 p,
+#block-bean-highlights-home .group-item-4 p,
+#block-bean-highlights-home .group-item-5 p,
+#block-bean-highlights-home .group-item-6 p{margin:0px;}
+#block-bean-highlights-home .group-item-2,
+#block-bean-highlights-home .group-item-5{margin:0 15px;}
+
+/* ---------------------------------- */
+/* SLIDERS PARTNERS */
+#block-views-focus-partners-slider-block{border-color:#FFF!important;}
+#block-views-focus-partners-slider-block .panel-heading{visibility: hidden;}
+#block-views-focus-partners-slider-block .field-name-title-field{display:none;}
+/*#flexslider-2 ul.slides li{width:280px!important;}*/
+
+/* ---------------------------------- */
+/* ReQuest */
+
+/* ReQuest ABOUT*/
+.view-id-request #page-title{display:none;}
+.view-id-request #layout-body{border-top:0px!important;}
+.view-id-request .views-field-field-request-title {border-top: 3px solid #EE2D23; margin-top: 50px;}
+.view-id-request .views-field-field-request-title .field-content{
+	margin: -17px 0 15px 0;
+    padding: 0 0 0 35px;
+    color: #00488A!important;
+    background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;
+    font-size: 26px !important;
+    width: 285px;}
+
+.view-id-request .views-field-field-request-link {margin:30px 0; text-align: right;}
+.view-id-request .views-field-field-request-link a{border: 1px solid #0065A2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #0065A2;
+    color: #FFF;
+    text-decoration: none;}
+
+/* ReQuest HIGHLIGHTS */
+#block-bean-request-highlights-block {margin-bottom: 50px;}
+#block-bean-request-highlights-block fieldset.field-group-fieldset {width:303px; float:left;}
+#block-bean-request-highlights-block fieldset.field-group-fieldset .field-type-image{margin-bottom:20px;}
+#block-bean-request-highlights-block fieldset.group-request-highlights-2{margin: 0 15px;}
+
+/* ReQuest BLOCK */
+#block-bean-request-block{margin-bottom: 80px; margin-top: 60px; border-top: 3px solid #27288D; border-radius: 0px;}    
+#block-bean-request-block .panel-heading {
+    margin-top: -19px;
+    width: 153px;
+    background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;
+}
+#block-bean-request-block .field-name-field-request-text{margin-left:10px;}
+
+
+
+/* ---------------------------------- */
+/* About page */
+#block-bean-more-about-the-project{margin-bottom:30px;}
+#block-bean-more-about-the-project .group-item-1, 
+#block-bean-more-about-the-project .group-item-2, 
+#block-bean-more-about-the-project .group-item-3{width:32.6%; float:left;}
+#block-bean-more-about-the-project .group-item-2{margin:0 1%;}
+#block-bean-more-about-the-project .field-name-field-about-title-1, 
+#block-bean-more-about-the-project .field-name-field-about-title-2, 
+#block-bean-more-about-the-project .field-name-field-about-title-3{
+	background: #00488A;
+	border-radius: 0 0 3px 3px;
+	padding: 15px;
+	margin-bottom: 10px;
+	margin-top: -20px;
+}
+#block-bean-more-about-the-project .field-name-field-about-title-1 p, 
+#block-bean-more-about-the-project .field-name-field-about-title-2 p, 
+#block-bean-more-about-the-project .field-name-field-about-title-3 p{margin: 0px;}
+#block-bean-more-about-the-project .field-name-field-about-title-1 a, 
+#block-bean-more-about-the-project .field-name-field-about-title-2 a, 
+#block-bean-more-about-the-project .field-name-field-about-title-3 a{
+	color: #fff;
+	text-decoration: none;
+}
+
+/* ---------------------------------- */
+/* PARTNERS */
+.partners .media{float:left; width: 100%;}
+
+/* ---------------------------------- */
+/* VIEW REPOSITORY */
+.view-repository{border-top: 3px solid #D2DC0C; display: list-item; list-style-position: inside;}
+.view-repository h2{margin-top: -40px!important; width: 295px; padding: 0 0 0 30px!important; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;}
+.view-repository p{padding-left:25px; padding-bottom: 20px;}
+
+/* Repository header */
+#block-bean-repository-header-image-and-de {border-top: 3px solid #EE3329; border-radius:0px;}
+#block-bean-repository-header-image-and-de .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 180px;}
+#block-bean-repository-header-image-and-de {margin-bottom:50px;}
+#block-bean-repository-header-image-and-de .field-name-field-header-description{background:#F3F3F3; padding:15px; border-radius: 0 0 5px 5px;}
+
+/* Repository tutorial */
+#block-bean-repository-tutorial{border-top: 3px solid #00488A; border-radius:0px;}
+#block-bean-repository-tutorial .panel-heading{margin-top: -20px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat; width: 486px;}
+#block-bean-repository-tutorial .panel-body{margin-bottom:40px;}
+#block-bean-repository-tutorial .field-item{color:#ffffff;}
+#block-bean-repository-tutorial .group-tutorial1, 
+#block-bean-repository-tutorial .group-tutorial2,
+#block-bean-repository-tutorial .group-tutorial3{width:33.3%; float:left; background: #00488A; padding:20px; min-height: 113px;}
+#block-bean-repository-tutorial .field-type-image{float:left; width:35%;}
+#block-bean-repository-tutorial .field-type-text{float:left; width:65%;}
+#block-bean-repository-tutorial .field-name-field-text-tutorial-1{position: relative; top: 26px; left: 5px;}
+#block-bean-repository-tutorial .field-name-field-text-tutorial-2{position: relative; top: 5px; left: 5px;}
+#block-bean-repository-tutorial .field-name-field-text-tutorial-3{position: relative; top: 17px; left: 5px;}
+#block-bean-repository-tutorial .collapsible h3{
+	    position: absolute;
+    top: -19px;
+    left: 438px;
+    font-size: 31px;
+    padding: 0px 6px;
+    margin-top: 0px;
+    color: #00488A;
+    border: 2px solid #00488A;
+    border-radius: 15px;
+    height: 33px;}
+#block-bean-repository-tutorial .collapsible h3 a{text-decoration: none;}
+
+/* Repository upload practice */
+.node-practice-form .form-managed-file .form-file{width:100%;}
+.node-practice-form .fieldset-description {color: #777; font-size: 0.8em;}
+.node-practice-form .form-managed-file .form-submit{margin: 10px 0; width: 225px; border-radius: 1px; padding: 2px 0;}
+.node-practice-form table.table-striped{border:1px solid #CDCDCD; margin-top: 10px;}
+.node-practice-form table.table-striped tr th{font-size: 12px; background:#DFDFDF; border-bottom: 1px solid #CDCDCD; border-left: 0px; border-right: 0px;}
+.node-practice-form table.table-striped tr th.checkbox{margin:0px; display: table-cell;}
+.node-practice-form table.table-striped tr td{border:0px;}
+.node-practice-form a.tabledrag-handle .handle{height: 25px; margin: -0.1em 0.5em;}
+
+#block-bean-repository-header-upload-block {border-top: 3px solid #EE3329; border-radius:0px;}
+#block-bean-repository-header-upload-block .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 310px;}
+#block-bean-repository-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius:5px;}
+#block-bean-repository-header-upload-block .field-name-field-header-upload-link{background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer;}
+#block-bean-repository-header-upload-block .field-name-field-header-upload-link .field-item a{text-decoration:none; color:#ffffff;}
+
+/* Search Form */
+#block-search-form--2 {background:#F3F3F3;}
+#block-search-form--2 .form-actions{background: #00488A; padding: 6px; border-radius: 3px; margin-left: 10px;}
+#block-search-form--2 .form-actions input{width:19px;}
+#block-search-form--2 .form-type-textfield input{border-radius:5px;}
+
+/* More Pager */
+.view-repository ul.pager li.pager-show-more-next{background:#00488A;}
+.view-repository ul.pager li.pager-show-more-next a{color:#ffffff; border:0px;}
+
+/* ---------------------------------- */
+/* Repository full content */
+#block-system-main .window{float: left; width: 49%; background: rgba(0, 101, 162, 0.13); min-height: 200px; margin-bottom: 17px; border-radius:7px;}
+#block-system-main .window h3, #block-system-main .window_big h3{padding:10px; background:#00488A; margin: 0 0 5px 0; border-radius: 7px 7px 0 0;}
+#block-system-main .window h3 span, #block-system-main .window_big h3 span {color:#ffffff;}
+#block-system-main .window:nth-child(2){margin-right: 2%;}
+#block-system-main .window .field, #block-system-main .window_big .field{padding:0 10px;}
+#block-system-main .window .field, #block-system-main .group-organisation.window_big .field{margin:10px 0;}
+#block-system-main .window .field-label, #block-system-main .window_big .field-label{font-weight: bold; border-bottom: 1px dotted #000; margin-bottom: 5px;}
+#block-system-main .window_big{width:100%; float:left; background: rgba(0, 101, 162, 0.13); margin-bottom: 30px; border-radius:7px;}
+#block-system-main .group-content-practice {margin-bottom: 20px;}
+#block-system-main .group-content-practice .field-name-field-rep-summary {margin-bottom:15px; float: left; width: 80%;}
+#block-system-main .group-content-practice .field-name-author {font-size:13px; color:#074a8b;}
+#block-system-main .group-content-practice .field-name-post-date {font-size:13px; color:#074a8b; float:left; padding-bottom: 10px;}
+#block-system-main .group-content-practice .field-name-field-rep-keywords {margin-top: -11px; position: absolute; right: 29px; background: url("/themes/focus/images/generals/tags.png") no-repeat; border-radius: 0px 7px 7px 0; padding: 1px 0 1px 40px;}
+#block-system-main .group-content-practice .field-name-field-rep-keywords ul.links li {padding:3px 10px; border-radius:7px;}
+#block-system-main .group-content-practice .field-name-field-rep-keywords ul.links li a {color: #00488a; font-size: 14px; font-style:italic;}
+#block-system-main .group-content-practice .group-medal{min-height:100px; width: 100%; float: left;}
+#block-system-main .group-content-practice .practice {width: 20%; float: left; text-align: center; text-transform: uppercase; height: 90px;}
+#block-system-main .group-content-practice .inProgress {display:none;}
+#block-system-main .group-content-practice .Good.practice {background: url("/themes/focus/images/generals/good_practice.png") no-repeat center 20px;}
+#block-system-main .group-content-practice .Notable.practice {background: url("/themes/focus/images/generals/notable_practice.png") no-repeat center 20px;}
+#block-system-main .group-content-practice .Promising.practice {background: url("/themes/focus/images/generals/promising_practice.png") no-repeat center 20px;}
+
+.view-mode-teaser p{padding:0 0 25px 0; border-bottom: 1px dotted #00488A;}
+.group-tag-icon .links{height: 28px; border-radius: 0 7px 7px 0;}
+
+/* ---------------------------------- */
+/*PAGE NEWS*/
+.page-news #block-system-main .view-header h2 {margin-top: -17px!important;}
+.page-news .view-focus-news {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
+.page-news .view-focus-news .col-md-12{margin-bottom:0px!important;}
+
+#block-bean-news-header-image-and-descript {border-top: 3px solid #EE3329; border-radius:0px;}
+#block-bean-news-header-image-and-descript .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 117px;}
+#block-bean-news-header-image-and-descript {margin-bottom:50px;}
+#block-bean-news-header-image-and-descript .field-name-field-header-description{background:#F3F3F3; padding:15px; border-radius: 0 0 5px 5px;}
+
+#block-bean-news-header-upload-block {border-top: 3px solid #EE3329; border-radius:0px;}
+#block-bean-news-header-upload-block .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 385px;}
+#block-bean-news-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius:5px;}
+#block-bean-news-header-upload-block .field-name-field-header-upload-link{background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer;}
+#block-bean-news-header-upload-block .field-name-field-header-upload-link .field-item a{text-decoration:none; color:#ffffff;}
+
+.node-focus-news .field-name-field-focus-news-img-top-ft{float: left; padding: 0 10px 0px 0;}
+.node-focus-news .field-name-body{text-align:justify; border:0px;}
+.node-focus-news .field-name-field-field-tags{background: #F3F3F3; padding: 10px; margin: 10px 0; border-radius: 3px;}
+
+.page-news .block-search {background-color: #f4f4f4; padding: 1em; border-radius: 6px; margin: 0 0 40px 0;}
+.page-news .block-search .form-item{margin-top:0px;}
+
+/* ---------------------------------- */
+/*PAGE LIBRARY*/
+.node .field-name-body {border-bottom: 0px;}
+#block-bean-library-header-image-and-descr .field-name-field-header-description{background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
+#block-bean-library-header-image-and-descr {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-library-header-image-and-descr .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 135px;}
+#block-bean-library-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-library-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 300px;}
+#block-bean-library-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
+#block-bean-library-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
+#block-bean-library-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
+.page-library .view-focus-resource-library-details {margin-top: 50px; border-top: 3px solid #EE3329; border-radius: 0px;}
+.page-library #block-system-main .view-header h2 {margin-top: -17px!important;}
+
+/*Library full content*/
+section.group-focus-library-content .group-focus-library-ev-fields .field-name-field-focus-library-publish-date span{color: #5f6160; font-size: 14px; font-weight: normal;}
+section.group-focus-library-content .field-name-body{margin-top: 8px; border:0px; margin-bottom: 40px;}
+section.group-focus-library-aside {background: #F3F3F3; padding: 20px; border-radius: 3px;}
+section.group-focus-library-aside .field {margin-bottom:10px;}
+section.group-focus-library-aside .field.field-name-field-focus-library-tags {margin-bottom:0px;}
+
+/* ---------------------------------- */
+/*PAGE DIRECTORY OF PROFESSIONALS*/
+#block-bean-professionals-header-image-and {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-professionals-header-image-and .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 375px;}
+#block-bean-professionals-header-image-and .field-name-field-header-description {background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
+#block-bean-professionals-header-upload-bl {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-professionals-header-upload-bl .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 360px;}
+#block-bean-professionals-header-upload-bl .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
+#block-bean-professionals-header-upload-bl .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
+#block-bean-professionals-header-upload-bl .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
+
+/* ---------------------------------- */
+/* VALIDATION PROCESS */
+.view-focus-repository-evaluation-evaluator .container-inline legend{display:none;}
+.any_invitation, .any_practice {margin-bottom: 60px; padding: 40px 0 20px 0; font-family: "PFSquareSansPro"; color: #00488A; text-align: center; font-size: 35px;}
+.view-focus-repository-evaluation-evaluator fieldset.container-inline{position: absolute; bottom: 10px;}
+.view-focus-repository-evaluation-evaluator table.views-table {margin-bottom: 55px;}
+.node-focus_repository_evaluation-form .form-actions #edit-preview-changes, 
+.node-focus_repository_evaluation-form .form-actions #edit-delete{display:none;}
+.node-focus_repository_evaluation-form .form-item-field-evaluation-und #edit-field-evaluation-und {margin-top:10px;}
+.node-focus_repository_evaluation-form .form-item-field-evaluation-und #edit-field-evaluation-und .form-item:nth-child(1){display:none;}
+
+.tabs{margin-bottom:10px;}
+.tabs ul li{background:#ffffff; color:#00488A;}
+.tabs ul li.active{background:#00488A; color:#ffffff; border-radius:5px 5px 0 0;}
+.tabs ul li a{background-color:transparent; color:#00488A;}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {background-color: transparent!important; border-radius:5px 5px 0 0; color:#ffffff;}
+
+/* ---------------------------------- */
+/* FOOTER */
+.followUsLinks {
+  padding: 25px 1rem;
+}
+.followUsLinks a {
+  background-image: url("../css/cssimg/icons-sprite.svg");
+  background-position: 0 9px;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px 0 10px 22px;
+  text-decoration: none;
+}
+.followUsLinks a.twitterFollowUs,
+.followUsLinks a.youtubeFollowUs {
+  padding-left: 40px;
+}
+.followUsLinks a.twitterFollowUs {
+  background-position: 0 -2296px;
+}
+.followUsLinks a.youtubeFollowUs {
+  background-position: 0 -2957px;
+}
+.followUsLinks .row {
+  text-align: center;
+}
+
+/* ---------------------------------- */
+/* BANNER EUROPEAN COMMISSION */
+.bean-footer-european-commission{margin:40px 0 20px 0;}
+.field-name-field-image-european-commission {float: left; padding-right: 10px;}
+.field-name-field-european-commission-text {color: #00488A; font-family: verdana; font-size: 13px; padding: 7px;}
+
+/* ---------------------------------- */
+/* PAGES */
+.page-news h2 a{
+	background: transparent url("../images/generals/practices-list.png") no-repeat scroll 0 7px;
+    color: #00488A;
+    font-family: "PFSquareSansPro";
+    font-size: 18px;
+    padding: 8px 0 3px 25px;
+    text-transform: none;
+    text-decoration: none;
+    cursor: pointer;}
+
+.page-news .field-type-text-with-summary p{padding:10px 0 40px 0;}    
+
+h1#page-title{margin-top: -10px;
+    width: auto;
+    background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;
+    padding: 0 10px 0 30px;
+    margin: -20px 0 20px 0;}
+
+/*body.not-front main#layout-body{border-top: 3px solid #EE2D23;}*/
+
+body.not-front .request{border-top: 0px!important;}
+
+/* line 139, ../sass/eiponaha.scss */
+#block-system-main .view-header h2 {
+    color: #00488A;
+    margin-left: 0px!important;
+    margin-top: -37px!important;
+    background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF;
+    width: 295px;
+    padding: 0 0 0 32px!important;
+}
+
+.page-news #block-system-main .view-header h2 {width: 415px;}
+.page-library #block-system-main .view-header h2 {width: 400px;}
+
+/* line 143, ../sass/eiponaha.scss */
+.node .field-type-taxonomy-term-reference ul.links li {
+  white-space: normal;
+}
+
+/* line 155, ../sass/eiponaha.scss */
+h2.listingLinkHeader a,
+h3.listingLinkHeader a,
+h4.listingLinkHeader a,
+.cta-button a,
+ul.pager-show-more .pager-show-more-next a {
+  background: transparent url("../images/generals/practices-list.png") no-repeat scroll 0 7px;
+  color: #00488A;
+  font-family: "PFSquareSansPro";
+  font-size: 18px;
+  padding: 8px 0 3px 25px;
+  text-transform: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* line 168, ../sass/eiponaha.scss */
+.ingress {
+  font-size: 21px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+/* line 174, ../sass/eiponaha.scss */
+.cta-button,
+ul.pager-show-more .pager-show-more-next {
+  background-color: #d5e2e4;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 20px;
+  margin-bottom: 0;
+  min-height: 44px;
+  padding: 12px 8px 12px 1rem;
+}
+
+/* line 186, ../sass/eiponaha.scss */
+.view-mode-full .label-above,
+.view-mode-full .fields-group label {
+  margin-top: 15px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/* line 196, ../sass/eiponaha.scss */
+.icon-element {
+  margin-right: 10px;
+}
+
+/* line 199, ../sass/eiponaha.scss */
+.label-little {
+  color: #5f6160;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+/* line 208, ../sass/eiponaha.scss */
+.link.black a {
+  background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -287px;
+  padding: 1px 0 1px 22px;
+  color: #3a3c3b;
+  font-family: "PFSquareSansPro";
+  font-size: 18px;
+  display: block;
+}
+
+/* line 216, ../sass/eiponaha.scss */
+.date .label-above,
+.date-single .date-display-single {
+  background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -897px;
+  padding-left: 20px;
+  padding-top: 3px;
+}
+
+/* line 222, ../sass/eiponaha.scss */
+div.date-single div.date-display-single {
+  background-position: 0 -895px;
+}
+
+/* line 225, ../sass/eiponaha.scss */
+.evidence {
+  margin: 30px 0;
+}
+/* line 227, ../sass/eiponaha.scss */
+.evidence .date-display-single {
+  font-size: 18px;
+}
+
+/* line 231, ../sass/eiponaha.scss */
+.evidence-little {
+  margin: 10px 0;
+}
+
+/* line 234, ../sass/eiponaha.scss */
+.wrapper-resp-img img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* line 239, ../sass/eiponaha.scss */
+.embedded-image-wrapper {
+  float: left;
+  margin-right: 10px;
+  max-width: 50%;
+}
+/* line 243, ../sass/eiponaha.scss */
+.embedded-image-wrapper img {
+  height: auto;
+  width: 100%;
+}
+
+/* line 248, ../sass/eiponaha.scss */
+.largerText {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 22px;
+  padding-right: 5px;
+}
+
+/* line 254, ../sass/eiponaha.scss */
+.event-date {
+  font-family: "PFSquareSansPro";
+  text-align: center;
+  margin-top: 5px;
+}
+/* line 258, ../sass/eiponaha.scss */
+.event-date.icon {
+  border-radius: 5px;
+}
+
+/* line 263, ../sass/eiponaha.scss */
+.month {
+  font-size: 13px;
+  color: #fff;
+  background-color: #00488A;
+  padding: 3px 0 1px 0;
+  border-radius: 5px 5px 0 0;
+}
+/* line 269, ../sass/eiponaha.scss */
+.month.day {
+  text-transform: uppercase;
+  font-size: 22px;
+  background-color: #f4f4f4;
+  padding: 2px 0;
+  color: #00488A;
+  border-radius: 0 0 5px 5px;
+}
+/* line 277, ../sass/eiponaha.scss */
+.month .string-year {
+  font-size: 12px;
+}
+
+/* RESET FROM BOOTSTRAP */
+@media (min-width: 1200px) {
+  /* line 284, ../sass/eiponaha.scss */
+  .container {
+    width: 970px;
+  }
+}
+
+/* line 289, ../sass/eiponaha.scss */
+.panel-body {
+  padding: 0;
+}
+
+/* line 292, ../sass/eiponaha.scss */
+.block.block-system.panel.panel-default {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+/* line 299, ../sass/eiponaha.scss */
+.row .half-gutter,
+.row .node-eiponaha-event.node-teaser {
+  margin-left: -7px;
+  margin-right: -7px;
+}
+/* line 303, ../sass/eiponaha.scss */
+.row .half-gutter > [class*="col-"],
+.row .node-eiponaha-event.node-teaser > [class*="col-"] {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+/* line 308, ../sass/eiponaha.scss */
+.glyphicon.glyphicon-fix {
+  color: #3a3c3b;
+  font-family: Helvetica, ​ Arial, ​ sans-serif;
+  font-size: 100%;
+  line-height: 1.35;
+  font-smooth: auto;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  margin-left: 26px;
+  padding-right: 0;
+}
+/* line 318, ../sass/eiponaha.scss */
+.glyphicon.glyphicon-fix:before {
+  font-family: "Glyphicons Halflings";
+  margin-left: -23px;
+  margin-top: -2px;
+  position: absolute;
+}
+
+/* END RESET */
+/* line 327, ../sass/eiponaha.scss */
+main#layout-body {
+  margin-top: 2rem;
+}
+
+/* line 332, ../sass/eiponaha.scss */
+.thumbnail {
+  border: none;
+}
+
+/* ---------------------------------- */
+/* HEADER*/
+/* line 351, ../sass/eiponaha.scss */
+header #main-title,
+header #sub-title {
+  font-family: "PFSquareSansPro";
+}
+
+/* line 357, ../sass/eiponaha.scss */
+#layout-header #main-title {
+  font-size: 30px !important;
+  top: 55px;
+  padding: 0 0 0 33px;
+  color: #000000;
+  background: url("/themes/focus/images/icono_logo_focus.png");
+  background-repeat: no-repeat;
+  background-position: left;
+}
+/* line 360, ../sass/eiponaha.scss */
+#layout-header #sub-title {
+  font-size: 17px !important;
+  top: 110px!important; 
+}
+@media screen and (max-width: 991px) {
+  /* line 356, ../sass/eiponaha.scss */
+  #layout-header {
+    background: none;
+  }
+  /* line 365, ../sass/eiponaha.scss */
+  #layout-header #main-title {
+    line-height: 1em;
+    padding-bottom: 5px;
+  }
+}
+
+/* line 373, ../sass/eiponaha.scss */
+.container #language-selector {
+  display: none;
+}
+/* line 377, ../sass/eiponaha.scss */
+.container .panel {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+/* line 384, ../sass/eiponaha.scss */
+.container .panel-body {
+  padding: 0;
+}
+
+/* line 389, ../sass/eiponaha.scss */
+.region-header-top {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* line 394, ../sass/eiponaha.scss */
+.panel .panel-body > p {
+  margin-bottom: 5px;
+}
+
+/* line 399, ../sass/eiponaha.scss */
+#layout-header #banner-flag {
+  top: 12px;
+}
+
+/* ---------------------------------- */
+/* Breadcrums */
+/* line 405, ../sass/eiponaha.scss */
+#path {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  background-color: #00488a;
+}
+
+/* Mobile Menu */
+/* line 477, ../sass/eiponaha.scss */
+.mobile-user-bar.affix-top + .region-featured #main-menu .navbar {
+  z-index: 1030;
+}
+
+/* line 482, ../sass/eiponaha.scss */
+#services,
+#services-bottom {
+  font-size: inherit;
+  left: auto;
+  margin: 10px 0 0;
+  padding: 0;
+  position: relative;
+  right: auto;
+  text-align: center;
+  top: auto;
+  z-index: 18;
+  padding-right: 0;
+}
+
+/* line 495, ../sass/eiponaha.scss */
+.js .region-tools #services {
+  text-align: right;
+}
+
+/* line 498, ../sass/eiponaha.scss */
+.js #services,
+.js #block-menu-menu-service-tools .menu {
+  padding-right: 0;
+}
+
+/* line 501, ../sass/eiponaha.scss */
+#services,
+#services-bottom {
+  padding-left: 0;
+}
+/* line 504, ../sass/eiponaha.scss */
+#services.reset-list li,
+#services-bottom.reset-list li {
+  border-left: 1px solid 1000;
+  display: inline-block;
+  line-height: 1;
+  list-style: outside none none;
+  margin: 0;
+  padding: 0 9px;
+}
+/* line 511, ../sass/eiponaha.scss */
+#services.reset-list li a,
+#services.reset-list li span,
+#services-bottom.reset-list li a,
+#services-bottom.reset-list li span {
+  color: #0064a4;
+  display: inline-block;
+  font-family: verdana;
+  font-size: 13px;
+  line-height: 1;
+}
+/* line 518, ../sass/eiponaha.scss */
+#services.reset-list li:first-child,
+#services-bottom.reset-list li:first-child {
+  border-left: none;
+}
+
+/* ---------------------------------- */
+/* FOOTER */
+/* line 528, ../sass/eiponaha.scss */
+#layout-footer {
+  background-color: transparent;
+  border: 0 none;
+  margin: 0;
+  min-height: 75px;
+  padding-top: 0;
+  text-align: left;
+}
+/* line 535, ../sass/eiponaha.scss */
+#layout-footer .first-row {
+  background-color: #00488A;
+}
+/* line 538, ../sass/eiponaha.scss */
+#layout-footer #services-bottom {
+  text-align: center;
+}
+
+/* line 542, ../sass/eiponaha.scss */
+.region-footer-top {
+  padding: 20px 0;
+}
+
+/* line 546, ../sass/eiponaha.scss */
+#block-cce-basic-config-footer-ipg {
+  font-size: inherit;
+  left: auto;
+  margin: 10px 0 0;
+  padding: 0;
+  position: relative;
+  right: auto;
+  text-align: center;
+  top: auto;
+  z-index: 18;
+}
+/* line 556, ../sass/eiponaha.scss */
+#block-cce-basic-config-footer-ipg .content,
+#block-cce-basic-config-footer-ipg .content a,
+#block-cce-basic-config-footer-ipg .content a:visited,
+#block-cce-basic-config-footer-ipg .content .menu a,
+#block-cce-basic-config-footer-ipg .content .menu a:visited {
+  color: #00488A;
+  display: inline-block;
+  font-family: verdana;
+  font-size: 13px;
+  line-height: 1;
+}
+/* line 567, ../sass/eiponaha.scss */
+#block-cce-basic-config-footer-ipg .menu a,
+#block-cce-basic-config-footer-ipg .menu a:visited {
+  border-left: 1px solid 10064a4;
+}
+
+/* ---------------------------------- */
+/* CONTENT */
+/* line 577, ../sass/eiponaha.scss */
+.label-default {
+  background-color: #777;
+  background-color: #f4f4f4;
+}
+
+/* line 583, ../sass/eiponaha.scss */
+.fields-group h3 {
+  font-size: 22px;
+}
+
+/* Views fix */
+/* line 590, ../sass/eiponaha.scss */
+.view .view-content,
+.view .view-footer {
+  margin-bottom: 20px;
+}
+
+/* line 595, ../sass/eiponaha.scss */
+ul.pager-show-more {
+  padding: 0 !important;
+}
+/* line 597, ../sass/eiponaha.scss */
+ul.pager-show-more .pager-show-more-next {
+  display: block !important;
+  margin: 0;
+  padding: 8px 12px 6px;
+}
+/* line 602, ../sass/eiponaha.scss */
+ul.pager-show-more .pager-show-more-next a {
+  background-color: transparent !important;
+  background: none;
+  padding: 0;
+  width: 100%;
+}
+/* line 610, ../sass/eiponaha.scss */
+ul.pager-show-more.pager-show-more-empty {
+  display: none;
+}
+
+/* line 616, ../sass/eiponaha.scss */
+.view-mode-teaser,
+.view-mode-term_teaser,
+.view-mode-teaser_no_image {
+  overflow: hidden;
+}
+/* line 623, ../sass/eiponaha.scss */
+.view-mode-teaser.fixed-height,
+.view-mode-term_teaser.fixed-height,
+.view-mode-teaser_no_image.fixed-height {
+  height: 185px;
+}
+/* line 626, ../sass/eiponaha.scss */
+.view-mode-teaser .field-group-div,
+.view-mode-term_teaser .field-group-div,
+.view-mode-teaser_no_image .field-group-div {
+  padding-left: 0;
+}
+/* line 629, ../sass/eiponaha.scss */
+.view-mode-teaser .field-keywords,
+.view-mode-term_teaser .field-keywords,
+.view-mode-teaser_no_image .field-keywords {
+  font-size: 90%;
+}
+
+/* line 635, ../sass/eiponaha.scss */
+.bean-eipaha-header .group-block-header-text {
+  /*
+  @media screen and (min-width: 992px) {
+      padding-right:0;
+  }
+  */
+}
+
+/* line 651, ../sass/eiponaha.scss */
+aside h2 {
+  background-color: #d5e2e4;
+  border-radius: 6px 6px 0 0;
+  font-size: 20px;
+  margin-bottom: 0;
+  min-height: 44px;
+  padding: 12px 8px 12px 1rem;
+  text-transform: uppercase;
+}
+/* line 660, ../sass/eiponaha.scss */
+aside .bg-color {
+  background-color: #f2f6f7;
+  padding: 1rem;
+  position: relative;
+  margin-bottom: 55px;
+}
+/* line 666, ../sass/eiponaha.scss */
+aside .bg-color:after {
+  height: 45px;
+  width: 100%;
+  position: absolute;
+  background-color: #d5e2e4;
+  left: 0;
+  bottom: -45px;
+  content: "";
+  border-radius: 0 0 6px 6px;
+  padding: 12px 8px 10px 19px;
+}
+/* line 678, ../sass/eiponaha.scss */
+aside .field {
+  margin: 0 0 10px !important;
+}
+/* line 681, ../sass/eiponaha.scss */
+aside ul {
+  padding: 0 1em;
+}
+/* line 683, ../sass/eiponaha.scss */
+aside ul li {
+  padding: 0.35em 0;
+}
+@media screen and (max-width: 991px) {
+  /* line 650, ../sass/eiponaha.scss */
+  aside {
+    margin-top: 10px;
+  }
+}
+
+/* line 695, ../sass/eiponaha.scss */
+.block-eiponaha-frontend.panel {
+  margin-bottom: 0;
+}
+
+/* line 699, ../sass/eiponaha.scss */
+.sharethislinks {
+  background-color: #d5e2e4;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 2px 15px;
+}
+/* line 705, ../sass/eiponaha.scss */
+.sharethislinks .shareText {
+  display: inline-block;
+  font-size: 22px;
+  line-height: 2rem;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+/* line 712, ../sass/eiponaha.scss */
+.sharethislinks ul,
+.sharethislinks li {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+/* line 717, ../sass/eiponaha.scss */
+.sharethislinks ul {
+  display: inline-block;
+  width: auto;
+}
+/* line 721, ../sass/eiponaha.scss */
+.sharethislinks li {
+  display: inline-block;
+  height: 40px;
+  margin-left: 10px;
+  position: relative;
+}
+/* line 727, ../sass/eiponaha.scss */
+.sharethislinks a {
+  background-image: url("../css/cssimg/icons-sprite.svg");
+  background-repeat: no-repeat;
+  height: 40px;
+  margin: 0;
+  overflow: hidden;
+  padding: 10px 2px 10px 32px;
+  border: 1px solid transparent;
+  line-height: 40px;
+}
+/* line 737, ../sass/eiponaha.scss */
+.sharethislinks .show-for-sr {
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+}
+/* line 744, ../sass/eiponaha.scss */
+.sharethislinks .facebookShare a {
+  background-position: 2px -2077px;
+}
+/* line 745, ../sass/eiponaha.scss */
+.sharethislinks .twitterShare a {
+  background-position: 2px -2296px;
+}
+/* line 746, ../sass/eiponaha.scss */
+.sharethislinks .linkedinShare a {
+  background-position: 2px -2515px;
+}
+/* line 747, ../sass/eiponaha.scss */
+.sharethislinks .googleplusShare a {
+  background-position: 2px -2735px;
+}
+
+/* STARTPAGE */
+/* LINKEDINPAGES */
+/* line 753, ../sass/eiponaha.scss */
+.linkedInPages {
+  position: relative;
+}
+/* line 756, ../sass/eiponaha.scss */
+.linkedInPages .thumbnail {
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 30px;
+  padding: 0;
+  background-color: transparent;
+}
+/* line 764, ../sass/eiponaha.scss */
+.linkedInPages h2 {
+  background-color: #000;
+  color: #fff;
+  border-radius: 6px 6px 0 0;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 2px 10px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: -40px;
+}
+/* line 776, ../sass/eiponaha.scss */
+.linkedInPages .caption {
+  background-color: #00488A;
+  color: #fff;
+  border-radius: 0 0 6px 6px;
+  padding: 0.5rem 1rem 0 1rem;
+  position: relative;
+  min-height: 60px;
+}
+
+/* ---------------------------------- */
+/* ---------------------------------- */
+/* NEWS & EVENTS */
+/* line 791, ../sass/eiponaha.scss */
+.pane-eiponaha-news,
+.pane-eiponaha-calendar {
+  margin-bottom: 1rem;
+  /* Links in newslisting */
+}
+/* line 795, ../sass/eiponaha.scss */
+.pane-eiponaha-news .pane-content,
+.pane-eiponaha-calendar .pane-content {
+  padding: 1rem 1rem 0 1rem;
+  background-color: #fff;
+}
+/* line 802, ../sass/eiponaha.scss */
+.pane-eiponaha-news .field-content a,
+.pane-eiponaha-calendar .field-content a {
+  color: #5f6160;
+  padding: 3px 0 3px 22px;
+  background: url(cssimg/icons_sprite.svg) 0 0 no-repeat;
+  font-family: "PFSquareSansPro";
+  font-size: 18px;
+}
+
+/* line 812, ../sass/eiponaha.scss */
+.pane-eiponaha-news {
+  /* Dates in newslisting */
+}
+/* line 814, ../sass/eiponaha.scss */
+.pane-eiponaha-news .pane-content {
+  padding: 1rem 1rem 0 1rem;
+  background-color: #fff;
+}
+/* line 819, ../sass/eiponaha.scss */
+.pane-eiponaha-news .views-field-body {
+  margin-bottom: 1rem;
+}
+/* line 823, ../sass/eiponaha.scss */
+.pane-eiponaha-news .views-field-title {
+  font-family: verdana;
+}
+/* line 828, ../sass/eiponaha.scss */
+.pane-eiponaha-news .label {
+  border-radius: 0.25em;
+  color: #5f6160;
+  font-weight: normal;
+  padding: 3px 5px 3px;
+  background-color: #f4f4f4;
+}
+
+/* line 839, ../sass/eiponaha.scss */
+.pane-eiponaha-calendar .views-field-nothing {
+  margin: 0 1rem 1rem;
+}
+/* line 843, ../sass/eiponaha.scss */
+.pane-eiponaha-calendar .date {
+  font-family: "PFSquareSansPro";
+  text-align: center;
+}
+/* line 848, ../sass/eiponaha.scss */
+.pane-eiponaha-calendar .month {
+  text-transform: uppercase;
+  font-size: 22px;
+  background-color: #f4f4f4;
+  border-radius: 0 0 5px 5px;
+  padding: 2px 0;
+}
+/* line 855, ../sass/eiponaha.scss */
+.pane-eiponaha-calendar .month:first-of-type {
+  font-size: 13px;
+  color: #fff;
+  background-color: #00488A;
+  border-radius: 5px 5px 0 0;
+  padding: 3px 0 1px 0;
+}
+
+/* EVENTS */
+/* line 875, ../sass/eiponaha.scss */
+.page-events .view-calendar {
+  margin-top: 15px;
+}
+
+/* ---------------------------------- */
+/* ---------------------------------- */
+/* NEWS & EVENTS NEW!! */
+@media screen and (min-width: 992px) {
+  /* line 885, ../sass/eiponaha.scss */
+  .page-news .view-eiponaha-news .wrapper-resp-img img {
+    width: auto;
+    height: 102px !important;
+  }
+}
+
+/* FUNDING */
+@media screen and (min-width: 992px) {
+  /* line 896, ../sass/eiponaha.scss */
+  .view-display-id-page_programme .wrapper-resp-img img {
+    width: auto;
+    max-height: 102px !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* line 904, ../sass/eiponaha.scss */
+  .view-display-id-page_programme .view-mode-term_teaser.fixed-height {
+    height: 215px;
+  }
+}
+@media screen and (max-width: 991px) {
+  /* line 904, ../sass/eiponaha.scss */
+  .view-display-id-page_programme .view-mode-term_teaser.fixed-height {
+    height: auto;
+  }
+}
+.group-call-content h1.funding-call-title {
+  margin-bottom: 1em;
+}
+
+/* LIBRARY */
+/* line 918, ../sass/eiponaha.scss */
+.node-resource .field-resource-type {
+  position: relative;
+}
+/* line 920, ../sass/eiponaha.scss */
+.node-resource .field-resource-type .icon-element {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 926, ../sass/eiponaha.scss */
+.node-resource .icon-type .glyphicon {
+  font-size: 0px;
+}
+/* line 928, ../sass/eiponaha.scss */
+.node-resource .icon-type .glyphicon:before {
+  font-size: 24px;
+}
+
+/* ACHIEVEMENTS */
+ul.achievement-list li {
+  padding: 0.5em 0;
+}
+
+.achievement-description {
+  padding: 1.5em 0 0;
+}
+
+.easy-breadcrumb_segment-title {
+  width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-table;
+}
+
+@media screen and (min-width: 992px) {
+  .easy-breadcrumb_segment-title {
+    width: 500px;
+  }
+}
+
+.upper {
+  text-transform: capitalize;
+}
+
+
+/* Insert other files for different sections */
+/*
+all necessary for Home Page of EIPonAHA site.
+*/
+/* line 5, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body {
+  /* THIRD SECTION */
+  /* Views list and Twitter */
+}
+/* line 6, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body#layout-body {
+  margin-top: 0;
+}
+/* line 9, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .label {
+  border-radius: 0.25em;
+  color: #5f6160;
+  font-weight: normal;
+  padding: 3px 5px 3px;
+  background-color: #f4f4f4;
+  font-size: 12px;
+  font-weight: normal;
+}
+/* line 19, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .homepage-top {
+  padding-top: 2rem;
+}
+/* line 23, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-homepage-action-groups {
+  margin-top: 45px;
+  margin-bottom: 15px;
+}
+/* line 32, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .color-white-padding {
+  background-color: #ffffff;
+}
+/* line 37, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .homepage-bean-image {
+  width: 100%;
+}
+/* line 41, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .region-content-top-left .block-bean,
+.homepage-layout-body .region-content-top-right .block-bean {
+  box-shadow: none;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #d5e2e4;
+  border-radius: 6px;
+  border: 0;
+  height: 132px;
+}
+/* line 50, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-display-id-homepage_placeholder img {
+  max-width: 100%;
+}
+/* line 56, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .group-homepage-left h1.listingLinkHeader {
+  background: transparent url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -592px;
+  color: #00488A;
+  font-family: "PFSquareSansPro";
+  font-size: 30px;
+  padding: 7px 0 3px 32px;
+  text-transform: none;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+/* line 66, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .group-homepage-left .field-name-field-homepage-block-body {
+}
+/* line 70, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body #block-bean-homepage-highlights-block .group-homepage-left {
+  margin-bottom: 10px;
+}
+/* line 77, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .group-homepage-right h2.listingLinkHeader {
+  background: transparent url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 7px;
+  color: #00488A;
+  font-family: "PFSquareSansPro";
+  font-size: 22px;
+  padding: 7px 0 3px 22px;
+  text-transform: none;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+/* line 88, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .block-view-list-inner a {
+  font-size: 18px;
+  color: #00488A;
+}
+/* line 92, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-homepage-action-groups .caption a:before {
+  background: transparent url("cssimg/icons-sprite.svg") no-repeat scroll 0 7px;
+  content: "";
+  display: inline-block;
+  height: 25px;
+  overflow: visible;
+  position: relative;
+  top: 3px;
+  width: 22px;
+}
+/* line 102, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-homepage-action-groups a {
+  text-decoration: none;
+}
+/* line 106, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .linkedInPages .caption a {
+  color: #fff;
+  line-height: 1;
+}
+/* line 114, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .region-content-bottom-left,
+.homepage-layout-body .region-content-bottom-right {
+  margin-bottom: 20px;
+}
+/* line 119, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .region-content-bottom-left .panel-heading,
+.homepage-layout-body .region-content-bottom-right .panel-heading {
+  background-color: #d5e2e4;
+  border-radius: 6px 6px 0 0;
+  padding: 10px 8px 12px 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  min-height: 44px;
+}
+/* line 127, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .region-content-bottom-left .panel-heading h2,
+.homepage-layout-body .region-content-bottom-right .panel-heading h2 {
+  font-size: 20px;
+}
+/* line 132, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .region-content-bottom-left .panel-body.content,
+.homepage-layout-body .region-content-bottom-right .panel-body.content,
+.homepage-layout-body .region-content-bottom-right .views-bootstrap-grid-plugin-style {
+  background-color: white;
+}
+/* line 138, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .region-content-bottom-left .block-bean,
+.homepage-layout-body .region-content-bottom-right .block-bean,
+.homepage-layout-body .region-content-bottom-left .block-views,
+.homepage-layout-body .region-content-bottom-right .block-views {
+  margin-bottom: 0px;
+}
+/* line 145, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-display-id-block_latest_news .view-header {
+  padding: 1rem 0;
+}
+/* line 151, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-display-id-block_latest_news .view-footer,
+.homepage-layout-body .view-display-id-upcoming_events .view-footer {
+  color: #fff;
+  background-color: #d5e2e4;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: -10px;
+}
+/* line 159, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-display-id-upcoming_events .view-footer {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* line 165, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body .view-display-id-upcoming_events .views-field-nothing {
+  padding: 10px 0 1rem 0;
+}
+/* line 169, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body #block-bean-homepage-twitter {
+  margin-top: 20px;
+}
+/* line 171, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body #block-bean-homepage-twitter .field-item {
+  margin-bottom: -10px;
+}
+/* line 174, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body #block-bean-homepage-twitter iframe.twitter-timeline {
+  width: 100% !important;
+}
+@media screen and (min-width: 550px) and (max-width: 767px) {
+  /* line 178, ../sass/_eiponaha_homepage.scss */
+  .homepage-layout-body #block-bean-homepage-twitter iframe.twitter-timeline {
+    padding: 0 10% !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /* line 183, ../sass/_eiponaha_homepage.scss */
+  .homepage-layout-body #block-bean-homepage-twitter iframe.twitter-timeline {
+    padding: 0 14% !important;
+  }
+}
+/* line 187, ../sass/_eiponaha_homepage.scss */
+.homepage-layout-body #block-bean-homepage-twitter .timeline {
+  max-width: 100% !important;
+}
+
+
+h2.field-item.listingLinkHeader a:hover, 
+h3.listingLinkHeader a:hover {
+    text-decoration: underline;
+}
+
+#block-bean-homepage-twitter-widget .panel-heading{
+  font-size: 20px;
+}
+
+#block-views-eiponaha-events-upcoming-events {
+  margin-bottom: 40px;
+}
+
+.node-form .multipage-controls-list input.form-submit,
+.node-form .multipage-controls-list input.form-submit:hover,
+.node-form .multipage-controls-list input.form-submit:active,
+.node-form .multipage-controls-list input.form-submit:focus,
+.node-form .multipage-controls-list input.form-submit:active:hover, 
+.node-form .multipage-controls-list input.form-submit.active:hover, 
+.open > .dropdown-toggle.node-form .multipage-controls-list input.form-submit:hover, 
+.node-form .multipage-controls-list input.form-submit:active:focus, 
+.node-form .multipage-controls-list input.form-submit.active:focus, 
+.open > .dropdown-toggle.node-form .multipage-controls-list input.form-submit:focus, 
+.node-form .multipage-controls-list input.form-submit:active.focus, 
+.node-form .multipage-controls-list input.form-submit.active.focus, 
+.open > .dropdown-toggle.node-form .multipage-controls-list input.form-submit.focus {
+
+  background-color: #0065A2;
+  border: 0;
+  font-family: "PFSquareSansPro";
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 6px;
+  padding: 6px 10px 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff !important;
+  background-image: none;
+  margin-right: 10px;
+}
+
+.descriptionhelp{
+  color: #00488A;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#edit-field-rep-file-info legend {
+  font-size: 16px;
+  border:0; 
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#edit-field-rep-file-info label{
+  display: none;
+}
+
+.link-field-url .form-type-textfield{
+  margin:0;
+}
+
+.page-node-add-practice .multipage-button{
+  line-height: 60px;
+  margin-bottom: 0px;
+}
+
+.multipage-controls-list #edit-actions {
+  float: none;
+}
+
+.node-type-practice legend{
+  padding-top: 20px;
+  border: 0;
+  font-size: 1.5em;
+  font-family: "PFSquareSansPro";
+}
+
+div.age-group{
+  display: inline;
+}
+
+div.age-group::after {
+  content: ", ";
+}
+
+div.age-group.last:after{
+  content: "";
+}
+
+.star-rating{
+  display: inline;
+  margin-right: 10px;
+}
+
+.star-rating .star{
+  color: #00488A;
+}
+
+.page-repository .block-search,
+.page-repository .search-form {
+  background-color: #f4f4f4;
+  padding: 1em;
+  border-radius: 6px;
+  margin: 0 0 40px 0;
+}
+
+.page-repository .block-search h2,
+.page-repository .search-form h2{
+  color: #000000;
+  font-size: 26px;
+}
+.page-repository .block-search .input-group.pull-right,
+.page-repository .block-search .pull-right {
+  float: none;
+}
+
+.page-repository .block-search .input-group .form-control{
+  float: none;
+}
+
+.view-mode-repository_search_result_item {
+    margin: 1em 0;
+    border-bottom: 1px solid #CCC;
+    padding: 1em 0;
+}
+
+.view-mode-repository_search_result_item .group-rep-cont-sx {
+    font-size: 0.8em;
+    border-left: 1px solid #ccc;
+}
+
+.keyword-container span{
+  margin-right: 1em;
+}
+
+/* ---------------------------------- */
+/* MOBILE RESPONSIVE */
+@media screen and (max-width:990px) {
+	/* HIGHLIGHTS */
+	#block-bean-highlights-home .group-item-1,
+	#block-bean-highlights-home .group-item-2,
+	#block-bean-highlights-home .group-item-3,
+	#block-bean-highlights-home .group-item-4,
+	#block-bean-highlights-home .group-item-5,
+	#block-bean-highlights-home .group-item-6{padding-top: 10px; width: 360px; float: left;}
+
+	#block-bean-highlights-home .group-item-2,
+	#block-bean-highlights-home .group-item-5{margin:0px;}
+}
+
+@media screen and (max-width:770px) {
+	/* HIGHLIGHTS */
+	#block-bean-highlights-home .group-item-1,
+	#block-bean-highlights-home .group-item-2,
+	#block-bean-highlights-home .group-item-3,
+	#block-bean-highlights-home .group-item-4,
+	#block-bean-highlights-home .group-item-5,
+	#block-bean-highlights-home .group-item-6{padding-top: 10px; width: 100%; float: none;}
+
+	#block-bean-highlights-home .group-item-2,
+	#block-bean-highlights-home .group-item-5{margin:0px;}
+}
+
+@media screen and (max-width:765px) {
+	/* MENU */
+	.navbar-default .navbar-toggle {border-color: #074A8B; background:#074A8B;}
+	#layout-header {top: 57px;}
+	#layout-header #main-title {top: 50px; padding-left: 135px; background-position: 100px;}
+	.navbar-default {background-color: transparent; border-color: transparent;}
+	ul.menu {text-align: center; width: 100%; margin:0px;}
+	ul.menu li {padding: 10px 0 0 0;}
+
+	/* FLEXSLIDER */
+	.flex-direction-nav a {top: 55px;}
+	#main-menu .navbar-nav > li > a.active {border-top: 3px solid #074A8B;}
+
+
+}
