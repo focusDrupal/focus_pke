@@ -185,7 +185,27 @@
         </ul>
         <?php endif; ?>
 
+        <?php /*
         <div class="row">
+          <div class="col-md-<?php print $cols['content']['md']; ?> col-sm-<?php print $cols['content']['sm']; ?> col-xs-<?php print $cols['content']['xs']; ?>">
+          <?php print $regions['content']; ?>
+          </div>
+
+          <div class="col-md-<?php print $cols['content_right']['md']; ?> col-sm-<?php print $cols['content_right']['sm']; ?> col-xs-<?php print $cols['content_right']['xs']; ?>">
+          <?php print $regions['content_right']; ?>
+          </div>
+        </div>
+        */ ?>
+
+        <div class="row">
+          <div class="col-md-<?php print $cols['content_top_left']['md']; ?> col-sm-<?php print $cols['content_top_left']['sm']; ?> col-xs-<?php print $cols['content_top_left']['xs']; ?>">
+          <?php print $regions['content_top_left']; ?>
+          </div>
+
+          <div class="col-md-<?php print $cols['content_top_right']['md']; ?> col-sm-<?php print $cols['content_top_right']['sm']; ?> col-xs-<?php print $cols['content_top_right']['xs']; ?>">
+          <?php print $regions['content_top_right']; ?>
+          </div>          
+
           <div class="col-md-<?php print $cols['content']['md']; ?> col-sm-<?php print $cols['content']['sm']; ?> col-xs-<?php print $cols['content']['xs']; ?>">
           <?php print $regions['content']; ?>
           </div>
