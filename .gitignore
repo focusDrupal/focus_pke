@@ -1,0 +1,9 @@
+/*
+!.gitignore
+!/themes
+!/sites
+/sites/*
+!/sites/all
+/sites/all/*
+!/sites/all/modules
+!/sites/all/libraries
