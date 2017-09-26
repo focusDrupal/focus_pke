@@ -445,6 +445,17 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-professionals-header-upload-bl .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
 
 /* ---------------------------------- */
+/*PAGE EVENTS*/
+#block-bean-events-header-image-and-descri {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-events-header-image-and-descri .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 130px;}
+#block-bean-events-header-image-and-descri .field-name-field-header-description {background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
+#block-bean-events-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-events-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 275px;}
+#block-bean-events-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
+#block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
+#block-bean-events-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
+
+/* ---------------------------------- */
 /* VALIDATION PROCESS */
 .view-focus-repository-evaluation-evaluator .container-inline legend{display:none;}
 .any_invitation, .any_practice {margin-bottom: 60px; padding: 40px 0 20px 0; font-family: "PFSquareSansPro"; color: #00488A; text-align: center; font-size: 35px;}
