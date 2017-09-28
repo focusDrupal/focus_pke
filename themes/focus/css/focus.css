@@ -323,29 +323,57 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-events-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
 
 /* Calendar header */
-#block-views-ical-block table.fc-header {border:0px; margin-bottom:20px;}
-#block-views-ical-block table td.fc-header-center {float: left; margin-bottom: 10px;}
-#block-views-ical-block table td.fc-header-center h2 {padding-left:10px; font-size: 26px;}
-#block-views-ical-block table td.fc-header-right {float: left; width: 100%;}
-
-#block-views-ical-block table td.fc-header-left .ui-state-default {
-    border: 0px;
-    background: #00488A;
-    color: #FFFFFF;
-}
-
-#block-views-ical-block table .ui-state-default .ui-icon {
-    /*background-image: url(images/ui-icons.png);*/
-}
-
-
-
+#block-views-ical-block table {margin-bottom: 10px!important;}
+#block-views-ical-block table.fc-header {border:0px; margin-bottom:0px;}
+#block-views-ical-block table td.fc-header-center h2 {font-size: 26px;}
+#block-views-ical-block table td.fc-header-right .ui-state-default,
+#block-views-ical-block table td.fc-header-left .ui-state-default {border: 0px; background: #00488A; color: #FFFFFF;}
 
 /* Calendar */
 #block-views-ical-block{margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
 #block-views-ical-block .panel-heading{margin-top: -19px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 160px;}
+#block-views-ical-block table tr th.fc-day-header{background:#00488A; color:#FFFFFF; padding: 5px;}
 #block-views-ical-block .fc-content {-webkit-box-shadow: 0px 0px 0px 0px; box-shadow: 0px 0px 0px 0px; border-radius: 0px;}
+#block-views-ical-block .fc-event-default a, 
+#block-views-ical-block .fc-event-default .fc-event-skin a, 
+#block-views-ical-block .fc-event-default .fc-event-time a {border-top: 2px solid #00488A; border-radius: 0px!important; display: block; background: none; border-left: 0px; border-right: 0px; border-bottom: 0px; color: #00488A;}
+#block-views-ical-block .fc-today a, 
+#block-views-ical-block .fc-today .fc-event-skin a, 
+#block-views-ical-block .fc-today .fc-event-time a {color:#FFFFFF;}
+#block-views-ical-block table .fc-other-month {background: rgba(236, 236, 236, 0.7);}
+#block-views-ical-block table {border:0px solid;}
+#block-views-ical-block table tr td{border-color: #dddddd;}
+.fc-event-default, 
+.fc-event-default .fc-event-skin, 
+.fc-event-default .fc-event-time, 
+.fc-event-default a {border-color: #00488A; border-style: solid; background-color: #00488A; color: #fff; margin: 10px 1px;}
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight {color: #00488A; font-weight: bold; font-size: 20px;}
+td.fc-day.fc-thu.ui-widget-content.fc-today.ui-state-highlight {border: 3px solid; border-color: #00488A!important;}
+.fc-header-right {width: 10%;}
 
+/* Calendar - Next Events */
+.group-mini-calendar.field-group-div {width: 15%; float: left;}
+.group-dates-events.field-group-div {width: 85%; float: left; padding-left: 20px!important;}
+.group-dates-events.field-group-div .field-name-body p {border-bottom:0px;}
+.group-dates-events h2 {font-size:20px;}
+.view-focus-events .node-focus-event {padding-bottom:0px!important;}
+.view-focus-events .views-row {margin-bottom:0px!important;}
+.view-focus-events .col-md-12 {margin-bottom:0px!important;}
+.view-id-ical .ui-state-default .ui-icon {
+    background-image: url("/themes/focus/images/ui-icons.png");
+}
+
+/* Calendar - Pager */
+.view-focus-events .pager li {margin-left: 0px;}
+.view-focus-events .pager li.pager-current {color:#00488A;}
+.view-focus-events .pager li.pager-item a {background-color: rgba(195, 195, 195, 0.28); color: #00488A; border-radius: 3px; padding: 5px 11px; border: 1px solid rgba(195, 195, 195, 0.28);}
+.view-focus-events .pager li.pager-next a,
+.view-focus-events .pager li.pager-last a, 
+.view-focus-events .pager li.pager-first a,
+.view-focus-events .pager li.pager-previous a {background-color: #00488A; color: #FFF; border-radius: 3px; padding: 5px 11px; border: 1px solid #00488A;}
+.view-focus-events .pager li.pager-last {margin-left:-15px;}
 /* ---------------------------------- */
 /* VALIDATION PROCESS */
 .view-focus-repository-evaluation-evaluator .container-inline legend{display:none;}
