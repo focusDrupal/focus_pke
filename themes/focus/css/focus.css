@@ -312,7 +312,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 /* ---------------------------------- */
 /* PAGE EVENTS */
 .page-events .view-focus-events {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
-#block-system-main .view-focus-events .view-header h2 {width: 425px; margin-top: -17px!important;}
+#block-system-main .view-focus-events .view-header h2 {width: 190px; margin-top: -17px!important;}
 #block-bean-events-header-image-and-descri {border-top: 3px solid #EE3329; border-radius: 0px;}
 #block-bean-events-header-image-and-descri .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 130px;}
 #block-bean-events-header-image-and-descri .field-name-field-header-description {background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
@@ -321,6 +321,30 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-events-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
+
+/* Calendar header */
+#block-views-ical-block table.fc-header {border:0px; margin-bottom:20px;}
+#block-views-ical-block table td.fc-header-center {float: left; margin-bottom: 10px;}
+#block-views-ical-block table td.fc-header-center h2 {padding-left:10px; font-size: 26px;}
+#block-views-ical-block table td.fc-header-right {float: left; width: 100%;}
+
+#block-views-ical-block table td.fc-header-left .ui-state-default {
+    border: 0px;
+    background: #00488A;
+    color: #FFFFFF;
+}
+
+#block-views-ical-block table .ui-state-default .ui-icon {
+    /*background-image: url(images/ui-icons.png);*/
+}
+
+
+
+
+/* Calendar */
+#block-views-ical-block{margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-views-ical-block .panel-heading{margin-top: -19px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 160px;}
+#block-views-ical-block .fc-content {-webkit-box-shadow: 0px 0px 0px 0px; box-shadow: 0px 0px 0px 0px; border-radius: 0px;}
 
 /* ---------------------------------- */
 /* VALIDATION PROCESS */

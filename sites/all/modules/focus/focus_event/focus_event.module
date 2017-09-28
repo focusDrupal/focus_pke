@@ -1,0 +1,64 @@
+<?php
+/**
+ * @file
+ * Code for the FOCUS Event feature.
+ */
+
+include_once 'focus_event.features.inc';
+
+/**
+ * Implements hook_ds_fields_info().
+ */
+function focus_event_ds_fields_info($entity_type) {
+
+  $fields = array();
+
+  if ($entity_type === 'node') {
+
+    $fields['field_focus_event_date'] = array(
+      'title' => t('DS FUNC: Custom event date teaser'),
+      'field_type' => DS_FIELD_TYPE_FUNCTION,
+      'ui_limit' => array('focus_event|teaser'),
+      'function' => '_focus_events_ds_custom_date',
+      'properties' => array(
+        'formatters' => array(
+          'text_default' => t('Default'),
+        ),
+      ),
+    );
+  }
+
+  return array($entity_type => $fields);
+}
+
+/**
+ * Implements function for ds field: custom teaser date.
+ *
+ * @param array $entity
+ *   The involved entity.
+ *
+ * @return string
+ *    A "small calendar" in HTML.
+ */
+function _focus_events_ds_custom_date(array $entity) {
+
+  if (empty($entity['entity']->field_focus_event_date[LANGUAGE_NONE][0]['value'])) {
+    return '';
+  }
+
+  $date_start = $entity['entity']->field_focus_event_date[LANGUAGE_NONE][0]['value'];
+
+  $date_year = format_date($date_start, 'custom', 'Y');
+  $date_month = format_date($date_start, 'custom', 'M');
+  $date_day = format_date($date_start, 'custom', 'd');
+
+  $output = '<div class="event-date">';
+  $output .= '<div class="month">' . $date_month . '</div>';
+  $output .= '<div class="month day">';
+  $output .= '<div class="string-day">' . $date_day . '</div>';
+  $output .= '<div class="string-year">' . $date_year . '</div>';
+  $output .= '</div>';
+  $output .= '</div>';
+
+  return $output;
+}
