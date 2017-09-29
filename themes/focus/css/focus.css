@@ -346,11 +346,11 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 .fc-event-default, 
 .fc-event-default .fc-event-skin, 
 .fc-event-default .fc-event-time, 
-.fc-event-default a {border-color: #00488A; border-style: solid; background-color: #00488A; color: #fff; margin: 10px 1px;}
+.fc-event-default a {border-style: solid; color: #fff; margin: 10px 1px; text-align:center;}
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight, 
 .ui-widget-header .ui-state-highlight {color: #00488A; font-weight: bold; font-size: 20px;}
-td.fc-day.fc-thu.ui-widget-content.fc-today.ui-state-highlight {border: 3px solid; border-color: #00488A!important;}
+td.fc-day.ui-widget-content.fc-today.ui-state-highlight {border: 3px solid; border-color: #00488A!important;}
 .fc-header-right {width: 10%;}
 
 /* Calendar - Next Events */
