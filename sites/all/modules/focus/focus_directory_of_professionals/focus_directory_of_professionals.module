@@ -6,8 +6,62 @@
 
 include_once 'focus_directory_of_professionals.features.inc';
 
+/**
+ * Implements hook_node_insert().
+ */
+function focus_directory_of_professionals_node_insert($node) {
+	if ($node->type == 'focus_directory_of_professionals') {
+		_focus_directory_of_professionals_new_user($node);
+	}
+}
+
+/**
+ * Implements hook_node_update().
+ */
 function focus_directory_of_professionals_node_update($node) {
-  if ($node->type == 'focus_directory_of_professionals') {
-  	workbench_moderation_moderate($node, 'published');
-  }
+	if ($node->type == 'focus_directory_of_professionals') {
+		workbench_moderation_moderate($node, 'published');
+	}
+}
+
+/**
+ * Function to send an email when creating a new professional.
+ *
+ * @param mixed $node
+ *    Get the node id.
+ *
+ */
+function _focus_directory_of_professionals_new_user($node) {
+	// Send email to admin.
+	global $base_url;    
+	$to = 'javiersanchezflores@gmail.com';
+	$subject = t('FOCUS - New professional');
+	$practiceName_text = array(
+	  '@urlInvitation' => $base_url . "/new-professional_en",
+	);
+	$body = t('You have a new invitation to accept a new professional. You can accept or decline the invitation in the next link: @urlInvitation', $practiceName_text);
+	$params = array(
+	  'subject' => $subject,
+	  'body' => $body,
+	);
+
+	drupal_mail('focus_directory_of_professionals', 'focus_directory_of_professionals_mail', $to, language_default(), $params);
+}
+
+/**
+ * Function to send an email to the admin when creating a new professional.
+ *
+ * @param string $key
+ *    Get the $key.
+ * @param mixed $message
+ *    Get the $message.
+ * @param array $params
+ *    Get the $params.
+ */
+function focus_directory_of_professionals_mail($key, &$message, $params) {
+	if ($key == 'focus_directory_of_professionals_mail') {
+		$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+		$message['subject'] = $params['subject'];
+		$message['body'][] = $params['body'];
+	}
 }
