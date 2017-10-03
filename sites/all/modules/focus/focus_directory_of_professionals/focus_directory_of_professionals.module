@@ -5,3 +5,9 @@
  */
 
 include_once 'focus_directory_of_professionals.features.inc';
+
+function focus_directory_of_professionals_node_update($node) {
+  if ($node->type == 'focus_directory_of_professionals') {
+  	workbench_moderation_moderate($node, 'published');
+  }
+}
