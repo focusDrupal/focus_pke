@@ -350,7 +350,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight, 
 .ui-widget-header .ui-state-highlight {color: #00488A; font-weight: bold; font-size: 20px;}
-td.fc-day.ui-widget-content.fc-today.ui-state-highlight {border: 3px solid; border-color: #00488A!important;}
+td.fc-day.ui-widget-content.fc-today.ui-state-highlight {border: 2px solid; border-color: #00488A!important;}
 .fc-header-right {width: 10%;}
 
 /* Calendar - Next Events */
@@ -374,6 +374,19 @@ td.fc-day.ui-widget-content.fc-today.ui-state-highlight {border: 3px solid; bord
 .view-focus-events .pager li.pager-first a,
 .view-focus-events .pager li.pager-previous a {background-color: #00488A; color: #FFF; border-radius: 3px; padding: 5px 11px; border: 1px solid #00488A;}
 .view-focus-events .pager li.pager-last {margin-left:-15px;}
+
+/* Calendar Footer */
+#legend {border: 1px solid #dddddd; padding: 10px 10px 0 10px; display: inline-block; width: 100%;}
+#legend .term {float: left; width: 50%;}
+#legend .term p {font-size: 12px}
+#legend span.legendColor {width: 20px; height: 10px; display: inline-block; float: left; margin-right: 10px; margin-top: 5px; border: 1px solid #dddddd; border-radius: 3px;}
+#legend span.legendColor.conference {background: #b7b9bf;}
+#legend span.legendColor.congress {background: #33cc3a;}
+#legend span.legendColor.culturalActivity {background: #cc3335;}
+#legend span.legendColor.meeting {background: #a333cc;}
+#legend span.legendColor.seminar {background: #fc8b2d;}
+#legend span.legendColor.videoconference {background: #3366cc;}
+
 /* ---------------------------------- */
 /* VALIDATION PROCESS */
 .view-focus-repository-evaluation-evaluator .container-inline legend{display:none;}
