@@ -22,7 +22,7 @@ function focus_event_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Upcoming events';
+  $handler->display->display_options['title'] = 'Events';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -114,17 +114,32 @@ function focus_event_views_default_views() {
   $handler->display->display_options['style_options']['firstDay'] = '1';
   $handler->display->display_options['style_options']['left'] = 'today prev';
   $handler->display->display_options['style_options']['right'] = 'next';
+  $handler->display->display_options['style_options']['timeformat'] = 'hh:mm{ - hh:mm}';
+  $handler->display->display_options['style_options']['fields']['title_field'] = 'field_focus_event_text_calendar';
+  $handler->display->display_options['style_options']['fields']['title'] = TRUE;
   $handler->display->display_options['style_options']['fullcalendar_options']['dayClickView'] = 'agendaDay';
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Footer: Global: Text area */
+  $handler->display->display_options['footer']['area']['id'] = 'area';
+  $handler->display->display_options['footer']['area']['table'] = 'views';
+  $handler->display->display_options['footer']['area']['field'] = 'area';
+  $handler->display->display_options['footer']['area']['label'] = 'Legend';
+  $handler->display->display_options['footer']['area']['empty'] = TRUE;
+  $handler->display->display_options['footer']['area']['content'] = '<div id="legend">
+<div class="term"><span class="legendColor conference"></span><p>Conference</p></div>
+<div class="term"><span class="legendColor congress"></span><p>Congress</p></div>
+<div class="term"><span class="legendColor culturalActivity"></span><p>Cultural activity</p></div>
+<div class="term"><span class="legendColor meeting"></span><p>Meeting</p></div>
+<div class="term"><span class="legendColor seminar"></span><p>Seminar</p></div>
+<div class="term"><span class="legendColor videoconference"></span><p>Videoconference</p></div>
+</div>';
+  $handler->display->display_options['footer']['area']['format'] = 'full_html';
+  $handler->display->display_options['footer']['area']['tokenize'] = TRUE;
   /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_focus_event_date']['id'] = 'field_focus_event_date';
   $handler->display->display_options['fields']['field_focus_event_date']['table'] = 'field_data_field_focus_event_date';
   $handler->display->display_options['fields']['field_focus_event_date']['field'] = 'field_focus_event_date';
+  $handler->display->display_options['fields']['field_focus_event_date']['label'] = '';
+  $handler->display->display_options['fields']['field_focus_event_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_focus_event_date']['settings'] = array(
     'format_type' => 'long',
     'fromto' => 'both',
@@ -133,10 +148,27 @@ function focus_event_views_default_views() {
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
-  /* Field: Content: Event location */
-  $handler->display->display_options['fields']['field_focus_event_location']['id'] = 'field_focus_event_location';
-  $handler->display->display_options['fields']['field_focus_event_location']['table'] = 'field_data_field_focus_event_location';
-  $handler->display->display_options['fields']['field_focus_event_location']['field'] = 'field_focus_event_location';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+  /* Field: Content: Short name */
+  $handler->display->display_options['fields']['field_focus_event_text_calendar']['id'] = 'field_focus_event_text_calendar';
+  $handler->display->display_options['fields']['field_focus_event_text_calendar']['table'] = 'field_data_field_focus_event_text_calendar';
+  $handler->display->display_options['fields']['field_focus_event_text_calendar']['field'] = 'field_focus_event_text_calendar';
+  $handler->display->display_options['fields']['field_focus_event_text_calendar']['label'] = '';
+  $handler->display->display_options['fields']['field_focus_event_text_calendar']['element_label_colon'] = FALSE;
+  /* Field: Content: Event type */
+  $handler->display->display_options['fields']['field_focus_event_type']['id'] = 'field_focus_event_type';
+  $handler->display->display_options['fields']['field_focus_event_type']['table'] = 'field_data_field_focus_event_type';
+  $handler->display->display_options['fields']['field_focus_event_type']['field'] = 'field_focus_event_type';
+  $handler->display->display_options['fields']['field_focus_event_type']['label'] = '';
+  $handler->display->display_options['fields']['field_focus_event_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_focus_event_type']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_focus_event_type']['type'] = 'taxonomy_term_reference_plain';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

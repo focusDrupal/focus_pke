@@ -64,8 +64,9 @@ function focus_event_field_group_info() {
       5 => 'field_event_registration_url',
       6 => 'field_focus_event_document',
       7 => 'field_event_author',
-      8 => 'field_focus_event_id',
-      9 => 'title',
+      8 => 'field_focus_event_text_calendar',
+      9 => 'field_focus_event_type',
+      10 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
