@@ -34,7 +34,7 @@ function focus_directory_of_professionals_node_update($node) {
 function _focus_directory_of_professionals_new_user($node) {
 	// Send email to admin.
 	global $base_url;    
-	$to = 'javiersanchezflores@gmail.com';
+	$to = 'javiersanchezflores17@gmail.com';
 	$subject = t('FOCUS - New professional');
 	$practiceName_text = array(
 	  '@urlInvitation' => $base_url . "/new-professional_en",
