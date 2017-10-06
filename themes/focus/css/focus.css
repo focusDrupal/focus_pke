@@ -346,7 +346,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 .fc-event-default, 
 .fc-event-default .fc-event-skin, 
 .fc-event-default .fc-event-time, 
-.fc-event-default a {border-style: solid; color: #fff; margin: 10px 1px; text-align:center;}
+.fc-event-default a {border-style: solid; color: #fff; margin: 10px 1px; text-align:center; font-size: 13px;}
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight, 
 .ui-widget-header .ui-state-highlight {color: #00488A; font-weight: bold; font-size: 20px;}
