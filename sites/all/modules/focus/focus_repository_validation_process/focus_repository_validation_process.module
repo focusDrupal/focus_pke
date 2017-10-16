@@ -254,7 +254,35 @@ function focus_repository_validation_process_node_update($node) {
         '@urlEvaluateReview' => $base_url . "evaluate-practices/accepted_en",
       );
       $subject = t('FOCUS - The practice: @practiceName is updated with the news changes.', $substitutions_texts);
-      $body = t('You have made the changes you requested in practice @practiceName. You can evaluate the practice from the following link: @urlEvaluateReview. Please remind that you need to be logged to access.', $substitutions_texts);
+      $body = t('
+        <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+          <div class="header">
+            <div style="width: 120px; margin: 0 auto;">
+              <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+              <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+            </div>
+            <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+              <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+            </div>
+            <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+          </div>
+          <div>
+            <p style="padding: 20px 0 0 20px;">You have made the changes you requested in practice @practiceName. You can evaluate the practice from the following link: </p>
+            <a style="padding: 20px;" href="@urlEvaluateReview"><b>@urlEvaluateReview</b></a>
+            <p style="padding: 20px 0 0 20px;">Please remind that you need to be logged to access.</p>
+          </div>
+          <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+            <div style="float: left; width: 80%;">
+              <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+            </div>
+            <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+              <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+              <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+            </div>
+          </div>
+        </div>
+        ', $substitutions_texts);
+
       $params = array(
         'subject' => $subject,
         'body' => $body,
@@ -680,7 +708,33 @@ function _focus_repository_validation_process_get_evaluators($node, $declInvitat
           '@termvariable' => $termvariable,
         );
         $subject = t("FOCUS - The practice: @practiceName don't have enough evaluator avaliable.");
-        $body = t("It\'s necessary to give permissions to more evaluators with the role of @termvariable in order to evaluate the practice.", $substitutions_texts);
+
+        $body = t('
+          <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+            <div class="header">
+              <div style="width: 120px; margin: 0 auto;">
+                <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+                <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+              </div>
+              <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+                <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+              </div>
+              <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+            </div>
+            <div>
+              <p style="padding: 20px 0 0 20px;">It\'s necessary to give permissions to more evaluators with the role of @termvariable in order to evaluate the practice.</p>
+            </div>
+            <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+              <div style="float: left; width: 80%;">
+                <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+              </div>
+              <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+                <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+                <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+              </div>
+            </div>
+          </div>
+          ', $substitutions_texts);
 
         $params = array(
           'subject' => $subject,
@@ -1271,7 +1325,32 @@ function _focus_repository_validation_process_check_is_the_last($practiceId, $ob
 
       $to = $evaluatedMail;
       $subject = t('FOCUS - Practice published.');
-      $body = t('The practice: @practiceName  has been approved and published.', $substitutions_texts);
+      $body = t('
+        <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+          <div class="header">
+            <div style="width: 120px; margin: 0 auto;">
+              <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+              <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+            </div>
+            <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+              <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+            </div>
+            <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+          </div>
+          <div>
+            <p style="padding: 20px 0 0 20px;">The practice: @practiceName has been approved and published.</p>
+          </div>
+          <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+            <div style="float: left; width: 80%;">
+              <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+            </div>
+            <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+              <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+              <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+            </div>
+          </div>
+        </div>
+        ', $substitutions_texts);
       $params = array(
         'subject' => $subject,
         'body' => $body,
@@ -1286,7 +1365,33 @@ function _focus_repository_validation_process_check_is_the_last($practiceId, $ob
         );
         $to = $evaluators_mails[$m][0];
         $subject = t('FOCUS - Practice published.');
-        $body = t('The practice evaluated: @practiceName has been approved and published.', $substitutions_texts);
+        $body = t('
+          <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+            <div class="header">
+              <div style="width: 120px; margin: 0 auto;">
+                <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+                <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+              </div>
+              <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+                <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+              </div>
+              <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+            </div>
+            <div>
+              <p style="padding: 20px 0 0 20px;">The practice evaluated: @practiceName has been approved and published.</p>
+            </div>
+            <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+              <div style="float: left; width: 80%;">
+                <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+              </div>
+              <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+                <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+                <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+              </div>
+            </div>
+          </div>
+          ', $substitutions_texts);
+
         $params = array(
           'subject' => $subject,
           'body' => $body,
@@ -1303,7 +1408,32 @@ function _focus_repository_validation_process_check_is_the_last($practiceId, $ob
 
       $to = $evaluatedMail;
       $subject = t('FOCUS - Practice rejected.');
-      $body = t('The practice: @practiceName has been rejected.', $substitutions_texts);
+      $body = t('
+        <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+          <div class="header">
+            <div style="width: 120px; margin: 0 auto;">
+              <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+              <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+            </div>
+            <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+              <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+            </div>
+            <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+          </div>
+          <div>
+            <p style="padding: 20px 0 0 20px;">The practice: @practiceName has been rejected.</p>
+          </div>
+          <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+            <div style="float: left; width: 80%;">
+              <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+            </div>
+            <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+              <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+              <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+            </div>
+          </div>
+        </div>
+        ', $substitutions_texts);
       $params = array('subject' => $subject, 'body' => $body);
 
       drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
@@ -1316,7 +1446,33 @@ function _focus_repository_validation_process_check_is_the_last($practiceId, $ob
 
         $to = $evaluators_mails[$m][0];
         $subject = t('FOCUS - Practice rejected.');
-        $body = t('The practice evaluated: @practiceName has been rejected.', $substitutions_texts);
+        $body = t('
+          <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+            <div class="header">
+              <div style="width: 120px; margin: 0 auto;">
+                <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+                <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+              </div>
+              <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+                <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+              </div>
+              <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+            </div>
+            <div>
+              <p style="padding: 20px 0 0 20px;">The practice evaluated: @practiceName has been rejected.</p>
+            </div>
+            <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+              <div style="float: left; width: 80%;">
+                <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+              </div>
+              <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+                <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+                <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+              </div>
+            </div>
+          </div>
+          ', $substitutions_texts);
+
         $params = array('subject' => $subject, 'body' => $body);
 
         drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
@@ -1331,7 +1487,32 @@ function _focus_repository_validation_process_check_is_the_last($practiceId, $ob
       global $base_url;
       $to = $evaluatedMail;
       $subject = t('FOCUS - Practice need review.');
-      $body = t('The practice: @practiceName has been need review. The evaluators need you to make the following changes:', $substitutions_texts);
+      $body = t('
+        <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+          <div class="header">
+            <div style="width: 120px; margin: 0 auto;">
+              <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+              <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+            </div>
+            <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+              <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+            </div>
+            <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+          </div>
+          <div>
+            <p style="padding: 20px 0 0 20px;">The practice: @practiceName has been need review. The evaluators need you to make the following changes:</p>
+          </div>
+          <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+            <div style="float: left; width: 80%;">
+              <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+            </div>
+            <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+              <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+              <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+            </div>
+          </div>
+        </div>
+        ', $substitutions_texts);
       $urlEditPractice = $base_url . "/node/" . $practiceId . "/edit_en";
       $stringTextReview = implode(". ", $totalTextReview);
 
@@ -1346,8 +1527,32 @@ function _focus_repository_validation_process_check_is_the_last($practiceId, $ob
         );
         $to = $evaluators_mails[$m][0];
         $subject = t('FOCUS - Practice need review.');
-        $body = t('The practice evaluated: @practiceName has been needs to be reviewed.', $substitutions_texts);
-
+        $body = t('
+          <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+            <div class="header">
+              <div style="width: 120px; margin: 0 auto;">
+                <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+                <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+              </div>
+              <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+                <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+              </div>
+              <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+            </div>
+            <div>
+              <p style="padding: 20px 0 0 20px;">The practice evaluated: @practiceName has been needs to be reviewed.</p>
+            </div>
+            <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+              <div style="float: left; width: 80%;">
+                <p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+              </div>
+              <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+                <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+                <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+              </div>
+            </div>
+          </div>
+          ', $substitutions_texts);
         $params = array('subject' => $subject, 'body' => $body);
 
         drupal_mail('focus_repository_validation_process', 'focus_repository_validation_process_mail', $to, language_default(), $params);
@@ -1440,12 +1645,10 @@ function _focus_repository_validation_process_change_practice_workbench_moderati
 
     case 'r':
       workbench_moderation_moderate($practiceRelated, 'archived');
-
       break;
 
     case 'n':
       workbench_moderation_moderate($practiceRelated, 'needs_review');
-
       break;
   }
 
