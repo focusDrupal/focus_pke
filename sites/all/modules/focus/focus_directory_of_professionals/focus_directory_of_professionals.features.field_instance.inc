@@ -55,6 +55,52 @@ function focus_directory_of_professionals_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'node-focus_directory_of_professionals-field_accept_professional'.
+  $field_instances['node-focus_directory_of_professionals-field_accept_professional'] = array(
+    'bundle' => 'focus_directory_of_professionals',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_accept_professional',
+    'label' => 'Accept professional',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 10,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance:
   // 'node-focus_directory_of_professionals-field_email_professional'.
   $field_instances['node-focus_directory_of_professionals-field_email_professional'] = array(
     'bundle' => 'focus_directory_of_professionals',
@@ -419,6 +465,7 @@ function focus_directory_of_professionals_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Accept professional');
   t('Body');
   t('Email professional');
   t('Expertise professional');

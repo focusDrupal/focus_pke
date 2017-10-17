@@ -10,6 +10,33 @@
 function focus_directory_of_professionals_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_accept_professional'.
+  $field_bases['field_accept_professional'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_accept_professional',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 'Initial',
+        1 => 'Accept',
+        2 => 'Denied',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_integer',
+  );
+
   // Exported field_base: 'field_email_professional'.
   $field_bases['field_email_professional'] = array(
     'active' => 1,

@@ -35,7 +35,7 @@ function focus_directory_of_professionals_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_focus_directory_of_professionals';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_focus_directory_of_professionals'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -49,7 +49,7 @@ function focus_directory_of_professionals_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_focus_directory_of_professionals';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['comment_preview_focus_directory_of_professionals'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -90,6 +90,9 @@ function focus_directory_of_professionals_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'ical' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -140,11 +143,7 @@ function focus_directory_of_professionals_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_focus_directory_of_professionals';
-  $strongarm->value = array(
-    0 => 'promote',
-    1 => 'moderation',
-    2 => 'revision',
-  );
+  $strongarm->value = array();
   $export['node_options_focus_directory_of_professionals'] = $strongarm;
 
   $strongarm = new stdClass();

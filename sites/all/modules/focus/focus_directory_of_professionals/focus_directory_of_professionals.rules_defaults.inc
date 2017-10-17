@@ -22,7 +22,18 @@ function focus_directory_of_professionals_default_rules_configuration() {
           }
         }
       ],
-      "DO" : [ { "data_set" : { "data" : [ "node:status" ], "value" : "1" } } ]
+      "DO" : [
+        { "data_set" : { "data" : [ "node:field-accept-professional" ], "value" : "1" } },
+        { "data_set" : { "data" : [ "node:status" ], "value" : "1" } },
+        { "mail" : {
+            "to" : "[node:field-email-professional]",
+            "subject" : "New professional accepted",
+            "message" : "Your request has been accepted to add [node:field-name-professional] [node:field-last-name-professional] to the list of professionals of FOCUS.",
+            "from" : "[site:name]",
+            "language" : [ "node:language" ]
+          }
+        }
+      ]
     }
   }');
   $items['rules_delete_professional'] = entity_import('rules_config', '{ "rules_delete_professional" : {
@@ -38,7 +49,18 @@ function focus_directory_of_professionals_default_rules_configuration() {
           }
         }
       ],
-      "DO" : [ { "data_set" : { "data" : [ "node:status" ], "value" : "0" } } ]
+      "DO" : [
+        { "data_set" : { "data" : [ "node:field-accept-professional" ], "value" : "2" } },
+        { "data_set" : { "data" : [ "node:status" ], "value" : "0" } },
+        { "mail" : {
+            "to" : "[node:field-email-professional]",
+            "subject" : "New professional declined",
+            "message" : "Your request has been declined to add [node:field-name-professional] [node:field-last-name-professional] to the list of professionals of FOCUS.",
+            "from" : "[site:name]",
+            "language" : [ "node:language" ]
+          }
+        }
+      ]
     }
   }');
   return $items;
