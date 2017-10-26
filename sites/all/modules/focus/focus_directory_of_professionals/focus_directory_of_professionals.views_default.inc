@@ -248,7 +248,7 @@ function focus_directory_of_professionals_views_default_views() {
   $handler = $view->new_display('page', 'Accept professionals', 'accept_professionals');
   $handler->display->display_options['path'] = 'new-professional';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Accept professionals';
+  $handler->display->display_options['menu']['title'] = 'Professionals';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
