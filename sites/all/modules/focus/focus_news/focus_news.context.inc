@@ -42,7 +42,7 @@ function focus_news_context_default_contexts() {
           'module' => 'search',
           'delta' => 'form',
           'region' => 'content_top_right',
-          'weight' => '-8',
+          'weight' => '-9',
         ),
       ),
     ),

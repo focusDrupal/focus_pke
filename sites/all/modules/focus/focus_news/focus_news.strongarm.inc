@@ -35,7 +35,7 @@ function focus_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_focus_news';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_focus_news'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -92,17 +92,20 @@ function focus_news_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'ical' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '8',
         ),
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '6',
         ),
         'workbench_access' => array(
           'weight' => '1',
@@ -157,7 +160,7 @@ function focus_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_focus_news';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_focus_news'] = $strongarm;
 
   return $export;

@@ -10,6 +10,40 @@
 function focus_news_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'comment-comment_node_focus_news-comment_body'.
+  $field_instances['comment-comment_node_focus_news-comment_body'] = array(
+    'bundle' => 'comment_node_focus_news',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'comment_body',
+    'label' => 'Comment',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'node-focus_news-body'.
   $field_instances['node-focus_news-body'] = array(
     'bundle' => 'focus_news',
@@ -28,8 +62,8 @@ function focus_news_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_plain',
-        'weight' => 3,
+        'type' => 'text_default',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -38,28 +72,71 @@ function focus_news_field_default_field_instances() {
           'trim_length' => 120,
         ),
         'type' => 'text_summary_or_trimmed',
-        'weight' => 2,
+        'weight' => 5,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'full_html_track' => 'full_html_track',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 1,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => 5,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'full_html_track' => array(
+              'weight' => -10,
+            ),
+            'plain_text' => array(
+              'weight' => -8,
+            ),
+          ),
+        ),
+      ),
+      'display_summary' => 1,
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_label_summary' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_summary' => '',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 2,
+      'weight' => 4,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-focus_news-field_field_tags'.
@@ -87,7 +164,7 @@ function focus_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 12,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -130,13 +207,13 @@ function focus_news_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 13,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -181,7 +258,7 @@ function focus_news_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 9,
+      'weight' => 7,
     ),
     'workbench_access_field' => 0,
   );
@@ -207,16 +284,26 @@ function focus_news_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'large',
+          'image_style' => 'cover_page_news',
         ),
         'type' => 'image',
-        'weight' => 2,
+        'weight' => 6,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 12,
+        'label' => 'hidden',
+        'module' => 'colorbox',
+        'settings' => array(
+          'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
+          'colorbox_gallery' => 'post',
+          'colorbox_gallery_custom' => '',
+          'colorbox_image_style' => 'thumbail_news',
+          'colorbox_multivalue_index' => NULL,
+          'colorbox_node_style' => 'thumbail_news',
+          'colorbox_node_style_first' => 'thumbail_news',
+        ),
+        'type' => 'colorbox',
+        'weight' => 1,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -230,7 +317,7 @@ function focus_news_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
+      'max_filesize' => '8 MB',
       'max_resolution' => '',
       'min_resolution' => '',
       'title_field' => 0,
@@ -266,7 +353,7 @@ function focus_news_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 6,
+      'weight' => 0,
     ),
     'workbench_access_field' => 0,
   );
@@ -295,13 +382,13 @@ function focus_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 14,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -335,12 +422,103 @@ function focus_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
+  // Exported field_instance: 'node-focus_news-field_summary'.
+  $field_instances['node-focus_news-field_summary'] = array(
+    'bundle' => 'focus_news',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_summary',
+    'label' => 'Summary',
+    'required' => 1,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'full_html_track' => 'full_html_track',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => 5,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'full_html_track' => array(
+              'weight' => -10,
+            ),
+            'plain_text' => array(
+              'weight' => -8,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 1,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 100,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+    'workbench_access_field' => 0,
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Comment');
   t('Main picture');
   t('News document');
   t('Publication date');
+  t('Summary');
   t('Tags');
 
   return $field_instances;
