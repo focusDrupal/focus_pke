@@ -250,7 +250,7 @@ table strong{color:#00488A;}
 #block-system-main .group-content-practice .Notable.practice {background: url("/themes/focus/images/generals/notable_practice.png") no-repeat center 20px;}
 #block-system-main .group-content-practice .Promising.practice {background: url("/themes/focus/images/generals/promising_practice.png") no-repeat center 20px;}
 
-.view-mode-teaser p{padding:0 0 25px 0; border-bottom: 1px dotted #00488A;}
+.view-mode-teaser p{padding: 10px 0 20px 0; border-bottom: 1px dotted #00488A;}
 .group-tag-icon .links{height: 28px; border-radius: 0 7px 7px 0;}
 
 /* ---------------------------------- */
@@ -258,14 +258,15 @@ table strong{color:#00488A;}
 .page-news #block-system-main .view-header h2 {margin-top: -17px!important;}
 .page-news .view-focus-news {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
 .page-news .view-focus-news .col-md-12{margin-bottom:0px!important;}
+.page-news .view-focus-news .group-teaser-header h2{clear: none; padding-top: 0px;}
 
 #block-bean-news-header-image-and-descript {border-top: 3px solid #EE3329; border-radius:0px;}
-#block-bean-news-header-image-and-descript .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 117px;}
+#block-bean-news-header-image-and-descript .panel-heading{margin-top: -20px!important; background: url("/focus/platform/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 117px;}
 #block-bean-news-header-image-and-descript {margin-bottom:50px;}
 #block-bean-news-header-image-and-descript .field-name-field-header-description{background:#F3F3F3; padding:15px; border-radius: 0 0 5px 5px;}
 
 #block-bean-news-header-upload-block {border-top: 3px solid #EE3329; border-radius:0px;}
-#block-bean-news-header-upload-block .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 385px;}
+#block-bean-news-header-upload-block .panel-heading{margin-top: -20px!important; background: url("/focus/platform/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 385px;}
 #block-bean-news-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius:5px;}
 #block-bean-news-header-upload-block .field-name-field-header-upload-link{background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer;}
 #block-bean-news-header-upload-block .field-name-field-header-upload-link .field-item a{text-decoration:none; color:#ffffff;}
@@ -276,6 +277,14 @@ table strong{color:#00488A;}
 
 .page-news .block-search {background-color: #f4f4f4; padding: 1em; border-radius: 6px; margin: 0 0 40px 0;}
 .page-news .block-search .form-item{margin-top:0px;}
+
+/* Content */
+.group-header-news {background: #F3F3F3;padding: 0px; border-radius: 2px; margin-bottom: 5px;}
+.group-header-news .field-name-field-focus-news-img-top-ft {float:left; width:50%;}
+.group-header-news .field-name-title {padding: 10px; float: left; width: 50%;}
+.group-header-news .field-name-post-date, .group-header-news .field-name-field-summary {float: left; width: 50%; padding: 0px 10px 10px 10px;}
+.group-content-news {padding: 20px 0px;}
+.group-footer-news {padding:0px; margin-bottom:20px;}
 
 /* ---------------------------------- */
 /* PAGE LIBRARY */
@@ -321,6 +330,8 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-events-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
+.group-content-left, .group-content-right {margin-bottom: 50px;}
+.group-content-right {background: #F3F3F3; padding: 20px; border-radius: 3px;}
 
 /* Calendar header */
 #block-views-ical-block table {margin-bottom: 10px!important;}
