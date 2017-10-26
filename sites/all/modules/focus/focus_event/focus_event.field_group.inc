@@ -13,6 +13,156 @@ function focus_event_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_content_left|node|focus_event|default';
+  $field_group->group_name = 'group_content_left';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'focus_event';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Content Left',
+    'weight' => '0',
+    'children' => array(
+      0 => 'body',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Content Left',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-content-left field-group-fieldset col-sm-8 col-md-8',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_content_left|node|focus_event|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_content_left|node|focus_event|full';
+  $field_group->group_name = 'group_content_left';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'focus_event';
+  $field_group->mode = 'full';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Content Left',
+    'weight' => '0',
+    'children' => array(
+      0 => 'body',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Content Left',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-content-left field-group-div col-xs-12 col-sm-8 col-md-8',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_content_left|node|focus_event|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_content_right|node|focus_event|default';
+  $field_group->group_name = 'group_content_right';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'focus_event';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Content right',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_event_organiser',
+      1 => 'field_event_fees',
+      2 => 'field_focus_event_location',
+      3 => 'field_focus_event_url',
+      4 => 'field_event_registration_url',
+      5 => 'field_focus_event_document',
+      6 => 'field_event_author',
+      7 => 'field_focus_event_date',
+      8 => 'field_focus_event_reg_deadline',
+      9 => 'field_focus_tags',
+      10 => 'field_focus_event_ag',
+      11 => 'field_focus_event_text_calendar',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Content right',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-content-right field-group-fieldset col-sm-4 col-md-4',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_content_right|node|focus_event|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_content_right|node|focus_event|full';
+  $field_group->group_name = 'group_content_right';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'focus_event';
+  $field_group->mode = 'full';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Content right',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_event_organiser',
+      1 => 'field_event_fees',
+      2 => 'field_focus_event_location',
+      3 => 'field_focus_event_url',
+      4 => 'field_event_registration_url',
+      5 => 'field_focus_event_document',
+      6 => 'field_event_author',
+      7 => 'field_focus_event_date',
+      8 => 'field_focus_event_reg_deadline',
+      9 => 'field_focus_tags',
+      10 => 'field_focus_event_ag',
+      11 => 'field_focus_event_text_calendar',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Content right',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-content-right field-group-div col-xs-12 col-sm-4 col-md-4',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_content_right|node|focus_event|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_dates_events|node|focus_event|teaser';
   $field_group->group_name = 'group_dates_events';
   $field_group->entity_type = 'node';
@@ -204,6 +354,8 @@ function focus_event_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Content');
+  t('Content Left');
+  t('Content right');
   t('Dates');
   t('Dates events');
   t('Metadata');
