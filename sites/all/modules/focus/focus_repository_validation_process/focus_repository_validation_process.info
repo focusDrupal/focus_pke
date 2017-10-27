@@ -6,6 +6,7 @@ dependencies[] = cce_basic_config
 dependencies[] = entityreference
 dependencies[] = field_group
 dependencies[] = focus_homepage
+dependencies[] = focus_repository
 dependencies[] = text
 dependencies[] = views
 dependencies[] = views_bootstrap
