@@ -41,7 +41,7 @@ function focus_repository_validation_process_node_info() {
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Main subject area'),
+      'title_label' => t('Subject areas'),
       'help' => '',
     ),
   );

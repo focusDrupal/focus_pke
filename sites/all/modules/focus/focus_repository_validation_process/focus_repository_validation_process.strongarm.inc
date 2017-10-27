@@ -117,13 +117,16 @@ function focus_repository_validation_process_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '1',
         ),
         'workbench_access' => array(
-          'weight' => '5',
+          'weight' => '8',
+        ),
+        'metatags' => array(
+          'weight' => '11',
         ),
       ),
       'display' => array(),

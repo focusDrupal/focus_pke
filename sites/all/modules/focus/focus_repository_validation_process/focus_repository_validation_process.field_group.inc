@@ -79,7 +79,7 @@ function focus_repository_validation_process_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Evaluation',
-    'weight' => '1',
+    'weight' => '0',
     'children' => array(
       0 => 'group_formal_review_criteria',
       1 => 'group_content_related_evaluation',
@@ -93,7 +93,7 @@ function focus_repository_validation_process_field_group_info() {
         'page_header' => '3',
         'page_counter' => '1',
         'move_button' => '1',
-        'move_additional' => '1',
+        'move_additional' => '0',
       ),
     ),
   );

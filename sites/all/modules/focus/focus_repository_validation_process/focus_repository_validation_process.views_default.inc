@@ -22,12 +22,12 @@ function focus_repository_validation_process_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Evaluate practices';
+  $handler->display->display_options['title'] = 'Invitations';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
-    2 => '2',
+    7 => '7',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -37,35 +37,25 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_table_plugin_style';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
-    'field_date_invitation' => 'field_date_invitation',
-    'field_evaluation' => 'field_evaluation',
-    'edit_node' => 'edit_node',
+    'view_node' => 'view_node',
+    'views_bulk_operations' => 'views_bulk_operations',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
-      'align' => '',
+      'align' => 'views-align-left',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_date_invitation' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
+    'view_node' => array(
+      'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_evaluation' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'edit_node' => array(
-      'align' => '',
+    'views_bulk_operations' => array(
+      'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
     ),
@@ -89,12 +79,12 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['relationships']['field_referenced_practice_target_id']['table'] = 'field_data_field_referenced_practice';
   $handler->display->display_options['relationships']['field_referenced_practice_target_id']['field'] = 'field_referenced_practice_target_id';
   /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['relationship'] = 'field_referenced_practice_target_id';
-  $handler->display->display_options['fields']['title_field']['label'] = 'PRACTICE TO EVALUATE';
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'PRACTICE TO EVALUATE';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Content: Date Invitation */
   $handler->display->display_options['fields']['field_date_invitation']['id'] = 'field_date_invitation';
   $handler->display->display_options['fields']['field_date_invitation']['table'] = 'field_data_field_date_invitation';
@@ -111,12 +101,6 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['fields']['field_evaluation']['id'] = 'field_evaluation';
   $handler->display->display_options['fields']['field_evaluation']['table'] = 'field_data_field_evaluation';
   $handler->display->display_options['fields']['field_evaluation']['field'] = 'field_evaluation';
-  /* Field: Content: Edit link */
-  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'OPTIONS';
-  $handler->display->display_options['fields']['edit_node']['text'] = 'Evaluate';
   /* Contextual filter: Content: Evaluator (field_evaluator) */
   $handler->display->display_options['arguments']['field_evaluator_target_id']['id'] = 'field_evaluator_target_id';
   $handler->display->display_options['arguments']['field_evaluator_target_id']['table'] = 'field_data_field_evaluator';
@@ -140,7 +124,9 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['filters']['field_evaluation_value']['table'] = 'field_data_field_evaluation';
   $handler->display->display_options['filters']['field_evaluation_value']['field'] = 'field_evaluation_value';
   $handler->display->display_options['filters']['field_evaluation_value']['value'] = array(
-    0 => '0',
+    1 => '1',
+    -1 => '-1',
+    2 => '2',
   );
   $handler->display->display_options['filters']['field_evaluation_value']['group'] = 1;
   /* Filter criterion: Content: Acceptance (field_acceptance) */
@@ -151,9 +137,20 @@ function focus_repository_validation_process_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['field_acceptance_value']['group'] = 1;
+  /* Filter criterion: Workbench Moderation: State */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['filters']['state']['value'] = array(
+    'published' => 'published',
+    'archived' => 'archived',
+  );
 
   /* Display: Evaluate practices */
   $handler = $view->new_display('page', 'Evaluate practices', 'page');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Evaluate';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
@@ -205,26 +202,37 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['tab_options']['weight'] = '0';
 
   /* Display: Invitations */
-  $handler = $view->new_display('page', 'Invitations', 'page_1');
+  $handler = $view->new_display('page', 'Invitations', 'invitations');
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = '<p>Select the practice you want accept or decline</p>';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Acceptance */
-  $handler->display->display_options['fields']['field_acceptance']['id'] = 'field_acceptance';
-  $handler->display->display_options['fields']['field_acceptance']['table'] = 'field_data_field_acceptance';
-  $handler->display->display_options['fields']['field_acceptance']['field'] = 'field_acceptance';
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'Practice';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['view_node']['label'] = 'View practice';
+  $handler->display->display_options['fields']['view_node']['alter']['text'] = '<a href="[view_node]" target="_blank">[title]</a>';
+  $handler->display->display_options['fields']['view_node']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['view_node']['alter']['target'] = '_blank';
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['label'] = 'Select Practice';
+  $handler->display->display_options['fields']['views_bulk_operations']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '1';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 0;
@@ -246,6 +254,33 @@ function focus_repository_validation_process_views_default_views() {
       'label' => '',
     ),
   );
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'focus_repository_evaluation' => 'focus_repository_evaluation',
+    'practice' => 'practice',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Evaluation (field_evaluation) */
+  $handler->display->display_options['filters']['field_evaluation_value']['id'] = 'field_evaluation_value';
+  $handler->display->display_options['filters']['field_evaluation_value']['table'] = 'field_data_field_evaluation';
+  $handler->display->display_options['filters']['field_evaluation_value']['field'] = 'field_evaluation_value';
+  $handler->display->display_options['filters']['field_evaluation_value']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_evaluation_value']['group'] = 1;
+  /* Filter criterion: Content: Acceptance (field_acceptance) */
+  $handler->display->display_options['filters']['field_acceptance_value']['id'] = 'field_acceptance_value';
+  $handler->display->display_options['filters']['field_acceptance_value']['table'] = 'field_data_field_acceptance';
+  $handler->display->display_options['filters']['field_acceptance_value']['field'] = 'field_acceptance_value';
+  $handler->display->display_options['filters']['field_acceptance_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_acceptance_value']['group'] = 1;
   $handler->display->display_options['path'] = 'evaluate-practices/invitations';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Invitations';
@@ -259,8 +294,10 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['tab_options']['description'] = 'Manage your invitations';
   $handler->display->display_options['tab_options']['weight'] = '0';
 
-  /* Display: Accepted */
-  $handler = $view->new_display('page', 'Accepted', 'page_2');
+  /* Display: Pending evaluations */
+  $handler = $view->new_display('page', 'Pending evaluations', 'pending_evaluations');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Pending evaluations';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -270,11 +307,134 @@ function focus_repository_validation_process_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = '<p class="any_practice">You don\'t have any pending practice to evaluate.</p>';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  $handler->display->display_options['path'] = 'evaluate-practices/accepted';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'PRACTICE TO EVALUATE';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Date Invitation */
+  $handler->display->display_options['fields']['field_date_invitation']['id'] = 'field_date_invitation';
+  $handler->display->display_options['fields']['field_date_invitation']['table'] = 'field_data_field_date_invitation';
+  $handler->display->display_options['fields']['field_date_invitation']['field'] = 'field_date_invitation';
+  $handler->display->display_options['fields']['field_date_invitation']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_remaining_days' => 0,
+  );
+  /* Field: Content: Evaluation */
+  $handler->display->display_options['fields']['field_evaluation']['id'] = 'field_evaluation';
+  $handler->display->display_options['fields']['field_evaluation']['table'] = 'field_data_field_evaluation';
+  $handler->display->display_options['fields']['field_evaluation']['field'] = 'field_evaluation';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'OPTIONS';
+  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['edit_node']['alter']['text'] = 'Evaluate';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'focus_repository_evaluation' => 'focus_repository_evaluation',
+    'practice' => 'practice',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Evaluation (field_evaluation) */
+  $handler->display->display_options['filters']['field_evaluation_value']['id'] = 'field_evaluation_value';
+  $handler->display->display_options['filters']['field_evaluation_value']['table'] = 'field_data_field_evaluation';
+  $handler->display->display_options['filters']['field_evaluation_value']['field'] = 'field_evaluation_value';
+  $handler->display->display_options['filters']['field_evaluation_value']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_evaluation_value']['group'] = 1;
+  /* Filter criterion: Content: Acceptance (field_acceptance) */
+  $handler->display->display_options['filters']['field_acceptance_value']['id'] = 'field_acceptance_value';
+  $handler->display->display_options['filters']['field_acceptance_value']['table'] = 'field_data_field_acceptance';
+  $handler->display->display_options['filters']['field_acceptance_value']['field'] = 'field_acceptance_value';
+  $handler->display->display_options['filters']['field_acceptance_value']['value'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['filters']['field_acceptance_value']['group'] = 1;
+  $handler->display->display_options['path'] = 'evaluate-practices/pending-evaluations';
   $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Evaluate practices';
-  $handler->display->display_options['menu']['description'] = 'Practices for evaluate';
+  $handler->display->display_options['menu']['title'] = 'Pending evaluations';
+  $handler->display->display_options['menu']['description'] = 'Pending evaluations for the evaluator';
   $handler->display->display_options['menu']['weight'] = '2';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $handler->display->display_options['tab_options']['type'] = 'tab';
+  $handler->display->display_options['tab_options']['title'] = 'Invitations';
+  $handler->display->display_options['tab_options']['description'] = 'Manage your invitations';
+  $handler->display->display_options['tab_options']['weight'] = '0';
+
+  /* Display: Evaluated practices */
+  $handler = $view->new_display('page', 'Evaluated practices', 'evaluated_practices');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Evaluated practices';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'pending_invitations';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = '<p class="any_practice">You haven\'t evaluation done.</p>';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'PRACTICE TO EVALUATE';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Date Invitation */
+  $handler->display->display_options['fields']['field_date_invitation']['id'] = 'field_date_invitation';
+  $handler->display->display_options['fields']['field_date_invitation']['table'] = 'field_data_field_date_invitation';
+  $handler->display->display_options['fields']['field_date_invitation']['field'] = 'field_date_invitation';
+  $handler->display->display_options['fields']['field_date_invitation']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_remaining_days' => 0,
+  );
+  /* Field: Content: Evaluation */
+  $handler->display->display_options['fields']['field_evaluation']['id'] = 'field_evaluation';
+  $handler->display->display_options['fields']['field_evaluation']['table'] = 'field_data_field_evaluation';
+  $handler->display->display_options['fields']['field_evaluation']['field'] = 'field_evaluation';
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['view_node']['label'] = 'View practice';
+  $handler->display->display_options['fields']['view_node']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['view_node']['alter']['target'] = '_blank';
+  /* Field: Workbench Moderation: State */
+  $handler->display->display_options['fields']['state']['id'] = 'state';
+  $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['fields']['state']['field'] = 'state';
+  $handler->display->display_options['fields']['state']['relationship'] = 'field_referenced_practice_target_id';
+  $handler->display->display_options['fields']['state']['label'] = 'STATE OF THE PRACTICE';
+  $handler->display->display_options['fields']['state']['machine_name'] = 0;
+  $handler->display->display_options['path'] = 'evaluate-practices/evaluated-practices';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Evaluated practices';
+  $handler->display->display_options['menu']['description'] = 'Evaluated practices for the evaluator';
+  $handler->display->display_options['menu']['weight'] = '3';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;

@@ -84,7 +84,7 @@ table strong{color:#00488A;}
 /* HIGHLIGHTS */
 .field-image-caption, .field-name-field-caption {margin-bottom: 10px;}
 #block-bean-highlights-home {border-top: 3px solid #D2DC0C; border-radius:0px; margin-bottom:80px;}
-#block-bean-highlights-home .panel-heading {margin-top: -19px; width: 255px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;}
+#block-bean-highlights-home .panel-heading {margin-top: -19px; width: 175px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;}
 #block-bean-highlights-home .field-name-field-highlights-title-1 .even,
 #block-bean-highlights-home .field-name-field-highlights-title-2 .even,
 #block-bean-highlights-home .field-name-field-highlights-title-3 .even,
