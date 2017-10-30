@@ -35,7 +35,7 @@
     // Private slider methods
     methods = {
       init: function() {
-        slider.animating = false;
+        slider.animating = true;
         // Get current slide and make sure it is a number
         slider.currentSlide = parseInt( ( slider.vars.startAt ? slider.vars.startAt : 0) );
         if ( isNaN( slider.currentSlide ) ) slider.currentSlide = 0;

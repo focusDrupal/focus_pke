@@ -230,10 +230,7 @@
         <div class="followUsLinks">
           <div class="row">
             <?php if ($focus_twi): ?>
-              <div class="col-md-6 col-sm-6"><?php print $focus_twi; ?></div>
-            <?php endif; ?>
-            <?php if ($focus_you): ?>
-              <div class="col-md-6 col-sm-6"><?php print $focus_you; ?></div>
+              <div class="col-md-12 col-sm-12"><?php print $focus_twi; ?></div>
             <?php endif; ?>
           </div>
         </div>
