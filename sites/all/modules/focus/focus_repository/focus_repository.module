@@ -35,12 +35,17 @@ function focus_form_practice_node_form_alter(&$form, &$form_state, $form_id) {
   // Organisation.
   $form['field_rep_org_name'][LANGUAGE_NONE][0]['value']['#title'] = t('What is the name of your organisation?');
   $form['field_rep_org_address'][LANGUAGE_NONE][0]['value']['#title'] = t('What is the address of your organization?');
-  $form['field_rep_org_type'][LANGUAGE_NONE]['#title'] = t('What kind of organisation are you? (more than an answer is possible).');
+  $form['field_rep_org_type'][LANGUAGE_NONE]['#title'] = t('What kind of organisation are you?');
   $form['field_rep_name_contact_person'][LANGUAGE_NONE][0]['value']['#title'] = t('Please enter the name of the contact person for this practice.');
   $form['field_rep_mail_contact_person'][LANGUAGE_NONE][0]['email']['#title'] = t('Please enter the email of the contact person for this practice.');
 
+  /*
+   *Change the name of the practice button save to submit
+   s*/
+
+  $node = $form['#node'];
+  if ($node->type == 'practice') {
+    $form['actions']['submit']['#value'] = t('Submit');
+  }
+
 }
-
-
-
-
