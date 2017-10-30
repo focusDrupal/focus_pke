@@ -27,6 +27,30 @@ function focus_directory_of_professionals_views_api($module = NULL, $api = NULL)
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function focus_directory_of_professionals_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: header_and_description_image__940x250_.
+  $styles['header_and_description_image__940x250_'] = array(
+    'label' => 'Header and description image (940X250)',
+    'effects' => array(
+      4 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 940,
+          'height' => 250,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function focus_directory_of_professionals_node_info() {

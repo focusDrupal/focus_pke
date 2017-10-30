@@ -29,14 +29,14 @@ function focus_directory_of_professionals_context_default_contexts() {
         'bean-professionals---header-image-and' => array(
           'module' => 'bean',
           'delta' => 'professionals---header-image-and',
-          'region' => 'content_top_left',
+          'region' => 'content',
           'weight' => '-10',
         ),
         'bean-professionals---header-upload-bl' => array(
           'module' => 'bean',
           'delta' => 'professionals---header-upload-bl',
-          'region' => 'content_top_right',
-          'weight' => '-10',
+          'region' => 'content',
+          'weight' => '-9',
         ),
       ),
     ),
