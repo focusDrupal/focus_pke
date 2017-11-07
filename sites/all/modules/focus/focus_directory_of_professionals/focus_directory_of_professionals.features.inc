@@ -58,7 +58,7 @@ function focus_directory_of_professionals_node_info() {
     'focus_directory_of_professionals' => array(
       'name' => t('FOCUS Directory of professionals'),
       'base' => 'node_content',
-      'description' => t('Directory of professionals'),
+      'description' => '',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

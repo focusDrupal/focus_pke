@@ -12,7 +12,7 @@ include_once 'focus_directory_of_professionals.features.inc';
 function focus_directory_of_professionals_node_insert($node) {
 	if ($node->type == 'focus_directory_of_professionals') {
 		_focus_directory_of_professionals_new_user($node);
-		_focus_directory_of_professionals_send_request($node);		
+		_focus_directory_of_professionals_send_request($node);
 	}
 }
 
@@ -73,7 +73,6 @@ function _focus_directory_of_professionals_send_request($node){
 	$lastname_professional = $node->field_last_name_professional['und'][0]['value'];
 	$mail_professional = $node->field_email_professional['und'][0]['email'];
 
-	global $base_url;    
 	$to = $mail_professional;
 	$subject = t('FOCUS - New professional request send');
 	$data_professional = array(
