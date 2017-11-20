@@ -38,6 +38,12 @@ function focus_directory_of_professionals_context_default_contexts() {
           'region' => 'content',
           'weight' => '-9',
         ),
+        'bean-focus-accept-professionals' => array(
+          'module' => 'bean',
+          'delta' => 'focus-accept-professionals',
+          'region' => 'content_bottom',
+          'weight' => '-10',
+        ),
       ),
     ),
   );

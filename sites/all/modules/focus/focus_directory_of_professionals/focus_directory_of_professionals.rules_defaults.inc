@@ -13,7 +13,7 @@ function focus_directory_of_professionals_default_rules_configuration() {
       "LABEL" : "Accept professional",
       "PLUGIN" : "rule",
       "OWNER" : "rules",
-      "REQUIRES" : [ "rules", "mimemail" ],
+      "REQUIRES" : [ "rules" ],
       "USES VARIABLES" : { "node" : { "label" : "node", "type" : "node" } },
       "IF" : [
         { "node_is_of_type" : {
@@ -25,13 +25,11 @@ function focus_directory_of_professionals_default_rules_configuration() {
       "DO" : [
         { "data_set" : { "data" : [ "node:field-accept-professional" ], "value" : "1" } },
         { "data_set" : { "data" : [ "node:status" ], "value" : "1" } },
-        { "mimemail" : {
-            "key" : "AcceptProfessional",
+        { "mail" : {
             "to" : "[node:field-email-professional]",
-            "from_name" : "[site:name]",
-            "from_mail" : "[site:mail]",
             "subject" : "New professional accepted",
-            "body" : "\\u003Cdiv\\u003E\\r\\n\\u003Ch1\\u003EEmail de prueba\\u003C\\/h1\\u003E\\r\\n\\u003Cp\\u003ESe ha aceptado el profesional\\u003C\\/p\\u003E\\r\\n\\u003C\\/div\\u003E",
+            "message" : "Your request has been accepted. \\r\\nYou can access to the updated list at: http:\\/\\/94.23.87.115:50080\\/focus\\/platform\\/directory-of-professionals_en",
+            "from" : "[site:mail]",
             "language" : [ "node:language" ]
           }
         }
@@ -42,7 +40,7 @@ function focus_directory_of_professionals_default_rules_configuration() {
       "LABEL" : "Delete professional",
       "PLUGIN" : "rule",
       "OWNER" : "rules",
-      "REQUIRES" : [ "rules", "mimemail" ],
+      "REQUIRES" : [ "rules" ],
       "USES VARIABLES" : { "node" : { "label" : "node", "type" : "node" } },
       "IF" : [
         { "node_is_of_type" : {
@@ -54,13 +52,11 @@ function focus_directory_of_professionals_default_rules_configuration() {
       "DO" : [
         { "data_set" : { "data" : [ "node:field-accept-professional" ], "value" : "2" } },
         { "data_set" : { "data" : [ "node:status" ], "value" : "0" } },
-        { "mimemail" : {
-            "key" : "RejectProfessional",
+        { "mail" : {
             "to" : "[node:field-email-professional]",
-            "from_name" : "[site:name]",
-            "from_mail" : "[site:mail]",
-            "subject" : "New professional declined",
-            "body" : "\\r\\n\\u003Cdiv\\u003E\\r\\n\\u003Ch1\\u003EEmail de prueba\\u003C\\/h1\\u003E\\r\\n\\u003Cp\\u003ESe ha cancelado el profesional\\u003C\\/p\\u003E\\r\\n\\u003C\\/div\\u003E",
+            "subject" : "New professional rejected.",
+            "message" : "Your request has been rejected.",
+            "from" : "[site:url]",
             "language" : [ "node:language" ]
           }
         }
