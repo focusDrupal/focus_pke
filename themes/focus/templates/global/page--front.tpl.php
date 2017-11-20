@@ -105,7 +105,6 @@
 
 <header id="layout-header" role="banner">
   <div class="container">
-    <a href="/"><img alt="European Commission logo" id="banner-flag" src="<?php print $logo; ?>" /></a>
     <div id="main-title"><?php print $site_name; ?></div>
     <div id="sub-title" class="hidden-xs"><?php print $site_slogan; ?></div>
   </div>

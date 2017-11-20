@@ -210,7 +210,7 @@ function focus_preprocess_html(&$vars) {
   $vars['fluid'] = 'fluid';
 
   if (arg(0) == '') {
-    $vars['head_title'] = filter_xss(variable_get('site_name')) . ' - ' . t('European Commission');
+    $vars['head_title'] = filter_xss(variable_get('site_name')) . ' - ' . t('FOCUS');
   }
 }
 

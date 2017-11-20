@@ -24,8 +24,6 @@
 
   <div id="layout-header">
     <div class="container">
-      <img alt="European Commission logo" id="banner-flag" src="<?php print $logo; ?>" />
-
       <div id="main-title"><?php print (isset($site_name) ? $site_name : '') ?></div>
       <div id="sub-title" class="hidden-xs"><?php print (isset($site_slogan) ? $site_slogan : '') ?></div>
     </div>
