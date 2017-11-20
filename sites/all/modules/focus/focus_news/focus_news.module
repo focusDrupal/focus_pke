@@ -5,3 +5,17 @@
  */
 
 include_once 'focus_news.features.inc';
+
+/**
+ * Implements hook_form_alter().
+ */
+function focus_news_form_alter(&$form, &$form_state, $form_id) {
+  /*
+   * Rewrite the fields labels in the form.
+   * The aim is to have the "questions" in the form (like a questionnaire)
+   * but to leave the field names as shorts substantives.
+   */
+
+  // Hide field.
+  $form['field_focus_news_pub_date']['#access'] = 0;
+}

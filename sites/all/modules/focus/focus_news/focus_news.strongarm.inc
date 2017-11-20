@@ -99,13 +99,13 @@ function focus_news_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'title' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '5',
         ),
         'workbench_access' => array(
           'weight' => '1',
