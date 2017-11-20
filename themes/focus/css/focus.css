@@ -32,6 +32,9 @@ h3.listingLinkHeader a {text-decoration: none;}
 .multipage-counter{background: #0065a2; width: 50px; height: 34px; text-align: center; padding: 10px; position: initial; border-radius: 5px; color: #ffffff;}
 .multipage-controls-list{margin-bottom:10px;}
 
+#layout-header #main-title {left: 15px;}
+#layout-header #sub-title {left: 15px;}
+
 /* TABLE */
 table {border: 1px solid #CDCDCD; margin-top: 10px; margin-bottom: 40px!important; width:100%;}
 table tbody {border-top: 0px;}
@@ -61,6 +64,9 @@ table strong{color:#00488A;}
 #main-menu .panel-body .leaf a:hover, #main-menu .panel-body .leaf a.active{border-top: 3px solid #ef3f36!important;}
 .panel .panel-body .list-group{margin:0px;}
 .navbar-collapse {padding-right: 0px; padding-left: 0px;}
+
+.menu-breadcrumb a:nth-child(1), 
+.menu-breadcrumb span.easy-breadcrumb_segment-separator{display:none;}
 
 /* ---------------------------------- */
 /* SLIDER HOMEPAGE */
@@ -212,8 +218,36 @@ table strong{color:#00488A;}
 #block-bean-repository-header-upload-block {border-top: 3px solid #EE3329; border-radius:0px;}
 #block-bean-repository-header-upload-block .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 310px;}
 #block-bean-repository-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius:5px;}
-#block-bean-repository-header-upload-block .field-name-field-header-upload-link{width: 120px; float: right;background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer;}
+#block-bean-repository-header-upload-block .field-name-field-header-upload-link{width: 190px; float: right;background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer;}
 #block-bean-repository-header-upload-block .field-name-field-header-upload-link .field-item a{text-decoration:none; color:#ffffff;}
+
+/* Check your evaluations */
+.bean-focus-check-your-evaluations .group-check-invitations, 
+.bean-focus-check-your-evaluations .group-pending-evaluations,
+.bean-focus-check-your-evaluations .group-evaluated-practices {float: left; width: 31%; text-align: center; margin-bottom: 20px; margin: 0 1% 0px 1%;}
+#block-bean-check-your-evaluations {margin-bottom: 50px; margin-top: 20px; border-top: 3px solid #27288D; border-radius: 0px;}
+#block-bean-check-your-evaluations .panel-heading {margin-left: 0px!important; margin-top: -21px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 350px; padding: 0 0 0 32px!important;}
+.group-check-invitations .field-name-field-focus-check-invitations-im,
+.group-pending-evaluations .field-name-field-focus-pend-evaluations-img, 
+.group-evaluated-practices .field-name-field-focus-eval-practices-img {border: 1px solid #00488A; border-radius: 30px 30px 0 0;}
+.group-check-invitations .field-name-field-focus-check-invitations-te,
+.group-pending-evaluations .field-name-field-focus-pending-evaluations-,
+.group-evaluated-practices .field-name-field-focus-evaluated-practices- {border: 1px solid #00488A; border-top: 0px; padding: 10px 0 0 0; background: #00488A; border-radius: 0 0 30px 30px;}
+.group-check-invitations .field-name-field-focus-check-invitations-te p a,
+.group-pending-evaluations .field-name-field-focus-pending-evaluations- p a,
+.group-evaluated-practices .field-name-field-focus-evaluated-practices- p a {color: #fff; text-decoration: none; cursor: pointer;}
+
+/* Practices uploaded */
+#block-bean-practices-uploaded {margin-bottom: 50px; margin-top: 20px; border-top: 3px solid #27288D; border-radius: 0px;}
+#block-bean-practices-uploaded .panel-heading {margin-left: 0px!important; margin-top: -21px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 285px; padding: 0 0 0 32px!important;}
+#block-bean-practices-uploaded .group-pending-practices,
+#block-bean-practices-uploaded .group-finished-practices {float: left; width: 48%; text-align: center; margin-bottom: 20px; margin: 0 1% 0px 1%;}
+#block-bean-practices-uploaded .field-name-field-focus-pending-practices-im,
+#block-bean-practices-uploaded .field-name-field-focus-finished-practices {border: 1px solid #00488A; border-radius: 30px 30px 0 0;}
+#block-bean-practices-uploaded .field-name-field-focus-pending-practices-te,
+#block-bean-practices-uploaded .field-name-field-focus-finished-practices-t {border: 1px solid #00488A; border-top: 0px; padding: 10px 0 0 0; background: #00488A; border-radius: 0 0 30px 30px;}
+#block-bean-practices-uploaded .field-name-field-focus-pending-practices-te p a,
+#block-bean-practices-uploaded .field-name-field-focus-finished-practices-t p a {color: #fff; text-decoration: none; cursor: pointer;}
 
 /* Search Form */
 #block-search-form--2 {background:#F3F3F3;}
@@ -268,7 +302,7 @@ table strong{color:#00488A;}
 #block-bean-news-header-upload-block {border-top: 3px solid #EE3329; border-radius:0px;}
 #block-bean-news-header-upload-block .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 385px;}
 #block-bean-news-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius:5px;}
-#block-bean-news-header-upload-block .field-name-field-header-upload-link{background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer;}
+#block-bean-news-header-upload-block .field-name-field-header-upload-link{background:#00488A; border-radius:5px; text-align:center; padding:12px 0; margin-top:10px; cursor:pointer; width: 150px; float: right;}
 #block-bean-news-header-upload-block .field-name-field-header-upload-link .field-item a{text-decoration:none; color:#ffffff;}
 
 .node-focus-news .field-name-field-focus-news-img-top-ft{float: left; padding: 0 10px 0px 0;}
@@ -290,12 +324,12 @@ table strong{color:#00488A;}
 /* PAGE LIBRARY */
 .node .field-name-body {border-bottom: 0px;}
 #block-bean-library-header-image-and-descr .field-name-field-header-description{background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
-#block-bean-library-header-image-and-descr {border-top: 3px solid #EE3329; border-radius: 0px;}
+#block-bean-library-header-image-and-descr {border-top: 3px solid #EE3329; border-radius: 0px; margin-bottom: 50px;}
 #block-bean-library-header-image-and-descr .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 135px;}
 #block-bean-library-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px;}
 #block-bean-library-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 300px;}
 #block-bean-library-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
-#block-bean-library-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
+#block-bean-library-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer; float: right; width: 200px;}
 #block-bean-library-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
 .page-library .view-focus-resource-library-details {margin-top: 50px; border-top: 3px solid #EE3329; border-radius: 0px;}
 .page-library #block-system-main .view-header h2 {margin-top: -17px!important;}
@@ -319,6 +353,15 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-professionals-header-upload-bl .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
 #block-bean-professionals-header-upload-bl .field-name-field-header-upload-descrp {text-align: justify;}
 
+	/* Accept professionals */
+	#block-bean-focus-accept-professionals {margin-bottom: 50px; margin-top: 20px; border-top: 3px solid #27288D; border-radius: 0px;}
+	#block-bean-focus-accept-professionals .panel-heading {margin-left: 0px!important; margin-top: -21px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 310px; padding: 0 0 0 32px!important;}
+	#block-bean-focus-accept-professionals .group-accept-prof-descrp {float: left; width: 48%; text-align: center; margin-bottom: 20px; margin: 0 1% 0px 1%;}
+	#block-bean-focus-accept-professionals .field-name-field-focus-image-professionals {border: 1px solid #00488A; border-radius: 30px 30px 0 0;}
+	#block-bean-focus-accept-professionals .field-name-field-focus-text-professionals {border: 1px solid #00488A; border-top: 0px; padding: 10px 0 0 0; background: #00488A; border-radius: 0 0 30px 30px;}
+	#block-bean-focus-accept-professionals .field-name-field-focus-text-professionals p a {color: #fff; text-decoration: none; cursor: pointer;}
+	#block-bean-focus-accept-professionals .group-accept-prof-image {float: left; width: 48%; text-align: justify; margin: 0 1% 0px 1%;}
+
 /* ---------------------------------- */
 /* PAGE EVENTS */
 .page-events .view-focus-events {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
@@ -326,7 +369,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-events-header-image-and-descri {border-top: 3px solid #EE3329; border-radius: 0px;}
 #block-bean-events-header-image-and-descri .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 130px;}
 #block-bean-events-header-image-and-descri .field-name-field-header-description {background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
-#block-bean-events-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px; min-height:350px;}
+#block-bean-events-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px; margin-bottom:30px;}
 #block-bean-events-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 275px;}
 #block-bean-events-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
@@ -501,7 +544,7 @@ main#layout-body {margin-top: 2rem;}
 header #main-title,
 header #sub-title {font-family: "PFSquareSansPro";}
 
-#layout-header #main-title {font-size: 30px !important; top: 55px; padding: 0 0 0 33px; color: #000000; background: url("/themes/focus/images/icono_logo_focus.png"); background-repeat: no-repeat; background-position: left;}
+#layout-header #main-title {font-size: 77px !important; top: 3px; padding: 3px 0 0 76px; color: #000000; background: url("/themes/focus/images/icono_logo_focus_big.png"); background-repeat: no-repeat; background-position: left; background-size: 66px;}
 #layout-header #sub-title {font-size: 17px !important; top: 110px!important;}
 
 @media screen and (max-width: 991px) {
