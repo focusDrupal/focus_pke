@@ -16,5 +16,11 @@ function focus_repository_validation_process_user_default_roles() {
     'weight' => 5,
   );
 
+  // Exported role: repository manager.
+  $roles['repository manager'] = (object) array(
+    'name' => 'repository manager',
+    'weight' => 6,
+  );
+
   return $roles;
 }
