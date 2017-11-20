@@ -38,11 +38,17 @@ function focus_repository_context_default_contexts() {
           'region' => 'content',
           'weight' => '-5',
         ),
+        'bean-check-your-evaluations' => array(
+          'module' => 'bean',
+          'delta' => 'check-your-evaluations',
+          'region' => 'content_bottom',
+          'weight' => '-10',
+        ),
         'bean-repository---header-upload-block' => array(
           'module' => 'bean',
           'delta' => 'repository---header-upload-block',
           'region' => 'content_bottom',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
       ),
     ),

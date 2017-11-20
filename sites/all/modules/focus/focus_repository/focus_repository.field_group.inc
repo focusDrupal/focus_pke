@@ -143,6 +143,39 @@ function focus_repository_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_check_invitations|bean|focus_check_your_evaluations|default';
+  $field_group->group_name = 'group_check_invitations';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'focus_check_your_evaluations';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Check invitations',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_focus_check_invitations_te',
+      1 => 'field_focus_check_invitations_im',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Check invitations',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-check-invitations field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_check_invitations|bean|focus_check_your_evaluations|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_content_practice|node|practice|full';
   $field_group->group_name = 'group_content_practice';
   $field_group->entity_type = 'node';
@@ -174,6 +207,39 @@ function focus_repository_field_group_info() {
     ),
   );
   $field_groups['group_content_practice|node|practice|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_evaluated_practices|bean|focus_check_your_evaluations|default';
+  $field_group->group_name = 'group_evaluated_practices';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'focus_check_your_evaluations';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Evaluated practices',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_focus_evaluated_practices_',
+      1 => 'field_focus_eval_practices_img',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Evaluated practices',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-evaluated-practices field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_evaluated_practices|bean|focus_check_your_evaluations|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -241,6 +307,39 @@ function focus_repository_field_group_info() {
     ),
   );
   $field_groups['group_organisation|node|practice|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_pending_evaluations|bean|focus_check_your_evaluations|default';
+  $field_group->group_name = 'group_pending_evaluations';
+  $field_group->entity_type = 'bean';
+  $field_group->bundle = 'focus_check_your_evaluations';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Pending evaluations',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_focus_pending_evaluations_',
+      1 => 'field_focus_pend_evaluations_img',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Pending evaluations',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-pending-evaluations field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_pending_evaluations|bean|focus_check_your_evaluations|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -499,7 +598,10 @@ function focus_repository_field_group_info() {
   t('+');
   t('Author');
   t('Background');
+  t('Check invitations');
+  t('Evaluated practices');
   t('Organisation');
+  t('Pending evaluations');
   t('Practice');
   t('Summary of the practice');
   t('Tutorial 1');
