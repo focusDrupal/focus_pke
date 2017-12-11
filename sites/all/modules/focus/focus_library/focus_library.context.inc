@@ -19,7 +19,7 @@ function focus_library_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'library' => 'library',
+        'repository' => 'repository',
       ),
     ),
   );
@@ -29,14 +29,14 @@ function focus_library_context_default_contexts() {
         'bean-library---header-image-and-descr' => array(
           'module' => 'bean',
           'delta' => 'library---header-image-and-descr',
-          'region' => 'content_top_left',
+          'region' => 'content',
           'weight' => '-10',
         ),
         'bean-library---header-upload-block' => array(
           'module' => 'bean',
           'delta' => 'library---header-upload-block',
-          'region' => 'content_top_right',
-          'weight' => '-10',
+          'region' => 'content',
+          'weight' => '-9',
         ),
       ),
     ),

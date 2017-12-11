@@ -22,7 +22,7 @@ function focus_library_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'FOCUS Resource Library details';
+  $handler->display->display_options['title'] = 'Repository';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -44,8 +44,8 @@ function focus_library_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['content'] = '<div class="row">
-  <div class="col-md-12" style="margin-bottom: 30px;">
-    <h2 class="pane-title large-header">Latest uploads on the library</h2>
+  <div class="col-md-12">
+    <h2 class="pane-title large-header">Latest uploads on the repository</h2>
   </div>
 </div>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
@@ -76,11 +76,11 @@ function focus_library_views_default_views() {
     'focus_library' => 'focus_library',
   );
 
-  /* Display: FOCUS Resource library */
-  $handler = $view->new_display('page', 'FOCUS Resource library', 'focus_page_library');
-  $handler->display->display_options['path'] = 'library';
+  /* Display: Repository */
+  $handler = $view->new_display('page', 'Repository', 'focus_page_library');
+  $handler->display->display_options['path'] = 'repository';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Library';
+  $handler->display->display_options['menu']['title'] = 'Repository';
   $handler->display->display_options['menu']['weight'] = '3';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
