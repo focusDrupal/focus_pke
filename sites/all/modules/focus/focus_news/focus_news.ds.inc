@@ -22,8 +22,13 @@ function focus_news_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'author' => array(
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'author',
+    ),
     'post_date' => array(
-      'weight' => '8',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'ds_post_date_only_day',
     ),
@@ -52,6 +57,11 @@ function focus_news_ds_field_settings_info() {
         ),
       ),
     ),
+    'author' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'author',
+    ),
     'post_date' => array(
       'weight' => '4',
       'label' => 'hidden',
@@ -75,11 +85,6 @@ function focus_news_ds_field_settings_info() {
           'func' => 'theme_ds_field_minimal',
           'lb-col' => TRUE,
         ),
-      ),
-    ),
-    'field_focus_news_img_top_ft' => array(
-      'formatter_settings' => array(
-        'ft' => array(),
       ),
     ),
   );
@@ -162,8 +167,9 @@ function focus_news_ds_layout_settings_info() {
         5 => 'field_field_tags',
         6 => 'field_focus_news_img_top_ft',
         7 => 'title',
-        8 => 'post_date',
-        9 => 'field_summary',
+        8 => 'group_upload_data',
+        9 => 'post_date',
+        10 => 'author',
       ),
     ),
     'fields' => array(
@@ -175,8 +181,9 @@ function focus_news_ds_layout_settings_info() {
       'field_field_tags' => 'ds_content',
       'field_focus_news_img_top_ft' => 'ds_content',
       'title' => 'ds_content',
+      'group_upload_data' => 'ds_content',
       'post_date' => 'ds_content',
-      'field_summary' => 'ds_content',
+      'author' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -208,19 +215,23 @@ function focus_news_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'group_teaser_header',
         1 => 'field_focus_news_img_top_ft',
-        2 => 'title',
-        3 => 'group_teaser_content',
-        4 => 'post_date',
+        2 => 'group_teaser_content',
+        3 => 'title',
+        4 => 'group_teaser_body',
         5 => 'body',
+        6 => 'post_date',
+        7 => 'author',
       ),
     ),
     'fields' => array(
       'group_teaser_header' => 'ds_content',
       'field_focus_news_img_top_ft' => 'ds_content',
-      'title' => 'ds_content',
       'group_teaser_content' => 'ds_content',
-      'post_date' => 'ds_content',
+      'title' => 'ds_content',
+      'group_teaser_body' => 'ds_content',
       'body' => 'ds_content',
+      'post_date' => 'ds_content',
+      'author' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

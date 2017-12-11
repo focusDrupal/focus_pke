@@ -35,6 +35,8 @@ h3.listingLinkHeader a {text-decoration: none;}
 #layout-header #main-title {left: 15px;}
 #layout-header #sub-title {left: 15px;}
 
+#block-language-selector-page-language-selector-page {display:none;}
+
 /* TABLE */
 table {border: 1px solid #CDCDCD; margin-top: 10px; margin-bottom: 40px!important; width:100%;}
 table tbody {border-top: 0px;}
@@ -184,14 +186,14 @@ table strong{color:#00488A;}
 .view-repository p{padding-left:25px; padding-bottom: 20px;}
 
 /* Repository header */
-#block-bean-repository-header-image-and-de {border-top: 3px solid #EE3329; border-radius:0px;}
+#block-bean-repository-header-image-and-de {border-top: 3px solid #EE3329; border-radius: 0px; margin-top: -30px; padding-top: 30px;}
 #block-bean-repository-header-image-and-de .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 240px;}
 #block-bean-repository-header-image-and-de {margin-bottom:30px;}
 #block-bean-repository-header-image-and-de .field-name-field-header-description{background:#F3F3F3; padding:15px; border-radius: 0 0 5px 5px;}
 
 /* Repository tutorial */
-#block-bean-repository-tutorial{border-top: 3px solid #00488A; border-radius:0px;}
-#block-bean-repository-tutorial .panel-heading{margin-top: -20px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat; width: 486px;}
+#block-bean-repository-tutorial {border-top: 3px solid #00488A; border-radius: 0px; margin-top: 50px; margin-bottom: 0px;}
+#block-bean-repository-tutorial .panel-heading{margin-top: -20px; background: #FFF; width: 405px; padding: 0px;}
 #block-bean-repository-tutorial .panel-body{margin-bottom:40px;}
 #block-bean-repository-tutorial .field-item{color:#ffffff;}
 #block-bean-repository-tutorial .group-tutorial1, 
@@ -250,7 +252,8 @@ table strong{color:#00488A;}
 #block-bean-practices-uploaded .field-name-field-focus-finished-practices-t p a {color: #fff; text-decoration: none; cursor: pointer;}
 
 /* Search Form */
-#block-search-form--2 {background:#F3F3F3;}
+#block-search-form--2 {background: #F3F3F3; bottom: 0px; padding: 20px; margin-bottom:40px;}
+#block-search-form--2 .form-type-textfield {margin-top:0px;}
 #block-search-form--2 .form-actions{background: #00488A; padding: 6px; border-radius: 3px; margin-left: 10px;}
 #block-search-form--2 .form-actions input{width:19px;}
 #block-search-form--2 .form-type-textfield input{border-radius:5px;}
@@ -290,13 +293,16 @@ table strong{color:#00488A;}
 /* ---------------------------------- */
 /* PAGE NEWS */
 .page-news #block-system-main .view-header h2 {margin-top: -17px!important;}
-.page-news .view-focus-news {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
+.page-news .view-focus-news {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px; margin-bottom: 50px;}
 .page-news .view-focus-news .col-md-12{margin-bottom:0px!important;}
 .page-news .view-focus-news .group-teaser-header h2{clear: none; padding-top: 0px;}
+.page-news .view-focus-news .group-teaser-content {height: 20px; padding: 10px 0;}
+.page-news .view-focus-news .group-teaser-content .label-little {padding-right:5px;}
+.page-news .view-focus-news .group-teaser-content time:after {content: ' - ';}
 
 #block-bean-news-header-image-and-descript {border-top: 3px solid #EE3329; border-radius:0px;}
 #block-bean-news-header-image-and-descript .panel-heading{margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 117px;}
-#block-bean-news-header-image-and-descript {margin-bottom:50px;}
+#block-bean-news-header-image-and-descript {margin-bottom:30px;}
 #block-bean-news-header-image-and-descript .field-name-field-header-description{background:#F3F3F3; padding:15px; border-radius: 0 0 5px 5px;}
 
 #block-bean-news-header-upload-block {border-top: 3px solid #EE3329; border-radius:0px;}
@@ -309,14 +315,15 @@ table strong{color:#00488A;}
 .node-focus-news .field-name-body{text-align:justify; border:0px;}
 .node-focus-news .field-name-field-field-tags{background: #F3F3F3; padding: 10px; margin: 10px 0; border-radius: 3px;}
 
-.page-news .block-search {background-color: #f4f4f4; padding: 1em; border-radius: 6px; margin: 0 0 40px 0;}
+.page-news .block-search {background-color: #f4f4f4; padding: 1em; border-radius: 6px; margin: 0px;}
 .page-news .block-search .form-item{margin-top:0px;}
 
 /* Content */
 .group-header-news {background: #F3F3F3;padding: 0px; border-radius: 2px; margin-bottom: 5px;}
 .group-header-news .field-name-field-focus-news-img-top-ft {float:left; width:50%;}
 .group-header-news .field-name-title {padding: 10px; float: left; width: 50%;}
-.group-header-news .field-name-post-date, .group-header-news .field-name-field-summary {float: left; width: 50%; padding: 0px 10px 10px 10px;}
+.group-upload-data .field-name-author {padding: 0 10px;}
+.group-header-news .field-name-post-date, .group-header-news .field-name-field-summary {float: left; width: 50%; padding: 0px 10px 0 10px;}
 .group-content-news {padding: 20px 0px;}
 .group-footer-news {padding:0px; margin-bottom:20px;}
 
@@ -372,7 +379,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-events-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px; margin-bottom:30px;}
 #block-bean-events-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 275px;}
 #block-bean-events-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
-#block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
+#block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer; width: 250px; float: right;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
 .group-content-left, .group-content-right {margin-bottom: 50px;}
 .group-content-right {background: #F3F3F3; padding: 20px; border-radius: 3px;}
@@ -480,7 +487,7 @@ td.fc-day.ui-widget-content.fc-today.ui-state-highlight {border: 2px solid; bord
 .page-news h2 a{background: transparent url("../images/generals/practices-list.png") no-repeat scroll 0 7px; color: #00488A; font-family: "PFSquareSansPro"; font-size: 18px; padding: 8px 0 3px 25px; text-transform: none; text-decoration: none; cursor: pointer;}
 .page-news .field-type-text-with-summary p{padding:10px 0 40px 0;}    
 
-h1#page-title{margin-top: -10px; width: auto; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat; padding: 0 10px 0 30px; margin: -20px 0 20px 0;}
+h1#page-title{margin-top: -10px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat; padding: 0 10px 0 30px; margin: -20px 0 0 0; width: auto; z-index: 1;}
 body.not-front .request{border-top: 0px!important;}
 #block-system-main .view-header h2 {color: #00488A; margin-left: 0px!important; margin-top: -37px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 295px; padding: 0 0 0 32px!important;}
 
@@ -502,7 +509,7 @@ ul.pager-show-more .pager-show-more-next {background-color: #d5e2e4; width: 100%
 .view-mode-full .label-above,
 .view-mode-full .fields-group label {margin-top: 15px; font-weight: bold; margin-bottom: 0;}
 .icon-element {margin-right: 10px;}
-.label-little {color: #5f6160; font-size: 11px; font-weight: normal;}
+.label-little, .field-name-author {color: #5f6160; font-size: 11px; font-weight: normal; float:left;}
 .link.black a {background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -287px; padding: 1px 0 1px 22px; color: #3a3c3b; font-family: "PFSquareSansPro"; font-size: 18px; display: block;}
 .date .label-above,
 .date-single .date-display-single {background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -897px; padding-left: 20px; padding-top: 3px;}

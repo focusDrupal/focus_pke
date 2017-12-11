@@ -89,9 +89,8 @@ function focus_news_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'field_focus_news_img_top_ft',
-      1 => 'field_summary',
-      2 => 'title',
-      3 => 'post_date',
+      1 => 'title',
+      2 => 'group_upload_data',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -113,6 +112,38 @@ function focus_news_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_teaser_body|node|focus_news|teaser';
+  $field_group->group_name = 'group_teaser_body';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'focus_news';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Teaser body',
+    'weight' => '2',
+    'children' => array(
+      0 => 'body',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Teaser body',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-teaser-body field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_teaser_body|node|focus_news|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_teaser_content|node|focus_news|teaser';
   $field_group->group_name = 'group_teaser_content';
   $field_group->entity_type = 'node';
@@ -121,9 +152,9 @@ function focus_news_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Teaser content',
-    'weight' => '3',
+    'weight' => '1',
     'children' => array(
-      0 => 'body',
+      0 => 'author',
       1 => 'post_date',
     ),
     'format_type' => 'div',
@@ -181,6 +212,7 @@ function focus_news_field_group_info() {
   t('Content news');
   t('Footer news');
   t('Header news');
+  t('Teaser body');
   t('Teaser content');
   t('Teaser header');
 

@@ -32,17 +32,17 @@ function focus_news_context_default_contexts() {
           'region' => 'content',
           'weight' => '-43',
         ),
-        'bean-news---header-upload-block' => array(
-          'module' => 'bean',
-          'delta' => 'news---header-upload-block',
-          'region' => 'content',
-          'weight' => '-42',
-        ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'content',
           'weight' => '-41',
+        ),
+        'bean-news---header-upload-block' => array(
+          'module' => 'bean',
+          'delta' => 'news---header-upload-block',
+          'region' => 'content_bottom',
+          'weight' => '-10',
         ),
       ),
     ),

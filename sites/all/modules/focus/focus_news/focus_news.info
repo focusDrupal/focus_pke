@@ -43,6 +43,7 @@ features[field_base][] = field_focus_news_pub_date
 features[field_group][] = group_content_news|node|focus_news|full
 features[field_group][] = group_footer_news|node|focus_news|full
 features[field_group][] = group_header_news|node|focus_news|full
+features[field_group][] = group_teaser_body|node|focus_news|teaser
 features[field_group][] = group_teaser_content|node|focus_news|teaser
 features[field_group][] = group_teaser_header|node|focus_news|teaser
 features[field_instance][] = comment-comment_node_focus_news-comment_body
