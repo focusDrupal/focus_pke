@@ -181,6 +181,7 @@ table strong{color:#00488A;}
 
 /* ---------------------------------- */
 /* VIEW REPOSITORY */
+#block-system-main .view-focus-resource-library-details .view-header h2 {width: 440px;}
 .view-repository{border-top: 3px solid #D2DC0C; display: list-item; list-style-position: inside;}
 .view-repository h2{margin-top: -40px!important; width: 295px; padding: 0 0 0 30px!important; background: url("/themes/focus/images/icono_logo_focus.png") #FFF no-repeat;}
 .view-repository p{padding-left:25px; padding-bottom: 20px;}
@@ -332,14 +333,14 @@ table strong{color:#00488A;}
 .node .field-name-body {border-bottom: 0px;}
 #block-bean-library-header-image-and-descr .field-name-field-header-description{background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
 #block-bean-library-header-image-and-descr {border-top: 3px solid #EE3329; border-radius: 0px; margin-bottom: 50px;}
-#block-bean-library-header-image-and-descr .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 135px;}
+#block-bean-library-header-image-and-descr .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 180px;}
 #block-bean-library-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px;}
 #block-bean-library-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 300px;}
 #block-bean-library-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
 #block-bean-library-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer; float: right; width: 200px;}
 #block-bean-library-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
-.page-library .view-focus-resource-library-details {margin-top: 50px; border-top: 3px solid #EE3329; border-radius: 0px;}
-.page-library #block-system-main .view-header h2 {margin-top: -17px!important;}
+.page-repository .view-focus-resource-library-details {margin-top: 50px; border-top: 3px solid #EE3329; border-radius: 0px;}
+.page-repository #block-system-main .view-header h2 {margin-top: -17px!important;}
 
 /* Library full content */
 section.group-focus-library-content .group-focus-library-ev-fields .field-name-field-focus-library-publish-date span{color: #5f6160; font-size: 14px; font-weight: normal;}
@@ -509,7 +510,7 @@ ul.pager-show-more .pager-show-more-next {background-color: #d5e2e4; width: 100%
 .view-mode-full .label-above,
 .view-mode-full .fields-group label {margin-top: 15px; font-weight: bold; margin-bottom: 0;}
 .icon-element {margin-right: 10px;}
-.label-little, .field-name-author {color: #5f6160; font-size: 11px; font-weight: normal; float:left;}
+.label-little, .field-name-author {color: #5f6160; font-size: 11px; font-weight: normal;}
 .link.black a {background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -287px; padding: 1px 0 1px 22px; color: #3a3c3b; font-family: "PFSquareSansPro"; font-size: 18px; display: block;}
 .date .label-above,
 .date-single .date-display-single {background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -897px; padding-left: 20px; padding-top: 3px;}
