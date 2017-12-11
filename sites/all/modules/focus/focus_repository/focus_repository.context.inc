@@ -19,7 +19,7 @@ function focus_repository_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'repository' => 'repository',
+        'good-practices' => 'good-practices',
       ),
     ),
   );
@@ -44,11 +44,17 @@ function focus_repository_context_default_contexts() {
           'region' => 'content_bottom',
           'weight' => '-10',
         ),
+        'bean-practices-uploaded' => array(
+          'module' => 'bean',
+          'delta' => 'practices-uploaded',
+          'region' => 'content_bottom',
+          'weight' => '-9',
+        ),
         'bean-repository---header-upload-block' => array(
           'module' => 'bean',
           'delta' => 'repository---header-upload-block',
           'region' => 'content_bottom',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
       ),
     ),

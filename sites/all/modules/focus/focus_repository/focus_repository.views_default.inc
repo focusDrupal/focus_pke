@@ -22,7 +22,7 @@ function focus_repository_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Repository';
+  $handler->display->display_options['title'] = 'Good practices';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -86,7 +86,7 @@ function focus_repository_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'repository');
-  $handler->display->display_options['path'] = 'repository';
+  $handler->display->display_options['path'] = 'good-practices';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Good practices';
   $handler->display->display_options['menu']['weight'] = '1';
