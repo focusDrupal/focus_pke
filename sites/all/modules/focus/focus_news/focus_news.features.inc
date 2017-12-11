@@ -36,28 +36,6 @@ function focus_news_views_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_features_actions_triggers_export_actions_default().
- */
-function focus_news_features_actions_triggers_export_actions_default() {
-  $items = array(
-    '140:system_send_email_action' => (object) array(
-      'aid' => 140,
-      'type' => 'system',
-      'callback' => 'system_send_email_action',
-      'parameters' => 'a:3:{s:9:"recipient";s:31:"javiersanchezflores@hotmail.com";s:7:"subject";s:33:"You have a new comment to approve";s:7:"message";s:139:"Hi admin,
-
-[node:author:mail] wrote a new comment.
-
-The comment is [comment:author:mail].
-
-You can enter at the admin to accept them.";}',
-      'label' => 'Send email when there\'s a new comment',
-    ),
-  );
-  return $items;
-}
-
-/**
  * Implements hook_features_actions_triggers_export_triggers_default().
  */
 function focus_news_features_actions_triggers_export_triggers_default() {
