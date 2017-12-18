@@ -12,7 +12,7 @@
 /* GLOBALS */
 @font-face {font-family: "PFSquareSansPro"; src: url("webfonts/Parachute - PFSquareSansPro-Regular.otf") format("otf");}
 html {font-size: 16px;}
-body {background-image: none; background-color: #fff; color: #3a3c3b; font-family: Helvetica, ​ Arial, ​ sans-serif; font-size: 100%; line-height: 1.35;}
+body {background-image: none; background-color: #fff; color: #3a3c3b; font-family: "PFSquareSansPro"; font-size: 100%; line-height: 1.35;}
 a {color: #00488A;}
 main a {text-decoration: underline;}
 h1, .h1, h2, .h2, h3, .h3 {margin-bottom: 3px; margin-top: 0;}
@@ -24,7 +24,7 @@ h2.blue{background: url("/themes/focus/images/blue.png") #FFF no-repeat 1px 5px;
 h2.yellow{background: url("/themes/focus/images/yellow.png") #FFF no-repeat 1px 5px; padding: 0 10px 0 20px; margin: 0 0 10px 0;}
 h3.listingLinkHeader {line-height: 0.9;}
 h3.listingLinkHeader a {text-decoration: none;}
-.panel-heading {font-size: 26px !important; top: 55px; color:#00488A; padding: 0 0 0 33px; margin-bottom: 10px; background: url("/themes/focus/images/icono_logo_focus.png"); background-repeat: no-repeat; background-position: left;}
+.panel-heading {font-family: "PFSquareSansPro"; font-size: 26px !important; top: 55px; color:#00488A; padding: 0 0 0 33px; margin-bottom: 10px; background: url("/themes/focus/images/icono_logo_focus.png") #FFF; background-repeat: no-repeat; background-position: left;}
 .panel-default>.panel-heading {color: #00488A!important; background-color: rgba(255, 255, 255, 0); border-bottom:0px; border-radius: 0px;}
 
 .user-picture a img{width: 70px; float: right;}
@@ -351,10 +351,10 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 
 /* ---------------------------------- */
 /* PAGE DIRECTORY OF PROFESSIONALS */
-#block-bean-professionals-header-image-and {border-top: 3px solid #EE3329; border-radius: 0px; top: 15px;}
+#block-bean-professionals-header-image-and {border-top: 3px solid #EE3329; border-radius: 0px; top: 15px; margin-bottom: 50px;}
 #block-bean-professionals-header-image-and .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 375px;}
 #block-bean-professionals-header-image-and .field-name-field-header-description {background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
-#block-bean-professionals-header-upload-bl {border-top: 3px solid #EE3329; border-radius: 0px; margin-top: 60px;}
+#block-bean-professionals-header-upload-bl {border-top: 3px solid #EE3329; border-radius: 0px; margin-top: 30px;}
 #block-bean-professionals-header-upload-bl .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 360px;}
 #block-bean-professionals-header-upload-bl .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
 #block-bean-professionals-header-upload-bl .field-name-field-header-upload-link {width: 120px; float: right; margin: 0 0 0 2%; background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer;}
@@ -362,7 +362,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 #block-bean-professionals-header-upload-bl .field-name-field-header-upload-descrp {text-align: justify;}
 
 	/* Accept professionals */
-	#block-bean-focus-accept-professionals {margin-bottom: 50px; margin-top: 20px; border-top: 3px solid #27288D; border-radius: 0px;}
+	#block-bean-focus-accept-professionals {margin-bottom: 50px; margin-top: 50px; border-top: 3px solid #27288D; border-radius: 0px;}
 	#block-bean-focus-accept-professionals .panel-heading {margin-left: 0px!important; margin-top: -21px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 310px; padding: 0 0 0 32px!important;}
 	#block-bean-focus-accept-professionals .group-accept-prof-descrp {float: left; width: 48%; text-align: center; margin-bottom: 20px; margin: 0 1% 0px 1%;}
 	#block-bean-focus-accept-professionals .field-name-field-focus-image-professionals {border: 1px solid #00488A; border-radius: 30px 30px 0 0;}
@@ -375,10 +375,10 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 .page-events .view-focus-events {margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
 #block-system-main .view-focus-events .view-header h2 {width: 190px; margin-top: -17px!important;}
 #block-bean-events-header-image-and-descri {border-top: 3px solid #EE3329; border-radius: 0px;}
-#block-bean-events-header-image-and-descri .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 130px;}
+#block-bean-events-header-image-and-descri .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 110px;}
 #block-bean-events-header-image-and-descri .field-name-field-header-description {background: #F3F3F3; padding: 15px; border-radius: 0 0 5px 5px;}
 #block-bean-events-header-upload-block {border-top: 3px solid #EE3329; border-radius: 0px; margin-bottom:30px;}
-#block-bean-events-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 275px;}
+#block-bean-events-header-upload-block .panel-heading {margin-top: -20px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #ffffff; width: 230px;}
 #block-bean-events-header-upload-block .panel-body {background: #F3F3F3; padding: 15px; border-radius: 5px;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link {background: #00488A; border-radius: 5px; text-align: center; padding: 12px 0; margin-top: 10px; cursor: pointer; width: 250px; float: right;}
 #block-bean-events-header-upload-block .field-name-field-header-upload-link a{color:#FFFFFF; text-decoration:none;}
@@ -394,7 +394,7 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 
 /* Calendar */
 #block-views-ical-block{margin-top: 40px; border-top: 3px solid #EE3329; border-radius: 0px;}
-#block-views-ical-block .panel-heading{margin-top: -19px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 160px;}
+#block-views-ical-block .panel-heading{margin-top: -19px!important; background: url("/themes/focus/images/icono_logo_focus.png") no-repeat #FFFFFF; width: 135px;}
 #block-views-ical-block table tr th.fc-day-header{background:#00488A; color:#FFFFFF; padding: 5px;}
 #block-views-ical-block .fc-content {-webkit-box-shadow: 0px 0px 0px 0px; box-shadow: 0px 0px 0px 0px; border-radius: 0px;}
 #block-views-ical-block .fc-event-default a, 
@@ -409,7 +409,8 @@ section.group-focus-library-aside .field.field-name-field-focus-library-tags {ma
 .fc-event-default, 
 .fc-event-default .fc-event-skin, 
 .fc-event-default .fc-event-time, 
-.fc-event-default a {border-style: solid; color: #fff; margin: 10px 1px; text-align:center; font-size: 13px;}
+.fc-event-default a {border-style: solid; color: #fff; margin: 10px 1px; text-align:center; font-size: 13px; margin:0px;}
+.fc-event-time, .fc-event-title {float: left; width:100%;}
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight, 
 .ui-widget-header .ui-state-highlight {color: #00488A; font-weight: bold; font-size: 20px;}
@@ -510,7 +511,7 @@ ul.pager-show-more .pager-show-more-next {background-color: #d5e2e4; width: 100%
 .view-mode-full .label-above,
 .view-mode-full .fields-group label {margin-top: 15px; font-weight: bold; margin-bottom: 0;}
 .icon-element {margin-right: 10px;}
-.label-little, .field-name-author {color: #5f6160; font-size: 11px; font-weight: normal;}
+.label-little, .field-name-author {color: #5f6160; font-size: 11px; font-weight: normal; float: left;}
 .link.black a {background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -287px; padding: 1px 0 1px 22px; color: #3a3c3b; font-family: "PFSquareSansPro"; font-size: 18px; display: block;}
 .date .label-above,
 .date-single .date-display-single {background: url("../css/cssimg/icons-sprite.svg") no-repeat scroll 0 -897px; padding-left: 20px; padding-top: 3px;}
@@ -540,7 +541,7 @@ div.date-single div.date-display-single {background-position: 0 -895px;}
 .row .node-eiponaha-event.node-teaser {margin-left: -7px; margin-right: -7px;}
 .row .half-gutter > [class*="col-"],
 .row .node-eiponaha-event.node-teaser > [class*="col-"] {padding-left: 7px; padding-right: 7px;}
-.glyphicon.glyphicon-fix {color: #3a3c3b; font-family: Helvetica, ​ Arial, ​ sans-serif; font-size: 100%; line-height: 1.35; font-smooth: auto; -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; margin-left: 26px; padding-right: 0;}
+.glyphicon.glyphicon-fix {color: #3a3c3b; font-family: "PFSquareSansPro"; font-size: 100%; line-height: 1.35; font-smooth: auto; -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; margin-left: 26px; padding-right: 0;}
 .glyphicon.glyphicon-fix:before {font-family: "Glyphicons Halflings"; margin-left: -23px; margin-top: -2px; position: absolute;}
 
 /* END RESET */
