@@ -46,6 +46,7 @@ features[field_group][] = group_header_news|node|focus_news|full
 features[field_group][] = group_teaser_body|node|focus_news|teaser
 features[field_group][] = group_teaser_content|node|focus_news|teaser
 features[field_group][] = group_teaser_header|node|focus_news|teaser
+features[field_group][] = group_upload_data|node|focus_news|full
 features[field_instance][] = comment-comment_node_focus_news-comment_body
 features[field_instance][] = node-focus_news-body
 features[field_instance][] = node-focus_news-field_field_tags

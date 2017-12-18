@@ -207,6 +207,39 @@ function focus_news_field_group_info() {
   );
   $field_groups['group_teaser_header|node|focus_news|teaser'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_upload_data|node|focus_news|full';
+  $field_group->group_name = 'group_upload_data';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'focus_news';
+  $field_group->mode = 'full';
+  $field_group->parent_name = 'group_header_news';
+  $field_group->data = array(
+    'label' => 'Upload data',
+    'weight' => '8',
+    'children' => array(
+      0 => 'author',
+      1 => 'post_date',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Upload data',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-upload-data field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_upload_data|node|focus_news|full'] = $field_group;
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Content news');
@@ -215,6 +248,7 @@ function focus_news_field_group_info() {
   t('Teaser body');
   t('Teaser content');
   t('Teaser header');
+  t('Upload data');
 
   return $field_groups;
 }
