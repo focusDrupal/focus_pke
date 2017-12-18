@@ -35,14 +35,14 @@ function focus_directory_of_professionals_context_default_contexts() {
         'bean-professionals---header-upload-bl' => array(
           'module' => 'bean',
           'delta' => 'professionals---header-upload-bl',
-          'region' => 'content',
-          'weight' => '-9',
+          'region' => 'content_bottom',
+          'weight' => '-10',
         ),
         'bean-focus-accept-professionals' => array(
           'module' => 'bean',
           'delta' => 'focus-accept-professionals',
           'region' => 'content_bottom',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
       ),
     ),
