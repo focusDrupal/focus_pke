@@ -177,18 +177,18 @@ function focus_event_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'fullcalendar_options';
   $strongarm->value = array(
-    'firstHour' => TRUE,
-    'minTime' => TRUE,
-    'maxTime' => TRUE,
-    'slotMinutes' => TRUE,
-    'defaultEventMinutes' => TRUE,
-    'allDaySlot' => TRUE,
-    'weekends' => TRUE,
-    'lazyFetching' => TRUE,
-    'disableDragging' => TRUE,
-    'disableResizing' => TRUE,
-    'dragRevertDuration' => TRUE,
-    'dayClick' => TRUE,
+    'firstHour' => 1,
+    'minTime' => 1,
+    'maxTime' => 1,
+    'slotMinutes' => 1,
+    'defaultEventMinutes' => 1,
+    'allDaySlot' => 1,
+    'weekends' => 1,
+    'lazyFetching' => 1,
+    'disableDragging' => 1,
+    'disableResizing' => 1,
+    'dragRevertDuration' => 1,
+    'dayClick' => 1,
   );
   $export['fullcalendar_options'] = $strongarm;
 

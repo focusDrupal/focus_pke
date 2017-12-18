@@ -28,11 +28,9 @@ function focus_event_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   /* Header: Global: Text area */
@@ -41,10 +39,22 @@ function focus_event_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['content'] = '<div class="row">
   <div class="col-md-12" style="margin-bottom: 30px;">
-    <h2 class="pane-title large-header">Next events</h2>
+    <h2 class="pane-title large-header">Upcoming events</h2>
   </div>
 </div>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = '<div class="row">
+  <div class="col-md-12">
+    <h2 class="panel-heading" style="margin-top: -17px; width: 223px;">Upcoming events</h2>
+    <p style="font-size: 20px;">There are not upcoming events currently.</p>
+  </div>
+</div>';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -102,7 +112,6 @@ function focus_event_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Calendar';
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -114,10 +123,10 @@ function focus_event_views_default_views() {
   $handler->display->display_options['style_options']['firstDay'] = '1';
   $handler->display->display_options['style_options']['left'] = 'today prev';
   $handler->display->display_options['style_options']['right'] = 'next';
-  $handler->display->display_options['style_options']['timeformat'] = 'hh:mm{ - hh:mm}';
   $handler->display->display_options['style_options']['fields']['title_field'] = 'field_focus_event_text_calendar';
   $handler->display->display_options['style_options']['fields']['title'] = TRUE;
-  $handler->display->display_options['style_options']['fullcalendar_options']['dayClickView'] = 'agendaDay';
+  $handler->display->display_options['style_options']['fullcalendar_options']['allDaySlot'] = FALSE;
+  $handler->display->display_options['style_options']['fullcalendar_options']['disableDragging'] = TRUE;
   /* Footer: Global: Text area */
   $handler->display->display_options['footer']['area']['id'] = 'area';
   $handler->display->display_options['footer']['area']['table'] = 'views';
@@ -146,7 +155,7 @@ function focus_event_views_default_views() {
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
-    'show_remaining_days' => 0,
+    'show_remaining_days' => 1,
   );
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';

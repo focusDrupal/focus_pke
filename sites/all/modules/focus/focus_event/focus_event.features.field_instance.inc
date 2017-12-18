@@ -762,7 +762,7 @@ function focus_event_field_default_field_instances() {
     'bundle' => 'focus_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Event text for calendar',
+    'description' => 'Text that will appear in the body of the calendar',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -835,7 +835,7 @@ function focus_event_field_default_field_instances() {
       'settings' => array(
         'maxlength_js' => 1,
         'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        'size' => 30,
+        'size' => 10,
       ),
       'type' => 'text_textfield',
       'weight' => 2,
@@ -1543,7 +1543,6 @@ function focus_event_field_default_field_instances() {
   t('Event organiser');
   t('Event registration deadline');
   t('Event registration url');
-  t('Event text for calendar');
   t('Event type');
   t('Event url');
   t('Full name');
@@ -1553,6 +1552,7 @@ function focus_event_field_default_field_instances() {
   t('Related action groups');
   t('Short name');
   t('Tags');
+  t('Text that will appear in the body of the calendar');
   t('Title');
   t('Type');
 

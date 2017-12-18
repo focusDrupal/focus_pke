@@ -29,19 +29,19 @@ function focus_event_context_default_contexts() {
         'bean-events---header-image-and-descri' => array(
           'module' => 'bean',
           'delta' => 'events---header-image-and-descri',
-          'region' => 'content_top_left',
-          'weight' => '-10',
-        ),
-        'bean-events---header-upload-block' => array(
-          'module' => 'bean',
-          'delta' => 'events---header-upload-block',
-          'region' => 'content_top_right',
+          'region' => 'content_top',
           'weight' => '-10',
         ),
         'views-ical-block' => array(
           'module' => 'views',
           'delta' => 'ical-block',
           'region' => 'content_right',
+          'weight' => '-10',
+        ),
+        'bean-events---header-upload-block' => array(
+          'module' => 'bean',
+          'delta' => 'events---header-upload-block',
+          'region' => 'content_bottom',
           'weight' => '-10',
         ),
       ),
