@@ -32,29 +32,17 @@ function focus_repository_context_default_contexts() {
           'region' => 'content',
           'weight' => '-7',
         ),
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
+        'views--exp-search_page-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-search_page-page',
           'region' => 'content',
-          'weight' => '-5',
-        ),
-        'bean-check-your-evaluations' => array(
-          'module' => 'bean',
-          'delta' => 'check-your-evaluations',
-          'region' => 'content_bottom',
-          'weight' => '-10',
-        ),
-        'bean-practices-uploaded' => array(
-          'module' => 'bean',
-          'delta' => 'practices-uploaded',
-          'region' => 'content_bottom',
-          'weight' => '-9',
+          'weight' => '-6',
         ),
         'bean-repository---header-upload-block' => array(
           'module' => 'bean',
           'delta' => 'repository---header-upload-block',
           'region' => 'content_bottom',
-          'weight' => '-8',
+          'weight' => '-10',
         ),
       ),
     ),
@@ -66,6 +54,38 @@ function focus_repository_context_default_contexts() {
   t('Pages');
   t('Repository of good practices');
   $export['repository'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'search_practices';
+  $context->description = '';
+  $context->tag = 'search';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'search-practices' => 'search-practices',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views--exp-search_page-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-search_page-page',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('search');
+  $export['search_practices'] = $context;
 
   return $export;
 }

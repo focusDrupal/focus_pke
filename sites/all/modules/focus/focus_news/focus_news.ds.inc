@@ -37,6 +37,32 @@ function focus_news_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|focus_news|search';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'focus_news';
+  $ds_fieldsetting->view_mode = 'search';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '1',
+        'wrapper' => 'h2',
+        'class' => '',
+        'ft' => array(),
+      ),
+    ),
+    'body' => array(
+      'formatter_settings' => array(
+        'ft' => array(),
+      ),
+    ),
+  );
+  $export['node|focus_news|search'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|focus_news|teaser';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'focus_news';
@@ -110,20 +136,22 @@ function focus_news_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
-        1 => 'field_focus_news_img_top_ft',
-        2 => 'field_focus_news_pub_date',
-        3 => 'body',
-        4 => 'field_field_tags',
-        5 => 'path',
-        6 => 'field_focus_news_document',
-        7 => 'metatags',
+        2 => 'field_focus_news_img_top_ft',
+        3 => 'field_focus_news_pub_date',
+        4 => 'body',
+        5 => 'field_field_tags',
+        6 => 'path',
+        7 => 'field_focus_news_document',
+        8 => 'metatags',
       ),
       'hidden' => array(
-        8 => '_add_existing_field',
+        1 => 'workbench_access',
+        9 => '_add_existing_field',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
+      'workbench_access' => 'hidden',
       'field_focus_news_img_top_ft' => 'ds_content',
       'field_focus_news_pub_date' => 'ds_content',
       'body' => 'ds_content',
@@ -205,6 +233,40 @@ function focus_news_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|focus_news|search';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'focus_news';
+  $ds_layout->view_mode = 'search';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'body',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'body' => 'ds_content',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|focus_news|search'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|focus_news|teaser';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'focus_news';
@@ -214,24 +276,24 @@ function focus_news_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'group_teaser_header',
-        1 => 'field_focus_news_img_top_ft',
-        2 => 'group_teaser_content',
+        1 => 'group_teaser_dates',
+        2 => 'field_focus_news_img_top_ft',
         3 => 'title',
         4 => 'group_teaser_body',
-        5 => 'body',
-        6 => 'post_date',
-        7 => 'author',
+        5 => 'post_date',
+        6 => 'author',
+        7 => 'body',
       ),
     ),
     'fields' => array(
       'group_teaser_header' => 'ds_content',
+      'group_teaser_dates' => 'ds_content',
       'field_focus_news_img_top_ft' => 'ds_content',
-      'group_teaser_content' => 'ds_content',
       'title' => 'ds_content',
       'group_teaser_body' => 'ds_content',
-      'body' => 'ds_content',
       'post_date' => 'ds_content',
       'author' => 'ds_content',
+      'body' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

@@ -14,7 +14,7 @@ function focus_event_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_focus_event';
-  $strongarm->value = 'edit-ds-extras';
+  $strongarm->value = 'edit-submission';
   $export['additional_settings__active_tab_focus_event'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -91,7 +91,7 @@ function focus_event_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_focus_event';
-  $strongarm->value = '1';
+  $strongarm->value = '2';
   $export['comment_focus_event'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -151,6 +151,9 @@ function focus_event_strongarm() {
       'ical' => array(
         'custom_settings' => FALSE,
       ),
+      'search' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -164,7 +167,7 @@ function focus_event_strongarm() {
           'weight' => '4',
         ),
         'workbench_access' => array(
-          'weight' => '1',
+          'weight' => '19',
         ),
       ),
       'display' => array(),
@@ -221,6 +224,7 @@ function focus_event_strongarm() {
   $strongarm->name = 'node_options_focus_event';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'promote',
   );
   $export['node_options_focus_event'] = $strongarm;
 
@@ -228,14 +232,14 @@ function focus_event_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_focus_event';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['node_preview_focus_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_focus_event';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['node_submitted_focus_event'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -244,6 +248,20 @@ function focus_event_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_nexteuropa_event_type_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_nexteuropa_event_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_mail_display_focus_event';
+  $strongarm->value = 1;
+  $export['print_mail_display_focus_event'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_pdf_display_comment_focus_event';
+  $strongarm->value = 0;
+  $export['print_pdf_display_comment_focus_event'] = $strongarm;
 
   return $export;
 }

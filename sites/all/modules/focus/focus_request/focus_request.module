@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FOCUS Request feature.
+ */
+
+include_once 'focus_request.features.inc';

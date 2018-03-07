@@ -9,6 +9,15 @@
  */
 function focus_directory_of_professionals_default_rules_configuration() {
   $items = array();
+  $items['focus_event_redirect_directory_of_professionals'] = entity_import('rules_config', '{ "focus_event_redirect_directory_of_professionals" : {
+      "LABEL" : "Redirect directory of professionals",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "REQUIRES" : [ "rules" ],
+      "ON" : { "node_insert--focus_directory_of_professionals" : { "bundle" : "focus_directory_of_professionals" } },
+      "DO" : [ { "redirect" : { "url" : "core-board" } } ]
+    }
+  }');
   $items['rules_accept_professional'] = entity_import('rules_config', '{ "rules_accept_professional" : {
       "LABEL" : "Accept professional",
       "PLUGIN" : "rule",
@@ -24,15 +33,7 @@ function focus_directory_of_professionals_default_rules_configuration() {
       ],
       "DO" : [
         { "data_set" : { "data" : [ "node:field-accept-professional" ], "value" : "1" } },
-        { "data_set" : { "data" : [ "node:status" ], "value" : "1" } },
-        { "mail" : {
-            "to" : "[node:field-email-professional]",
-            "subject" : "New professional accepted",
-            "message" : "Your request has been accepted. \\r\\nYou can access to the updated list at: http:\\/\\/94.23.87.115:50080\\/focus\\/platform\\/directory-of-professionals_en",
-            "from" : "[site:mail]",
-            "language" : [ "node:language" ]
-          }
-        }
+        { "data_set" : { "data" : [ "node:status" ], "value" : "1" } }
       ]
     }
   }');
@@ -51,15 +52,7 @@ function focus_directory_of_professionals_default_rules_configuration() {
       ],
       "DO" : [
         { "data_set" : { "data" : [ "node:field-accept-professional" ], "value" : "2" } },
-        { "data_set" : { "data" : [ "node:status" ], "value" : "0" } },
-        { "mail" : {
-            "to" : "[node:field-email-professional]",
-            "subject" : "New professional rejected.",
-            "message" : "Your request has been rejected.",
-            "from" : "[site:url]",
-            "language" : [ "node:language" ]
-          }
-        }
+        { "data_set" : { "data" : [ "node:status" ], "value" : "0" } }
       ]
     }
   }');

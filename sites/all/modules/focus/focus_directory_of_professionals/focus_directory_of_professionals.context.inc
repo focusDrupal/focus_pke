@@ -19,7 +19,11 @@ function focus_directory_of_professionals_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'directory-of-professionals' => 'directory-of-professionals',
+        'core-board' => 'core-board',
+        'core-board/elder-people' => 'core-board/elder-people',
+        'core-board/policy-makers' => 'core-board/policy-makers',
+        'core-board/healthcare-professional' => 'core-board/healthcare-professional',
+        'core-board/organization' => 'core-board/organization',
       ),
     ),
   );
@@ -32,17 +36,23 @@ function focus_directory_of_professionals_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
+        'bean-image-join-us' => array(
+          'module' => 'bean',
+          'delta' => 'image-join-us',
+          'region' => 'content_bottom',
+          'weight' => '-10',
+        ),
         'bean-professionals---header-upload-bl' => array(
           'module' => 'bean',
           'delta' => 'professionals---header-upload-bl',
           'region' => 'content_bottom',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'bean-focus-accept-professionals' => array(
           'module' => 'bean',
           'delta' => 'focus-accept-professionals',
           'region' => 'content_bottom',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
       ),
     ),

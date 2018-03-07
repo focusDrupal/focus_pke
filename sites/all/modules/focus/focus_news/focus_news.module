@@ -19,3 +19,27 @@ function focus_news_form_alter(&$form, &$form_state, $form_id) {
   // Hide field.
   $form['field_focus_news_pub_date']['#access'] = 0;
 }
+
+/**
+ * Function to delete block in event context if the user isn't focus partner or if the user has not logged in.
+ *
+ * @param string $key
+ *    Get the $context.
+ */
+function focus_news_block_view_alter(&$data, $block) {
+	global $user;
+	$userRoles = $user->roles;
+
+	if ($user->uid) {
+		if(!in_array('focus partner', $userRoles)){
+			if ($block->bid == 'bean-news---header-upload-block') {
+				/* This line delete the upload block */
+		    $data['content'] = array();
+			}
+		}
+  }else{
+		if ($block->bid == 'bean-news---header-upload-block') {
+	    	$data['content'] = array();
+		}    	
+  }
+}

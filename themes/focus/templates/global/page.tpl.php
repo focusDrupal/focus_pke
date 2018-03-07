@@ -105,7 +105,7 @@
 
   <header id="layout-header" role="banner">
     <div class="container">
-      <div id="main-title"><?php print $site_name;?></div>
+      <div id="main-title" title="<?php print $site_name;?>"><a class="logoFOCUS" href="<?php print $front_page;?>"><img src="http://focus/themes/focus/images/icono_logo_focus_big.png"></a></div>
       <div id="sub-title" class="hidden-xs"><?php print $site_slogan; ?></div>
     </div>
   </header><!-- /#layout-header -->

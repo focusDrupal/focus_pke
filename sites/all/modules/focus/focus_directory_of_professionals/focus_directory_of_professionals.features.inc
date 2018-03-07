@@ -53,6 +53,21 @@ function focus_directory_of_professionals_image_default_styles() {
     ),
   );
 
+  // Exported image style: join_us.
+  $styles['join_us'] = array(
+    'label' => 'Join us',
+    'effects' => array(
+      6 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 465,
+          'height' => 150,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 

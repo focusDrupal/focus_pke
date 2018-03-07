@@ -69,7 +69,7 @@ function _focus_directory_of_professionals_new_user($node) {
 
 function _focus_directory_of_professionals_send_request($node){
 	// Send email to user (Send request).
-	$name_professional = $node->field_name_professional['und'][0]['value'];
+	$name_professional = $node->title;
 	$lastname_professional = $node->field_last_name_professional['und'][0]['value'];
 	$mail_professional = $node->field_email_professional['und'][0]['email'];
 
@@ -115,6 +115,119 @@ function _focus_directory_of_professionals_send_request($node){
 	drupal_mail('focus_directory_of_professionals', 'focus_directory_of_professionals_mail', $to, language_default(), $params);
 }
 
+function _focus_send_welcome_mail($node, $password){
+	// Send email to new user.
+	$userMail = $node->field_email_professional['und'][0]['email'];
+	$userName = $node->title_field['en'][0]['value'];
+	$userLastName = $node->field_last_name_professional['und'][0]['value'];;
+
+	$to = $userMail;
+	$subject = t('FOCUS - Your new user account has been activated on platform of knowledge exchange (PKE)');
+	$data_professional = array(
+	  '@userName' => $userName,
+	  '@userLastName' => $userLastName,
+	  '@userMail' => $userMail,
+	  '@userPass' => $password,
+	);
+	$body = t('
+		<div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+			<div class="header">
+				<div style="width: 120px; margin: 0 auto;">
+					<img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+					<h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+				</div>
+				<div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+					<p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+				</div>
+				<img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+			</div>
+			<div>
+				<p style="padding: 20px 0 0 20px;">Hello @userName @userLastName</p>
+			</div>
+			<div>
+				<p style="padding: 20px 0 0 20px;">You has been accepted in the core board of the FOCUS project. Now you have new user account to upload new practices and news.</p>
+				<p>Your data to enter the platform are:</p>
+			</div>
+			<div>
+				<p style="padding: 20px 0 0 20px;"><span>USERNAME: </span>@userMail</p>
+				<p style="padding: 20px 0 0 20px;"><span>PASSWORD: </span>@userPass</p>
+			</div>
+			<div>
+				<p style="padding: 20px 0 0 20px;">You can access to <a href="/user">your profile</a> to change your password.</p>
+			</div>			
+			<div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+				<div style="float: left; width: 80%;">
+					<p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+				</div>
+				<div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+					<a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+					<a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+				</div>
+			</div>
+		</div>
+		', $data_professional);
+
+	$params = array(
+	  'subject' => $subject,
+	  'body' => $body,
+	);
+
+	drupal_mail('focus_directory_of_professionals', 'focus_directory_of_professionals_mail', $to, language_default(), $params);
+}
+
+function _focus_send_rejected_mail($node){
+
+	// Send email to rejected user.
+	$userMail = $node->field_email_professional['und'][0]['email'];
+	$userName = $node->title_field['en'][0]['value'];
+	$userLastName = $node->field_last_name_professional['und'][0]['value'];;
+
+	$to = $userMail;
+	$subject = t('FOCUS - Your user account has been rejected on platform of knowledge exchange (PKE)');
+	$data_professional = array(
+	  '@userName' => $userName,
+	  '@userLastName' => $userLastName,
+	  '@userMail' => $userMail,
+	);
+	$body = t('
+		<div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+			<div class="header">
+				<div style="width: 120px; margin: 0 auto;">
+					<img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+					<h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+				</div>
+				<div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+					<p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+				</div>
+				<img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+			</div>
+			<div>
+				<p style="padding: 20px 0 0 20px;">Hello @userName @userLastName</p>
+			</div>
+			<div>
+				<p style="padding: 20px 0 0 20px;">You has been rejected in the core board of the FOCUS project.</p>
+			</div>		
+			<div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+				<div style="float: left; width: 80%;">
+					<p style="color:#FFFFFF;">&copy; FOCUS 2017</p>
+				</div>
+				<div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+					<a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+					<a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+				</div>
+			</div>
+		</div>
+		', $data_professional);
+
+	$params = array(
+	  'subject' => $subject,
+	  'body' => $body,
+	);
+
+	drupal_mail('focus_directory_of_professionals', 'focus_directory_of_professionals_mail', $to, language_default(), $params);
+
+}
+
 /**
  * Function to send an email to the admin when creating a new professional.
  *
@@ -133,4 +246,202 @@ function focus_directory_of_professionals_mail($key, &$message, $params) {
 		$message['subject'] = $params['subject'];
 		$message['body'][] = $params['body'];
 	}
+}
+
+/**
+ * @param ViewExecutable $view
+ * @param QueryPluginBase $query
+ *
+ * Sets a custom custom filter criteria
+ */
+function focus_directory_of_professionals_views_query_alter(&$view, &$query) {
+
+  	if ($view->name == 'focus_directory_of_professionals' && $view->current_display == 'directory_of_professionals') {
+
+	  	global $user;
+		$kindProfessional = array(0, 1, 2, 3);
+
+		if ($user->uid) {
+
+			$userRoles = $user->roles;
+
+		 	if(in_array('administrator', $userRoles) || in_array('policy makers', $userRoles)){
+				unset($query->where[1]['conditions'][2]);
+		 	}elseif(in_array('elder people', $userRoles)){
+		 		unset($query->where[1]['conditions'][2]);
+				$query->add_where(0,"field_data_field_kind_of_professional.field_kind_of_professional_value",0,"=");
+		  	}elseif(in_array('healthcare professional', $userRoles)){
+		  		unset($query->where[1]['conditions'][2]);
+				$query->add_where(0,"field_data_field_kind_of_professional.field_kind_of_professional_value",2,"=");
+		 	}elseif(in_array('organization', $userRoles)){
+		 		unset($query->where[1]['conditions'][2]);
+				$query->add_where(0,"field_data_field_kind_of_professional.field_kind_of_professional_value",3,"=");
+		  	}else{
+		  		unset($query->where[1]['conditions'][2]);
+				$query->add_where(0,"field_data_field_kind_of_professional.field_kind_of_professional_value",0,"=");
+		  	}
+
+		}else{
+			unset($query->where[1]['conditions'][2]);
+			$query->add_where(0,"field_data_field_kind_of_professional.field_kind_of_professional_value",0,"=");
+		}
+
+		$view->empty['area']->options['content'] = "Set your message";
+		$view->empty['area']->options['label'] = "Set your label";
+		
+  	}
+}
+
+function focus_directory_of_professionals_node_update($node) {
+
+	$nodeNid = $node->nid;
+	$accept = $node->field_accept_professional['und'][0]['value'];
+	$flag = $node->field_flag_create_user['und'][0]['value'];
+	$userName = $node->field_email_professional['und'][0]['email'];
+	$email = $node->field_email_professional['und'][0]['email'];
+	$kind_of_professional = $node ->field_kind_of_professional['und'][0]['value'];
+
+	if ($kind_of_professional == '0'){
+		$kind_of_professional = 'elder people';
+	}else if ($kind_of_professional == '1'){
+		$kind_of_professional = 'policy makers';
+	}else if ($kind_of_professional == '2'){
+		$kind_of_professional = 'healthcare professional';
+	}else{
+		$kind_of_professional = 'organization';
+	}
+
+	$nameStakeholder = $node->title_field['en'][0]['value'];
+	$lastName = $node->field_last_name_professional['und'][0]['value'];
+	$oneLastName = explode(" ", $lastName);
+	$oneLastName = $oneLastName[0];
+
+	if ($node->type == 'focus_directory_of_professionals' && $accept == '1' && $flag == '0') {
+
+		/* Put the flag to 1 */
+		$node->field_flag_create_user['und'][0]['value'] = '1';
+		node_save($node);
+	
+		/* Include to hash the password */
+		require_once DRUPAL_ROOT. '/includes/password.inc';
+
+		/* Create random password */
+		$password = "";
+		$charset = "abcdefghijklmnopqrstuwxyz/\()-ABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+
+		for($i = 0; $i < 8; $i++)
+		{
+		    $random_int = mt_rand();
+		    $password .= $charset[$random_int % strlen($charset)];
+		}
+
+		/* Create new user */
+		$account = new StdClass();
+		$account->is_new = TRUE;
+		$account->status = TRUE;
+		$account->name = $userName;
+		$account->pass = user_hash_password($password);
+		$account->mail = $email;
+		$account->init = $email;
+		$account->locale = 'en';
+		user_save($account);
+
+		// Get the roles
+		$getRoles = array(
+			'elder people', 
+			'policy makers', 
+			'organization', 
+			'healthcare professional',
+		);
+
+		$userRoles = db_select('role', 'r');
+		$userRoles->fields('r', array('rid', 'name'));
+		$userRoles->condition('r.name ', $getRoles, 'IN');
+
+		$result_userRoles = $userRoles->execute();
+
+		$final_userRoles = array();
+
+		if ($result_userRoles) {
+			$i = 0;
+			while ($row = $result_userRoles->fetchAssoc()) {
+				$final_userRoles[$i][0] = $row['rid'];
+				$final_userRoles[$i][1] = $row['name'];
+				$i++;
+			}
+		}
+
+		/* I check that the id of the role matches the role of the user and insert it */
+		if ($final_userRoles[1][1] == $kind_of_professional){
+
+			$rolUser = $final_userRoles[1][0];
+
+		} else if ($final_userRoles[2][1] == $kind_of_professional){
+
+			$rolUser = $final_userRoles[2][0];
+
+		}else if ($final_userRoles[3][1] == $kind_of_professional){
+
+			$rolUser = $final_userRoles[3][0];
+
+		} else {
+
+			$rolUser = $final_userRoles[0][0];
+
+		}
+
+		/* Update the last user */
+		$uidNewUser = $account->uid;
+		$account = user_load($uidNewUser);
+	  	$account->field_firstname['und'][0]['value'] = $nameStakeholder;
+	  	$account->field_lastname['und'][0]['value'] = $lastName; 
+	  	$account->timezone = 'Europe/Madrid';
+	  	$account->roles = array (
+	  		'2' => 'authenticated user',
+	  		$rolUser => $kind_of_professional,
+	  	);
+	  	user_save($account);
+
+	  	_focus_send_welcome_mail($node, $password);
+
+	}else if ($node->type == 'focus_directory_of_professionals' && $accept == '2' && $flag == '0'){
+
+		/* Put the flag to 1 */
+		$node->field_flag_create_user['und'][0]['value'] = '1';
+		node_save($node);
+
+		_focus_send_rejected_mail($node, $password);
+
+	}
+
+}
+
+function focus_directory_of_professionals_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'focus_directory_of_professionals_node_form') {
+    $form['#validate'][] = 'professional_validation_mail';
+  }
+}
+
+function professional_validation_mail($form, &$form_state) {
+
+	$userMail = db_select('users', 'u');
+	$userMail->fields('u', array('uid', 'mail'));
+	$result_userMail = $userMail->execute();
+
+	$final_userMail = array();
+
+	if ($result_userMail) {
+		$i = 0;
+		while ($row = $result_userMail->fetchAssoc()) {
+			$final_userMail[$i] = $row['mail'];
+			$i++;
+		}
+	}
+
+	$userEnterMail = $form_state['values']['field_email_professional']['und'][0]['email'];
+
+	if (in_array($userEnterMail, $final_userMail)) {
+    	form_set_error('title', t('You can not be added as stakeholder. There is already a stakeholder with this email.'));
+  	}
+
 }

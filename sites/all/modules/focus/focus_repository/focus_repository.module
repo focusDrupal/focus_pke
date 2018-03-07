@@ -49,3 +49,122 @@ function focus_form_practice_node_form_alter(&$form, &$form_state, $form_id) {
   }
 
 }
+
+/**
+ * Implements hook_node_insert().
+ */
+function focus_repository_node_insert($node) {
+  if ($node->type == 'practice') {
+    focus_repository_send_mail($node);
+    drupal_set_message(t('You have sent a practice. You must wait to see it published until it is validated by the administrator.'), 'status');
+    drupal_goto('good-practices');
+  }
+}
+
+/**
+ * Function to send an email when creating a new event.
+ *
+ * @node --> Get the node id.
+ *
+ */
+function focus_repository_send_mail($node){
+  global $base_url;
+  global $user;
+
+  // Get the mails
+  $mailUsers = db_select('users', 'u');
+  $mailUsers->fields('u', array('uid', 'mail'));
+  $mailUsers->innerjoin('users_roles', 'ur', 'ur.uid = u.uid');
+  $mailUsers->innerjoin('role', 'r', 'r.rid = ur.rid');
+  $mailUsers->condition('r.name ', "repository evaluator", '=');
+
+  $result_mailUsers = $mailUsers->execute();
+
+  $final_send_mails = array();
+
+  if ($result_mailUsers) {
+    $i = 0;
+    while ($row = $result_mailUsers->fetchAssoc()) {
+      $final_send_mails[$i] = array(
+        $row['uid'],
+        $row['mail'],
+      );
+      $i++;
+    }
+  }
+
+  // Get all the dates of the practice and send mail to the repository evaluator
+  $practiceName = $node->title;
+  $practiceSummary = $node->field_rep_summary['und'][0]['value'];
+  $urlWithoutSpaces = str_replace(' ', '-', $node->title_field['en'][0]['value']);
+  $urlLowercase = strtolower($urlWithoutSpaces);
+  $urlPracticeLarge = url(drupal_get_path_alias('content/' . $urlLowercase));
+  $deleteUrl = str_replace("/focus/platform", "", $urlPracticeLarge);
+  $urlPractice = $GLOBALS['base_url'] . $deleteUrl;  
+  
+  $to = $final_send_mails[0][1];
+
+  $subject = t('FOCUS - You have new practice to publish.');
+  $practiceName_text = array(
+    '@practiceName' => $practiceName,
+    '@practiceSummary' => $practiceSummary,
+    '@urlPractice' => $urlPractice,
+  );
+  
+  $body = t('
+    <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+      <div class="header">
+        <div style="width: 120px; margin: 0 auto;">
+          <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+          <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+        </div>
+        <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+          <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+        </div>
+        <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+      </div>
+      <div>
+        <p style="padding: 20px 0 0 20px;">The practice <strong>@practiceName</strong> has been created. you can publish it from the following <strong><a href="@urlPractice">link</a></strong>.</p>
+        <h4>Here you have a little summary:</h4>
+        <p>@practiceSummary</p>
+      </div>
+      <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+        <div style="float: left; width: 80%;">
+          <p style="color:#FFFFFF;">&copy; FOCUS 2018</p>
+        </div>
+        <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+          <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+          <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+        </div>
+      </div>
+    </div>
+    ', $practiceName_text);
+
+  $params = array(
+    'subject' => $subject,
+    'body' => $body,
+  );
+
+  drupal_mail('focus_repository', 'focus_practice_mail', $to, language_default(), $params);
+
+}
+
+/**
+ * Function to send an email to the evaluator when the practice is assigned.
+ *
+ * @param string $key
+ *    Get the $key.
+ * @param mixed $message
+ *    Get the $message.
+ * @param array $params
+ *    Get the $params.
+ */
+function focus_practice_mail($key, &$message, $params) {
+  if ($key == 'focus_practice_mail') {
+    $message['headers']['MIME-Version'] = '1.0';
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+    $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+    $message['subject'] = $params['subject'];
+    $message['body'][] = $params['body'];
+  }
+}

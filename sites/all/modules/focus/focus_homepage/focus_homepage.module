@@ -5,3 +5,38 @@
  */
 
 include_once 'focus_homepage.features.inc';
+
+/**
+ * @param ViewExecutable $view
+ * @param QueryPluginBase $query
+ *
+ * Sets a custom custom filter criteria
+ */
+function focus_homepage_views_query_alter(&$view, &$query) {
+
+	if ($view->name == 'homepage_2' && $view->current_display == 'highlights_home') {
+
+	global $user;
+	$healthcareArray = array(2);
+	$organizationArray = array(3);
+
+		if ($user->uid) {
+		  	$userRoles = $user->roles;
+
+		   	if(in_array('administrator', $userRoles) || in_array('policy makers', $userRoles)){
+			  	unset($query->where[1]['conditions'][2]);
+		    }elseif(in_array('healthcare professional', $userRoles)){
+			  	unset($query->where[1]['conditions'][2]);
+		      $query->add_where(0,"field_data_field_type_of_professional.field_type_of_professional_value",$healthcareArray,"IN");  
+		   	}elseif(in_array('organization', $userRoles)){
+			  	unset($query->where[1]['conditions'][2]);		
+		      $query->add_where(0,"field_data_field_type_of_professional.field_type_of_professional_value",$organizationArray,"IN");
+		    }else{
+		      unset($query->where[1]['conditions'][2]);		
+		      $query->add_where(0,"field_data_field_type_of_professional.field_type_of_professional_value",0,"="); 
+		    }
+		}	
+
+	}
+
+}

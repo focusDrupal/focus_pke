@@ -8,18 +8,21 @@
 * hook_form_FORM_ID_alter
 */
 function focus_form_search_block_form_alter(&$form, &$form_state, $form_id) {
-
   $form['search_block_form']['#title'] = t('Search for innovative practices'); // Change the text on the label element
   $form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibilty
   $form['search_block_form']['#attributes']['placeholder'] = t('Enter your search...');
   $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/images/search-button.png');
-
 } 
 
 /**
  * Implements hook_preprocess_page().
  */
 function focus_preprocess_page(&$vars) {
+
+	$status = drupal_get_http_header("status");  
+  if($status == "404 Not Found") {      
+    $vars['theme_hook_suggestions'][] = 'page__404';
+  }
 
   // Load the JS.
   drupal_add_js('//europa.eu/webtools/load.js', 'external');
@@ -97,17 +100,6 @@ function focus_preprocess_page(&$vars) {
 
   $path_login = (module_exists('ecas')) ? url('ecas') : url('user/login');
   $path_logout = (module_exists('ecas')) ? url('ecaslogout') : url('user/logout');
-
-  if (user_is_logged_in()) {
-    $menu_el .= '<li><a href="' . url('user') . '">My Profile</a></li>';
-  }
-  else {
-    $menu_el .= '<li><a href="' . $path_login . '">Login</a></li>';
-  }
-  foreach ($footer_menu as $item) {
-    $menu_el .= '<li><a href="/' . $item['href'] . '">' . $item['title'] . '</a></li>';
-  }
-  $vars['eip_footer_menu'] = $menu_el;
 
   // Custom error pages.
   $header = drupal_get_http_header("status");

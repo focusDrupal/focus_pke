@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * focus_homepage.context.inc
@@ -14,36 +13,24 @@ function focus_homepage_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
-  $context->name = 'focus_homepage';
-  $context->description = 'This is the homepage of Focus';
-  $context->tag = 'Focus';
+  $context->name = 'about';
+  $context->description = 'About page';
+  $context->tag = 'Pages';
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'focus-home' => 'focus-home',
+        'content/about' => 'content/about',
       ),
     ),
   );
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'menu-menu-focus-menu' => array(
-          'module' => 'menu',
-          'delta' => 'menu-focus-menu',
-          'region' => 'content_top',
-          'weight' => '-10',
-        ),
-        'bean-focus-header-homepage-block' => array(
+        'bean-more-about-the-project' => array(
           'module' => 'bean',
-          'delta' => 'focus-header-homepage-block',
+          'delta' => 'more-about-the-project',
           'region' => 'content',
-          'weight' => '-10',
-        ),
-        'bean-focus-footer-european-commission' => array(
-          'module' => 'bean',
-          'delta' => 'focus-footer-european-commission',
-          'region' => 'footer',
-          'weight' => '-10',
+          'weight' => '10',
         ),
       ),
     ),
@@ -52,9 +39,9 @@ function focus_homepage_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Focus');
-  t('This is the homepage of Focus');
-  $export['focus_homepage'] = $context;
+  t('About page');
+  t('Pages');
+  $export['about'] = $context;
 
   return $export;
 }

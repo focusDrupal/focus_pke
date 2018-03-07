@@ -21,7 +21,7 @@ function focus_library_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_focus_library';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['comment_default_mode_focus_library'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -35,7 +35,7 @@ function focus_library_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_focus_library';
-  $strongarm->value = '0';
+  $strongarm->value = '2';
   $export['comment_focus_library'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -49,7 +49,7 @@ function focus_library_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_focus_library';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['comment_preview_focus_library'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -94,6 +94,12 @@ function focus_library_strongarm() {
       ),
       'node_library' => array(
         'custom_settings' => TRUE,
+      ),
+      'search' => array(
+        'custom_settings' => TRUE,
+      ),
+      'ical' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -145,6 +151,7 @@ function focus_library_strongarm() {
   $strongarm->name = 'node_options_focus_library';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'promote',
   );
   $export['node_options_focus_library'] = $strongarm;
 
@@ -159,15 +166,8 @@ function focus_library_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_focus_library';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['node_submitted_focus_library'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_tags_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_tags_pattern'] = $strongarm;
 
   return $export;
 }

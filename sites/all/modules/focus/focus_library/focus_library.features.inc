@@ -40,12 +40,121 @@ function focus_library_node_info() {
     'focus_library' => array(
       'name' => t('FOCUS Library'),
       'base' => 'node_content',
-      'description' => t('Links and media of the FOCUS platform.'),
+      'description' => '',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
     ),
   );
   drupal_alter('node_info', $items);
+  return $items;
+}
+
+/**
+ * Implements hook_default_search_api_index().
+ */
+function focus_library_default_search_api_index() {
+  $items = array();
+  $items['repository_search'] = entity_import('search_api_index', '{
+    "name" : "Repository Search",
+    "machine_name" : "repository_search",
+    "description" : null,
+    "server" : "database_server",
+    "item_type" : "node",
+    "options" : {
+      "datasource" : { "bundles" : [ "focus_library" ] },
+      "index_directly" : 0,
+      "cron_limit" : "50",
+      "fields" : {
+        "field_focus_library_resource:file" : { "type" : "integer", "entity_type" : "file" },
+        "field_focus_library_resource_url:title" : { "type" : "text" },
+        "search_api_language" : { "type" : "string" },
+        "title" : { "type" : "text" }
+      },
+      "data_alter_callbacks" : {
+        "search_api_alter_bundle_filter" : {
+          "status" : 0,
+          "weight" : "-10",
+          "settings" : { "default" : "1", "bundles" : [] }
+        },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_language_control" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "lang_field" : "", "languages" : [] }
+        },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
+      },
+      "processors" : {
+        "search_api_case_ignore" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : { "title" : true, "field_focus_library_resource_url:title" : true } }
+        },
+        "search_api_html_filter" : {
+          "status" : 1,
+          "weight" : "10",
+          "settings" : {
+            "fields" : { "title" : true, "field_focus_library_resource_url:title" : true },
+            "title" : 0,
+            "alt" : 1,
+            "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
+          }
+        },
+        "search_api_transliteration" : {
+          "status" : 1,
+          "weight" : "15",
+          "settings" : { "fields" : { "title" : true, "field_focus_library_resource_url:title" : true } }
+        },
+        "search_api_tokenizer" : {
+          "status" : 0,
+          "weight" : "20",
+          "settings" : {
+            "fields" : { "title" : true, "field_focus_library_resource_url:title" : true },
+            "spaces" : "[^[:alnum:]]",
+            "ignorable" : "[\\u0027]"
+          }
+        },
+        "search_api_stopwords" : {
+          "status" : 0,
+          "weight" : "30",
+          "settings" : {
+            "fields" : { "title" : true, "field_focus_library_resource_url:title" : true },
+            "file" : "",
+            "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
+          }
+        },
+        "search_api_porter_stemmer" : {
+          "status" : 1,
+          "weight" : "35",
+          "settings" : {
+            "fields" : { "title" : true, "field_focus_library_resource_url:title" : true },
+            "exceptions" : "texan=texa"
+          }
+        },
+        "search_api_highlighting" : {
+          "status" : 1,
+          "weight" : "40",
+          "settings" : {
+            "prefix" : "\\u003Cstrong\\u003E",
+            "suffix" : "\\u003C\\/strong\\u003E",
+            "excerpt" : 1,
+            "excerpt_length" : "256",
+            "exclude_fields" : [],
+            "highlight" : "always",
+            "highlight_partial" : 0
+          }
+        }
+      }
+    },
+    "enabled" : "1",
+    "read_only" : "0",
+    "entity_type" : "search_api_index",
+    "rdf_mapping" : []
+  }');
   return $items;
 }

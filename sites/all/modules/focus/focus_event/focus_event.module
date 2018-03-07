@@ -42,23 +42,226 @@ function focus_event_ds_fields_info($entity_type) {
  */
 function _focus_events_ds_custom_date(array $entity) {
 
-  if (empty($entity['entity']->field_focus_event_date[LANGUAGE_NONE][0]['value'])) {
+  if (empty($entity['entity']->field_focus_event_date['und'][0]['value'])) {
     return '';
   }
 
-  $date_start = $entity['entity']->field_focus_event_date[LANGUAGE_NONE][0]['value'];
+  $date_start = $entity['entity']->field_focus_event_date['und'][0]['value'];
+  $date_year_start = date('Y', strtotime($date_start));
+  $date_month_start = date('F', strtotime($date_start));
+  $date_day_start = date('d', strtotime($date_start));
+  $date_hour_start = date('H', strtotime($date_start));
+  $date_min_start = date('i', strtotime($date_start));
+  $date_finish = $entity['entity']->field_focus_event_date['und'][0]['value2'];
+  $date_year_finish = date('Y', strtotime($date_finish));
+  $date_month_finish = date('F', strtotime($date_finish));
+  $date_day_finish = date('d', strtotime($date_finish));
+  $date_hour_finish = date('H', strtotime($date_finish));
+  $date_min_finish = date('i', strtotime($date_finish));
+  $dateStart = date('Y-m-d', strtotime($date_start));
+  $dateFinish = date('Y-m-d', strtotime($date_finish));
 
-  $date_year = format_date($date_start, 'custom', 'Y');
-  $date_month = format_date($date_start, 'custom', 'M');
-  $date_day = format_date($date_start, 'custom', 'd');
+  $diff = abs(strtotime($dateFinish) - strtotime($dateStart));
+  $years = floor($diff / (365*60*60*24));
+  $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+  $intervalDays = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+  $intervalDays1 = $intervalDays + 1;
 
-  $output = '<div class="event-date">';
-  $output .= '<div class="month">' . $date_month . '</div>';
-  $output .= '<div class="month day">';
-  $output .= '<div class="string-day">' . $date_day . '</div>';
-  $output .= '<div class="string-year">' . $date_year . '</div>';
-  $output .= '</div>';
-  $output .= '</div>';
+  if($intervalDays == 0){
+  	$textIntervalDays = '<div class="intervalDays"><p>The event lasts for <strong>1</strong> day.</p></div>';
+  }else if ($intervalDays == 1){
+  	$textIntervalDays = '<div class="intervalDays"><p>The event lasts for <strong>2</strong> days.</p></div>';
+  }else{
+  	$textIntervalDays = '<div class="intervalDays"><p>The event lasts for <strong>' . $intervalDays1 . '</strong> days.</p></div>';
+  }
+
+  if ($date_day_start === $date_day_finish){
+
+  	  $output = '<div class="event-date">';
+  	  $output .= '<div class="month sameDay">' . $date_month_start . '</div>';  	  
+	  $output .= '<div class="start sameDay">';
+	  $output .= '<div class="month day">';
+	  $output .= '<div class="string-day">' . $date_day_start . '</div>';
+	  $output .= '<div class="string-year">' . $date_year_start . '</div>';
+	  $output .= '</div>';
+	  $output .= '<div class="hourStart"><p>Start</p><p>' . $date_hour_start . ' : ' . $date_min_start . '</p></div>';
+	  $output .= '<div class="hourFinish"><p>Finish</p><p>' . $date_hour_finish . ' : ' . $date_min_finish . '</p></div>';
+	  $output .= '</div>';
+	  $output .= $textIntervalDays;
+	  $output .= '</div>';
+
+  }else{
+
+	  $output = '<div class="event-date">';
+	  $output .= '<div class="start">';
+	  $output .= '<div class="month day">';
+	  $output .= '<div class="month">' . $date_month_start . '</div>';  
+	  $output .= '<div class="string-day">' . $date_day_start . '</div>';
+	  $output .= '<div class="string-year">' . $date_year_start . '</div>';
+	  $output .= '</div>';
+	  $output .= '<div class="hour"><p>Start</p>' . $date_hour_start . ' : ' . $date_min_start . '</div>';
+	  $output .= '</div>';
+	  $output .= '<div class="end">';
+	  $output .= '<div class="month day">';
+	  $output .= '<div class="month">' . $date_month_finish . '</div>';   
+	  $output .= '<div class="string-day">' . $date_day_finish . '</div>';
+	  $output .= '<div class="string-year">' . $date_year_finish . '</div>';
+	  $output .= '</div>';
+	  $output .= '<div class="hour"><p>Finish</p>' . $date_hour_finish . ' : ' . $date_min_finish . '</div>';
+	  $output .= '</div>'; 
+	  $output .= $textIntervalDays;
+	  $output .= '</div>';
+
+  }
 
   return $output;
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function focus_event_node_insert($node) {
+  if ($node->type == 'focus_event') {
+    focus_event_send_mail($node);
+    drupal_goto('good-practices');
+  }
+}
+
+/**
+ * Function to send an email when creating a new event.
+ *
+ * @node --> Get the node id.
+ *
+ */
+function focus_event_send_mail($node){
+  global $base_url;
+  global $user;
+
+  // Get the mails
+  $mailUsers = db_select('users', 'u');
+  $mailUsers->fields('u', array('uid', 'mail'));
+	$mailUsers->innerjoin('field_data_field_receive_emails_new_events', 'e', 'e.entity_id = u.uid');
+  $mailUsers->condition('e.field_receive_emails_new_events_value ', 1, '=');
+
+  $result_mailUsers = $mailUsers->execute();
+
+  $final_send_mails = array();
+
+  if ($result_mailUsers) {
+    $i = 0;
+    while ($row = $result_mailUsers->fetchAssoc()) {
+      $final_send_mails[$i] = array(
+      	$row['uid'],
+      	$row['mail'],
+      );
+      $i++;
+    }
+  }
+
+  // Get all the dates of the event and send mail to all the users
+  for ($i = 0; $i < count($final_send_mails); $i++) {
+
+	  $eventName = $node->title_field['en'][0]['value'];
+	  $eventDate = $node->field_focus_event_date['und'][0]['value'];
+	  $eventDateConvertTimestamp = strtotime($eventDate);
+	  $eventDateConvert = format_date($eventDateConvertTimestamp, 'custom', 'Y-m-d');
+	  $eventOrganiser = $node->field_event_organiser['und'][0]['value'];
+	  $eventLocation = $node->field_focus_event_location['und'][0]['value'];
+	  $userUid = $final_send_mails[$i][0];
+	  $to = $final_send_mails[$i][1];
+	  $nid = $node->nid;
+	  $urlEventLarge = url(drupal_get_path_alias('node/' . $nid));
+	  $deleteUrl = str_replace("/focus/platform", "", $urlEventLarge);
+	  $urlEvent = $GLOBALS['base_url'] . $deleteUrl;
+
+	  $subject = t('FOCUS - New event has been created');
+	  $eventName_text = array(
+	    '@eventName' => $eventName,
+	    '@eventDateConvert' => $eventDateConvert,
+	    '@eventLocation' => $eventLocation,
+	    '@userUid' => $userUid,
+	    '@eventOrganiser' => $eventOrganiser,
+	    '@urlEvent' => $urlEvent,
+	  );
+	  
+	  $body = t('
+	    <div style="background: rgba(244, 244, 244, 0.54); border-radius: 2px; padding-top: 10px;">
+	      <div class="header">
+	        <div style="width: 120px; margin: 0 auto;">
+	          <img style="float:left; margin-right:5px;" alt="Logo FOCUS" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/icono_logo_focus.png">
+	          <h1 style="font-size:23px; margin-right: 5px; font-weight: 500;">FOCUS</h1>
+	        </div>
+	        <div style="background:#0065A2; padding: 1px 20px; text-align: center;">
+	          <p style="color:#ffffff;">frailty management optimization through EIP AHA commitments and utilization of stakeholders input</p>
+	        </div>
+	        <img style="width:100%;" alt="Header FOCUS" src="http://94.23.87.115:50080/focus/platform/sites/default/files/slider5.jpg">
+	      </div>
+	      <div>
+	        <p style="padding: 20px 0 0 20px;">The event <strong><a href="@urlEvent">@eventName</a></strong> has been created. It will be organized by <strong>@eventOrganiser</strong> on the <strong>@eventDateConvert</strong> at <strong>@eventLocation</strong>.</p>
+	      </div>
+	      <div style="background:#0065A2; padding: 10px 20px; border-radius: 0 0 2px 2px; display: flex; margin-top: 40px;">
+	        <div style="float: left; width: 80%;">
+	          <p style="color:#FFFFFF;">&copy; FOCUS 2018</p>
+	        </div>
+	        <div style="float:left; width:20%; padding-top:7px; color:#FFFFFF;">
+	          <a href="https://twitter.com/focusonfrailty"><img style="padding-top:-7px;" alt="Icon twitter" src="http://94.23.87.115:50080/focus/platform/themes/focus/images/twitter.png"></a>
+	          <a style="margin: 5px 0 0 5px; color: #FFFFFF; position:absolute;" href="https://twitter.com/focusonfrailty">Follow us on Twitter</a>
+	        </div>
+	      </div>
+	      <p style="padding: 0 0 10px 0; color: #908f8f; font-size: 12px; text-align: center;">If you do not want to receive more emails related to the creation of events, click on the following <a href="http://94.23.87.115:50080/focus/platform/user/@userUid/edit_en">link</a>. Unselect the "send event mail" and save changes.</p>
+	    </div>
+	  	', $eventName_text);
+
+	  $params = array(
+	    'subject' => $subject,
+	    'body' => $body,
+	  );
+
+	  drupal_mail('focus_event', 'focus_event_mail', $to, language_default(), $params);
+
+	}
+}
+
+/**
+ * Function to send an email to the evaluator when the practice is assigned.
+ *
+ * @param string $key
+ *    Get the $key.
+ * @param mixed $message
+ *    Get the $message.
+ * @param array $params
+ *    Get the $params.
+ */
+function focus_event_mail($key, &$message, $params) {
+	if ($key == 'focus_event_mail') {
+		$message['headers']['MIME-Version'] = '1.0';
+		$message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+		$message['headers']['Content-Transfer-Encoding'] = '8Bit';
+		$message['subject'] = $params['subject'];
+		$message['body'][] = $params['body'];
+	}
+}
+
+/**
+ * Function to delete block in event context if the user isn't focus partner or if the user has not logged in.
+ *
+ * @param string $key
+ *    Get the $context.
+ */
+function focus_event_block_view_alter(&$data, $block) {
+	global $user;
+	$userRoles = $user->roles;
+
+	if ($user->uid) {
+		if(!in_array('focus partner', $userRoles)){
+			if ($block->bid == 'bean-events---header-upload-block') {
+				/* This line delete the upload block */
+		    	$data['content'] = array();
+			}
+		}
+  }else{
+		if ($block->bid == 'bean-events---header-upload-block') {
+	    	$data['content'] = array();
+		}    	
+  }
 }

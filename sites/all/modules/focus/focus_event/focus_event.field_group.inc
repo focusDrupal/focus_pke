@@ -128,7 +128,7 @@ function focus_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Content right',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
       0 => 'field_event_organiser',
       1 => 'field_event_fees',
@@ -136,12 +136,9 @@ function focus_event_field_group_info() {
       3 => 'field_focus_event_url',
       4 => 'field_event_registration_url',
       5 => 'field_focus_event_document',
-      6 => 'field_event_author',
-      7 => 'field_focus_event_date',
-      8 => 'field_focus_event_reg_deadline',
-      9 => 'field_focus_tags',
-      10 => 'field_focus_event_ag',
-      11 => 'field_focus_event_text_calendar',
+      6 => 'field_focus_tags',
+      7 => 'field_focus_event_ag',
+      8 => 'field_focus_event_date',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -213,10 +210,11 @@ function focus_event_field_group_info() {
       4 => 'field_focus_event_url',
       5 => 'field_event_registration_url',
       6 => 'field_focus_event_document',
-      7 => 'field_event_author',
-      8 => 'field_focus_event_text_calendar',
+      7 => 'field_focus_event_text_calendar',
+      8 => 'title_field',
       9 => 'field_focus_event_type',
-      10 => 'title',
+      10 => 'field_focus_event_date',
+      11 => 'workbench_access',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

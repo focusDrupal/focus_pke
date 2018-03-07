@@ -12,6 +12,27 @@ function focus_library_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|focus_library|search';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'focus_library';
+  $ds_fieldsetting->view_mode = 'search';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '1',
+        'wrapper' => 'h2',
+        'class' => '',
+        'ft' => array(),
+      ),
+    ),
+  );
+  $export['node|focus_library|search'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|focus_library|teaser';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'focus_library';
@@ -251,18 +272,16 @@ function focus_library_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'body',
-        1 => 'field_focus_library_language',
-        2 => 'field_focus_library_publish_date',
-        3 => 'field_focus_library_resource',
-        4 => 'field_focus_library_resource_url',
-        5 => 'field_focus_library_tags',
-        6 => 'field_focus_library_contact_name',
-        7 => 'field_focus_library_author',
+        1 => 'field_focus_library_publish_date',
+        2 => 'field_focus_library_resource',
+        3 => 'field_focus_library_resource_url',
+        4 => 'field_focus_library_tags',
+        5 => 'field_focus_library_contact_name',
+        6 => 'field_focus_library_author',
       ),
     ),
     'fields' => array(
       'body' => 'ds_content',
-      'field_focus_library_language' => 'ds_content',
       'field_focus_library_publish_date' => 'ds_content',
       'field_focus_library_resource' => 'ds_content',
       'field_focus_library_resource_url' => 'ds_content',
@@ -300,6 +319,7 @@ function focus_library_ds_layout_settings_info() {
         1 => 'title',
         2 => 'path',
         3 => 'metatags',
+        4 => 'field_focus_library_publish_date',
         5 => 'body',
         6 => 'field_focus_library_resource',
         7 => 'field_focus_library_resource_url',
@@ -308,7 +328,6 @@ function focus_library_ds_layout_settings_info() {
         10 => 'field_focus_library_author',
       ),
       'hidden' => array(
-        4 => 'field_focus_library_publish_date',
         11 => '_add_existing_field',
       ),
     ),
@@ -317,7 +336,7 @@ function focus_library_ds_layout_settings_info() {
       'title' => 'ds_content',
       'path' => 'ds_content',
       'metatags' => 'ds_content',
-      'field_focus_library_publish_date' => 'hidden',
+      'field_focus_library_publish_date' => 'ds_content',
       'body' => 'ds_content',
       'field_focus_library_resource' => 'ds_content',
       'field_focus_library_resource_url' => 'ds_content',
@@ -439,6 +458,40 @@ function focus_library_ds_layout_settings_info() {
     'page_option_title' => '',
   );
   $export['node|focus_library|revision'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|focus_library|search';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'focus_library';
+  $ds_layout->view_mode = 'search';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'body',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'body' => 'ds_content',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|focus_library|search'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;

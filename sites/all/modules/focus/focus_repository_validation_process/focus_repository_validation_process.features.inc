@@ -49,29 +49,3 @@ function focus_repository_validation_process_image_default_styles() {
 
   return $styles;
 }
-
-/**
- * Implements hook_node_info().
- */
-function focus_repository_validation_process_node_info() {
-  $items = array(
-    'focus_repository_evaluation' => array(
-      'name' => t('FOCUS Repository evaluation'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'subject_areas' => array(
-      'name' => t('Subject areas'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Subject areas'),
-      'help' => '',
-    ),
-  );
-  drupal_alter('node_info', $items);
-  return $items;
-}

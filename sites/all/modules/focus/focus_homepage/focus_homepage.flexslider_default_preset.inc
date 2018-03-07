@@ -35,7 +35,7 @@ function focus_homepage_flexslider_default_presets() {
     'controlsContainer' => '.flex-control-nav-container',
     'sync' => '',
     'asNavFor' => '',
-    'itemWidth' => '210',
+    'itemWidth' => '290',
     'itemMargin' => '5',
     'minItems' => '0',
     'maxItems' => '0',

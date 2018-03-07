@@ -41,6 +41,13 @@ function focus_directory_of_professionals_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_focus_directory_of_professionals';
+  $strongarm->value = 1;
+  $export['comment_form_location_focus_directory_of_professionals'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_focus_directory_of_professionals';
   $strongarm->value = '1';
   $export['comment_preview_focus_directory_of_professionals'] = $strongarm;
@@ -83,6 +90,9 @@ function focus_directory_of_professionals_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search' => array(
         'custom_settings' => FALSE,
       ),
       'ical' => array(

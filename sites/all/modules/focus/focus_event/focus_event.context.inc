@@ -32,6 +32,12 @@ function focus_event_context_default_contexts() {
           'region' => 'content_top',
           'weight' => '-10',
         ),
+        'views--exp-search_events-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-search_events-page',
+          'region' => 'content_top',
+          'weight' => '-9',
+        ),
         'views-ical-block' => array(
           'module' => 'views',
           'delta' => 'ical-block',
@@ -53,6 +59,38 @@ function focus_event_context_default_contexts() {
   // Included for use with string extractors like potx.
   t('Pages');
   $export['events'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'search_event';
+  $context->description = '';
+  $context->tag = 'search';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'search-events' => 'search-events',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views--exp-search_events-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-search_events-page',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('search');
+  $export['search_event'] = $context;
 
   return $export;
 }
